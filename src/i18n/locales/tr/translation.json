@@ -1,0 +1,575 @@
+{
+  "meta": {
+    "title": "Op. Dr. Gürkan Eryanılmaz - Ortopedi ve Travmatoloji",
+    "description": "Op. Dr. Gürkan Eryanılmaz - 25+ yıllık deneyime sahip Ortopedi ve Travmatoloji uzmanı. Artroskopik cerrahi, eklem replasmanları ve spor yaralanmaları konusunda uzmanlaşmıştır."
+  },
+  "nav": {
+    "home": "Ana Sayfa",
+    "about": "Hakkında",
+    "services": "Hizmetler",
+    "symptoms": "Semptomlar ve Tedavi",
+    "blog": "Blog",
+    "testimonials": "Hasta Yorumları",
+    "contact": "İletişim"
+  },
+  "home": {
+    "hero": {
+      "title": "Op. Dr. Gürkan Eryanılmaz",
+      "subtitle": "Ortopedi ve Travmatoloji Uzmanı",
+      "cta": "Randevu Al"
+    },
+    "intro": {
+      "title": "Profesyonel Tıbbi Bakım",
+      "description": "Op. Dr. Gürkan Eryanılmaz 25 yılı aşkın deneyime sahip bir Ortopedi ve Travmatoloji uzmanıdır. Yaşam kalitenizi iyileştirmenize yardımcı olmak için en yüksek kalitede tıbbi bakım sunar.",
+      "yearsExperience": "Yıllık Deneyim",
+      "specializations": "Uzmanlık Alanı",
+      "operations": "Ameliyat",
+      "yearsExperienceShort": "Yıl Deneyim"
+    },
+    "services": {
+      "title": "Uzmanlık Alanları",
+      "viewAll": "Tüm Hizmetleri Görüntüle"
+    },
+    "stats": {
+      "title": "Sayılarla Deneyim",
+      "yearsExperience": "Yıllık Deneyim",
+      "yearsExperienceShort": "Yıl Deneyim",
+      "specializations": "Uzmanlık Alanı",
+      "operations": "Ameliyat",
+      "patients": "Hasta",
+      "surgeries": "Gerçekleştirilen Ameliyat",
+      "satisfaction": "Hasta Memnuniyeti",
+      "kneeReplacements": "Diz Replikasyonları",
+      "fractureSurgeries": "Kırık Cerrahileri",
+      "arthroscopies": "Artroskopik Cerrahiler",
+      "pediatricHipSurgeries": "Çocuk Hip Cerrahileri",
+      "clubfootCorrections": "Çarpık Ayak Düzeltmeleri",
+      "hipSurgeries": "Çocuk Hip Cerrahileri",
+      "clubfoot": "Çarpık Ayak Düzeltmeleri"
+    },
+    "testimonials": {
+      "title": "Hastalarımız Ne Diyor",
+      "viewAll": "Tüm Yorumları Görüntüle"
+    },
+    "blog": {
+      "title": "En Son Makaleler",
+      "readMore": "Devamını Oku",
+      "viewAll": "Tüm Yazıları Görüntüle"
+    },
+    "cta": {
+      "title": "Randevu Alın",
+      "description": "Sağlık sorunlarınızla ilgili profesyonel tavsiye için bizimle iletişime geçin.",
+      "button": "Şimdi İletişime Geç"
+    }
+  },
+  "symptoms": {
+    "title": "Semptomlar ve Tedavi",
+    "subtitle": "İnteraktif Vücut Haritası",
+    "description": "Yaygın ortopedik durumlar ve tedavi seçenekleri hakkında bilgi edinmek için herhangi bir vücut bölümüne tıklayın.",
+    "categories": {
+      "title": "Tedavi Alanları"
+    },
+    "bodyMap": {
+      "title": "İnteraktif Vücut Haritası",
+      "instruction": "Semptomları ve tedavileri keşfetmek için vurgulanan herhangi bir alana tıklayın",
+      "tooltips": {
+        "shoulder": {
+          "title": "Omuz Sorunları",
+          "description": "Rotator manşet yaralanmaları, sıkışma ve omuz instabilitesi."
+        },
+        "elbow": {
+          "title": "Dirsek Durumları",
+          "description": "Tenisçi dirseği, kırıklar ve bağ yaralanmaları."
+        },
+        "wrist-hand": {
+          "title": "Bilek ve El Sorunları",
+          "description": "Kırıklar, burkulmalar ve aşırı kullanım yaralanmaları."
+        },
+        "hip": {
+          "title": "Kalça Sorunları",
+          "description": "Pediatrik kalça durumları, artrit ve kalça replasmanı."
+        },
+        "knee": {
+          "title": "Diz Durumları",
+          "description": "Menisküs yırtıkları, ACL yaralanmaları ve diz replasmanları."
+        },
+        "foot-ankle": {
+          "title": "Ayak ve Ayak Bileği Sorunları",
+          "description": "Çarpık ayak, ayak bileği burkulmalar ve kırıklar."
+        },
+        "pediatric-orthopedics": {
+          "title": "Pediatrik Ortopedi",
+          "description": "Gelişimsel displazi, çarpık ayak ve pediatrik travma."
+        }
+      }
+    },
+    "shoulder": {
+      "title": "Omuz Ağrısı ve Durumları",
+      "overview": "Omuz, vücuttaki en hareketli eklemlerden biridir ve bu da onu çeşitli yaralanma ve durumlara karşı hassas hale getirir. Kapsamlı yaklaşımımız hem akut yaralanmaları hem de kroniki durumları ele alır.",
+      "causes": {
+        "title": "Yaygın Nedenler",
+        "items": [
+          "Rotator manşet yırtıkları ve sıkışması",
+          "Omuz instabilitesi ve çıkıkları",
+          "Donuk omuz (adeziv kapsülit)",
+          "Artrit ve dejeneratif değişiklikler",
+          "Sporla ilgili yaralanmalar",
+          "Omuz bıçağı, köprücük kemiği veya üst kol kırıkları"
+        ]
+      },
+      "symptoms": {
+        "title": "Semptomlar",
+        "items": [
+          "Baş üstü aktivitelerle artan ağrı",
+          "Sınırlı hareket aralığı",
+          "Kolda güçsüzlük",
+          "Tıklama veya patlama sesleri",
+          "Uykuyu bozan gece ağrısı",
+          "Sertlik ve azalmış esneklik"
+        ]
+      },
+      "treatments": {
+        "title": "Tedavi Seçenekleri",
+        "conservative": {
+          "title": "Konservatif Tedavi",
+          "items": [
+            "Fizik tedavi ve rehabilitasyon",
+            "Anti-inflamatuar ilaçlar",
+            "Kortikosteroid enjeksiyonları",
+            "Aktivite modifikasyonu",
+            "Buz ve sıcak terapi"
+          ]
+        },
+        "surgical": {
+          "title": "Cerrahi Tedavi",
+          "items": [
+            "Artroskopik rotator manşet tamiri",
+            "Omuz stabilizasyon prosedürleri",
+            "Omuz replasmanı cerrahisi",
+            "İnstabilite için Bankart tamiri",
+            "Subakromial dekompresyon"
+          ]
+        }
+      },
+      "drTreatment": "Dr. Gürkan Eryanılmaz hem artroskopik hem de açık omuz cerrahilerinde uzmanlaşmış olup, daha hızlı iyileşme ve optimal sonuçlar sağlamak için en son minimal invaziv teknikleri kullanmaktadır."
+    },
+    "elbow": {
+      "title": "Dirsek Durumları ve Tedavi",
+      "overview": "Dirsek sorunları günlük aktiviteleri ve spor performansını önemli ölçüde etkileyebilir. Dirsek eklemini etkileyen hem akut yaralanmalar hem de kronik durumlar için kapsamlı bakım sağlıyoruz.",
+      "causes": {
+        "title": "Yaygın Durumlar",
+        "items": [
+          "Tenisçi dirseği (lateral epikondilit)",
+          "Golfçü dirseği (medial epikondilit)",
+          "Dirsek kırıkları ve çıkıkları",
+          "Ulnar sinir sıkışması",
+          "Bağ yaralanmaları",
+          "Artrit ve eklem dejenerasyonu"
+        ]
+      },
+      "symptoms": {
+        "title": "Semptomlar",
+        "items": [
+          "Dirseğin dış veya iç tarafında ağrı",
+          "Kavrama gücünde zayıflık",
+          "Sertlik ve sınırlı hareket",
+          "Parmaklarda uyuşma veya karıncalanma",
+          "Eklem çevresinde şişlik",
+          "Aktiviteyle artan ağrı"
+        ]
+      },
+      "treatments": {
+        "title": "Tedavi Yaklaşımları",
+        "conservative": {
+          "title": "Cerrahi Olmayan Tedavi",
+          "items": [
+            "Dinlenme ve aktivite modifikasyonu",
+            "Fizik tedavi egzersizleri",
+            "Destekleme ve destek",
+            "Kortikosteroid enjeksiyonları",
+            "Trombositten zengin plazma (PRP) tedavisi"
+          ]
+        },
+        "surgical": {
+          "title": "Cerrahi Seçenekler",
+          "items": [
+            "Artroskopik dirsek cerrahisi",
+            "Tenisçi dirseği gevşetme",
+            "Kırık fiksasyonu",
+            "Bağ rekonstrüksiyonu",
+            "Sinir dekompresyonu"
+          ]
+        }
+      },
+      "drTreatment": "Dr. Eryanılmaz hem konservatif hem de cerrahi yaklaşımları kullanır, daha hızlı iyileşme ve minimal skar için artroskopik tekniklerde uzmanlığa sahiptir."
+    },
+    "wristHand": {
+      "title": "Bilek ve El Durumları",
+      "overview": "El ve bilek yaralanmaları günlük işlevleri ciddi şekilde etkileyebilir. Uzmanlaşmış bakımımız akut kırıklardan karpal tünel sendromu gibi kronik durumlara kadar her şeyi ele alır.",
+      "causes": {
+        "title": "Yaygın Durumlar",
+        "items": [
+          "Karpal tünel sendromu",
+          "Bilek ve el kırıkları",
+          "Tetik parmak",
+          "De Quervain tenosinoviti",
+          "El ve bilek artriti",
+          "Bağ yaralanmaları ve burkulmalar"
+        ]
+      },
+      "symptoms": {
+        "title": "Semptomlar",
+        "items": [
+          "Parmaklarda uyuşma ve karıncalanma",
+          "Ağrı ve şişlik",
+          "Kavramada güçsüzlük",
+          "Sertlik ve sınırlı hareket",
+          "Parmakların tıklaması veya kilitlenmesi",
+          "Yaralanma sonrası deformite"
+        ]
+      },
+      "treatments": {
+        "title": "Tedavi Seçenekleri",
+        "conservative": {
+          "title": "Konservatif Bakım",
+          "items": [
+            "Atelleme ve immobilizasyon",
+            "Fizik tedavi",
+            "Kortikosteroid enjeksiyonları",
+            "Aktivite modifikasyonu",
+            "Anti-inflamatuar ilaçlar"
+          ]
+        },
+        "surgical": {
+          "title": "Cerrahi Prosedürler",
+          "items": [
+            "Karpal tünel gevşetme",
+            "Plak/vida ile kırık fiksasyonu",
+            "Tetik parmak gevşetme",
+            "Tendon tamiri",
+            "Eklem replasmanı"
+          ]
+        }
+      },
+      "drTreatment": "Dr. Eryanılmaz kapsamlı el ve bilek bakımı sağlar, optimal fonksiyonel sonuçlar için gerektiğinde mikrocerrahi teknikleri kullanır."
+    },
+    "hip": {
+      "title": "Kalça Sorunları ve Tedavi",
+      "overview": "Kalça durumları pediatrik gelişimsel sorunlardan yetişkin artritine kadar her yaştan hastayı etkileyebilir. Kapsamlı yaklaşımımız her yaş grubu ve durum için uygun tedavi sağlar.",
+      "causes": {
+        "title": "Yaygın Durumlar",
+        "items": [
+          "Kalça artriti ve dejenerasyonu",
+          "Kalça kırıkları",
+          "Gelişimsel displazi (pediatrik)",
+          "Femoroasetabular sıkışma",
+          "Labral yırtıklar",
+          "Avasküler nekroz"
+        ]
+      },
+      "symptoms": {
+        "title": "Semptomlar",
+        "items": [
+          "Kasık veya kalça ağrısı",
+          "Topallama veya değişmiş yürüyüş",
+          "Sertlik ve azalmış hareket aralığı",
+          "Aktiviteyle artan ağrı",
+          "Merdivenlerle zorluk",
+          "Gece ağrısı"
+        ]
+      },
+      "treatments": {
+        "title": "Tedavi Yaklaşımları",
+        "conservative": {
+          "title": "Cerrahi Olmayan Tedavi",
+          "items": [
+            "Fizik tedavi",
+            "Kilo yönetimi",
+            "Aktivite modifikasyonu",
+            "Enjeksiyonlar (kortikosteroid, hiyalüronik asit)",
+            "Ağrı yönetimi"
+          ]
+        },
+        "surgical": {
+          "title": "Cerrahi Seçenekler",
+          "items": [
+            "Total kalça replasmanı",
+            "Kalça artroskopisi",
+            "Pediatrik kalça cerrahisi",
+            "Kırık fiksasyonu",
+            "Kalça yeniden yüzeyleme"
+          ]
+        }
+      },
+      "pediatric": {
+        "title": "Pediatrik Kalça Bakımı",
+        "description": "Gelişimsel kalça displazisi, Perthes hastalığı ve diğer pediatrik kalça durumlarını yaşa uygun tekniklerle tedavi etmede özel uzmanlık."
+      },
+      "drTreatment": "Dr. Eryanılmaz hem yetişkin hem de pediatrik kalça cerrahisinde geniş deneyime sahiptir, kariyeri boyunca 500'den fazla pediatrik kalça prosedürü gerçekleştirmiştir."
+    },
+    "knee": {
+      "title": "Diz Ağrısı ve Durumları",
+      "overview": "Diz vücuttaki en büyük eklemdir ve günlük aktiviteler sırasında önemli stres taşır. Kapsamlı diz bakımımız spor yaralanmaları, artrit ve karmaşık rekonstrüksiyonları ele alır.",
+      "causes": {
+        "title": "Yaygın Durumlar",
+        "items": [
+          "ACL, MCL ve menisküs yırtıkları",
+          "Diz artriti",
+          "Patellofemoral ağrı sendromu",
+          "Diz çevresindeki kırıklar",
+          "Bağ instabilitesi",
+          "Kıkırdak hasarı"
+        ]
+      },
+      "symptoms": {
+        "title": "Semptomlar",
+        "items": [
+          "Diz ağrısı ve şişlik",
+          "İnstabilite veya boşalma",
+          "Kilitlenme veya takılma",
+          "Sertlik ve azalmış hareket",
+          "Ağırlık taşımada zorluk",
+          "Gıcırdama veya tıklama sesleri"
+        ]
+      },
+      "treatments": {
+        "title": "Tedavi Seçenekleri",
+        "conservative": {
+          "title": "Konservatif Tedavi",
+          "items": [
+            "Fizik tedavi ve güçlendirme",
+            "Destekleme ve destek",
+            "Enjeksiyonlar (kortikosteroid, hiyalüronik asit)",
+            "Aktivite modifikasyonu",
+            "Kilo yönetimi"
+          ]
+        },
+        "surgical": {
+          "title": "Cerrahi Prosedürler",
+          "items": [
+            "ACL rekonstrüksiyonu",
+            "Menisküs tamiri/çıkarılması",
+            "Total diz replasmanı",
+            "Kısmi diz replasmanı",
+            "Artroskopik cerrahi"
+          ]
+        }
+      },
+      "drTreatment": "Dr. Eryanılmaz 10.000'den fazla diz replasmanı cerrahisi ve 5.000 artroskopik prosedür gerçekleştirmiş olup, bölgedeki en deneyimli diz cerrahlarından biridir."
+    },
+    "footAnkle": {
+      "title": "Ayak ve Ayak Bileği Durumları",
+      "overview": "Ayak ve ayak bileği sorunları mobiliteyi ve yaşam kalitesini önemli ölçüde etkileyebilir. Çarpık ayak gibi pediatrik durumlardan yetişkin yaralanmalarına kadar kapsamlı bakım sağlıyoruz.",
+      "causes": {
+        "title": "Yaygın Durumlar",
+        "items": [
+          "Ayak bileği burkulmalar ve kırıkları",
+          "Çarpık ayak (pediatrik)",
+          "Aşil tendonu yaralanmaları",
+          "Plantar fasiit",
+          "Ayak ve ayak bileği artriti",
+          "Stres kırıkları"
+        ]
+      },
+      "symptoms": {
+        "title": "Semptomlar",
+        "items": [
+          "Ağrı ve şişlik",
+          "Yürümede zorluk",
+          "İnstabilite veya güçsüzlük",
+          "Deformite",
+          "Sertlik",
+          "Uyuşma veya karıncalanma"
+        ]
+      },
+      "treatments": {
+        "title": "Tedavi Yaklaşımları",
+        "conservative": {
+          "title": "Cerrahi Olmayan Bakım",
+          "items": [
+            "İmmobilizasyon ve alçılama",
+            "Fizik tedavi",
+            "Ortotik ve destekleme",
+            "Enjeksiyonlar",
+            "Aktivite modifikasyonu"
+          ]
+        },
+        "surgical": {
+          "title": "Cerrahi Seçenekler",
+          "items": [
+            "Çarpık ayak düzeltmesi (Ponseti yöntemi)",
+            "Kırık fiksasyonu",
+            "Bağ rekonstrüksiyonu",
+            "Tendon tamiri",
+            "Artroskopik cerrahi"
+          ]
+        }
+      },
+      "pediatric": {
+        "title": "Çarpık Ayak Uzmanlığı",
+        "description": "Dr. Eryanılmaz Ponseti yöntemini kullanarak 350'den fazla çarpık ayak vakasını başarıyla tedavi etmiş, mükemmel fonksiyonel sonuçlar elde etmiştir."
+      },
+      "drTreatment": "Hem pediatrik ayak deformiteleri hem de yetişkin ayak ve ayak bileği yaralanmaları için uzmanlaşmış bakım, fonksiyon ve mobiliteyi korumaya vurgu yaparak."
+    },
+    "pediatric": {
+      "title": "Pediatrik Ortopedi",
+      "overview": "Çocukların ortopedik durumları uzmanlaşmış bilgi ve yaşa uygun tedavi yaklaşımları gerektirir. Pediatrik ortopedik bakımımız gelişimsel, travmatik ve konjenital durumları ele alır.",
+      "conditions": {
+        "title": "Yaygın Pediatrik Durumlar",
+        "items": [
+          "Kalçanın gelişimsel displazisi",
+          "Çarpık ayak (konjenital talipes ekinovarus)",
+          "Pediatrik kırıklar",
+          "Büyüme plağı yaralanmaları",
+          "Uzuv uzunluğu farklılıkları",
+          "Skolyoz ve spinal deformiteler"
+        ]
+      },
+      "approach": {
+        "title": "Yaklaşımımız",
+        "items": [
+          "Yaşa uygun tedavi yöntemleri",
+          "Mümkün olduğunda minimal invaziv teknikler",
+          "Aile merkezli bakım",
+          "Büyüme dostu prosedürler",
+          "Uzun vadeli takip",
+          "Multidisipliner ekip yaklaşımı"
+        ]
+      },
+      "specialties": {
+        "title": "Uzmanlaşmış Tedaviler",
+        "hip": {
+          "title": "Kalça Displazisi",
+          "description": "Pavlik koşum takımı, alçılama veya gerektiğinde cerrahi düzeltme kullanarak gelişimsel kalça displazisinin erken tespiti ve tedavisi."
+        },
+        "clubfoot": {
+          "title": "Çarpık Ayak Düzeltmesi",
+          "description": "Alçılama, tenotomi ve destekleme protokolleri dahil olmak üzere Ponseti yöntemini kullanarak kapsamlı çarpık ayak tedavisi."
+        },
+        "trauma": {
+          "title": "Pediatrik Travma",
+          "description": "Büyüme plakları ve uzun vadeli gelişimi göz önünde bulundurarak çocuk kırıkları için uzmanlaşmış bakım."
+        }
+      },
+      "drTreatment": "Dr. Eryanılmaz 500'den fazla pediatrik kalça cerrahisi ve 350 çarpık ayak düzeltmesi ile pediatrik ortopedide geniş deneyime sahiptir, genç hastalar için en iyi sonuçları sağlar."
+    }
+  },
+  "about": {
+    "title": "Hakkında",
+    "subtitle": "Op. Dr. Gürkan Eryanılmaz",
+    "bio": {
+      "title": "Eğitim ve Deneyim",
+      "education": "Eğitim",
+      "experience": "Deneyim",
+      "specializations": "Uzmanlıklar",
+      "egeUniversity": "Ege Üniversitesi Tıp Fakültesi (1987–1993)",
+      "doctorOfMedicine": "Tıp Doktoru",
+      "tepecikHospital": "İzmir Tepecik Eğitim ve Araştırma Hastanesi",
+      "orthopedicsResidency": "Ortopedi ve Travmatoloji Uzmanlık Eğitimi",
+      "mederaHospital": "Medera Hastanesi, Bakü",
+      "orthopedicsSpecialist": "Ortopedi ve Travmatoloji Uzmanı",
+      "afyonStateHospital": "Afyon Devlet Hastanesi",
+      "orthopedicsSpecialistAfyon": "Ortopedi ve Travmatoloji Uzmanı",
+      "balakanLankaran": "Balakən ve Lankaran Bölgeleri",
+      "consultingSurgeon": "Danışman Ortopedi Cerrahı",
+      "surgicalExperience": "Cerrahi Deneyim"
+    },
+    "personal": {
+      "title": "Kişisel Bilgiler",
+      "birthplace": "Doğum yeri:",
+      "birthdate": "Doğum tarihi:"
+    },
+    "philosophy": {
+      "title": "Tıp Felsefesi",
+      "content": "Her hastanın benzersiz olduğuna ve kişiselleştirilmiş tıbbi bakımı hak ettiğine inanıyorum. Yaklaşımım, en son teknolojiyi kullanmakla birlikte hastalarla samimi ve şeffaf iletişim kurmaktır."
+    },
+    "clinic": {
+      "title": "Kliniğimiz Hakkında",
+      "content": "Medera Hastanesi'nde kliniğimiz ortopedi ve travmatoloji alanında en yüksek kalitede tıbbi hizmetler sunmak için en son teknoloji ile donatılmıştır."
+    },
+    "facilities": {
+      "title": "Klinik Olanaklarımız",
+      "diagnosticEquipment": "Son teknoloji tanı ekipmanları",
+      "surgicalFacilities": "Modern cerrahi tesisleri",
+      "rehabServices": "Kapsamlı rehabilitasyon hizmetleri",
+      "multilingualStaff": "Hasta konforu için çok dilli personel"
+    }
+  },
+  "services": {
+    "title": "Hizmetlerimiz",
+    "subtitle": "Uzmanlık Alanları",
+    "specializations": {
+      "title": "Uzmanlık Alanlarımız",
+      "arthroscopicSurgery": "Artroskopik Cerrahi",
+      "jointReplacements": "Eklem Protezleri",
+      "fractureTraumaSurgery": "Kırık ve Travma Cerrahisi",
+      "pediatricOrthopedics": "Pediatrik Ortopedi",
+      "sportsRehab": "Spor Yaralanmaları ve Rehabilitasyon"
+    },
+    "viewDetails": "Detayları Görüntüle"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Tıbbi Makaleler",
+    "readMore": "Devamını Oku",
+    "categories": "Kategoriler",
+    "recentPosts": "Son Yazılar",
+    "searchPlaceholder": "Makalelerde ara..."
+  },
+  "testimonials": {
+    "title": "Hasta Yorumları",
+    "subtitle": "Hastalarımızın Deneyimi"
+  },
+  "contact": {
+    "title": "Bizimle İletişime Geçin",
+    "subtitle": "Sorularınız veya randevunuz için",
+    "form": {
+      "name": "Adınız",
+      "email": "E-posta",
+      "phone": "Telefon",
+      "message": "Mesaj",
+      "submit": "Gönder",
+      "sending": "Gönderiliyor...",
+      "success": {
+        "title": "Teşekkürler!",
+        "message": "Mesajınız başarıyla gönderildi. En kısa sürede sizinle iletişime geçeceğiz.",
+        "sendAnother": "Başka Mesaj Gönder"
+      },
+      "error": {
+        "title": "Bir Hata Oluştu"
+      },
+      "validation": {
+        "nameRequired": "İsim gereklidir",
+        "emailRequired": "E-posta gereklidir",
+        "emailInvalid": "Lütfen geçerli bir e-posta adresi girin",
+        "messageRequired": "Mesaj gereklidir"
+      }
+    },
+    "info": {
+      "title": "İletişim Bilgileri",
+      "address": "Adres",
+      "phone": "Telefon",
+      "email": "E-posta",
+      "workingHours": "Çalışma Saatleri"
+    }
+  },
+  "footer": {
+    "quickLinks": "Hızlı Bağlantılar",
+    "services": {
+      "title": "Hizmetlerimiz",
+      "arthroscopic": "Artroskopik Cerrahi",
+      "joint": "Eklem Protezleri",
+      "fracture": "Kırık ve Travma Cerrahisi",
+      "pediatric": "Pediatrik Ortopedi",
+      "sports": "Spor Yaralanmaları ve Rehabilitasyon"
+    },
+    "contact": "İletişim",
+    "followUs": "Bizi Takip Edin",
+    "copyright": " 2025 Op. Dr. Gürkan Eryanılmaz. Tüm hakları saklıdır."
+  },
+  "notFound": {
+    "title": "Sayfa Bulunamadı",
+    "message": "Aradığınız sayfa mevcut değil.",
+    "button": "Ana Sayfaya Dön"
+  }
+}

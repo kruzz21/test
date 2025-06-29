@@ -1,0 +1,568 @@
+{
+  "meta": {
+    "title": "Op. Dr. Gürkan Eryanılmaz - Orthopedics and Traumatology",
+    "description": "Op. Dr. Gürkan Eryanılmaz - Orthopedics and Traumatology specialist with 25+ years of experience. Specializing in arthroscopic surgery, joint replacements, and sports injuries."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "symptoms": "Symptoms & Treatment",
+    "blog": "Blog",
+    "testimonials": "Testimonials",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero": {
+      "title": "Op. Dr. Gürkan Eryanılmaz",
+      "subtitle": "Orthopedics and Traumatology Specialist",
+      "cta": "Book an Appointment"
+    },
+    "intro": {
+      "title": "Professional Medical Care",
+      "description": "Op. Dr. Gürkan Eryanılmaz is an Orthopedics and Traumatology specialist with over 25 years of experience. He provides the highest quality medical care to help improve your quality of life.",
+      "yearsExperience": "Years of Experience",
+      "specializations": "Specializations",
+      "operations": "Operations",
+      "yearsExperienceShort": "Years Experience"
+    },
+    "services": {
+      "title": "Areas of Expertise",
+      "viewAll": "View All Services"
+    },
+    "stats": {
+      "title": "Experience in Numbers",
+      "yearsExperience": "Years of Experience",
+      "yearsExperienceShort": "Years Experience",
+      "specializations": "Specializations",
+      "operations": "Operations",
+      "kneeReplacements": "Knee Replacements",
+      "fractureSurgeries": "Fracture Surgeries",
+      "arthroscopies": "Arthroscopic Surgeries",
+      "hipSurgeries": "Pediatric Hip Surgeries",
+      "clubfoot": "Clubfoot Corrections"
+    },
+    "testimonials": {
+      "title": "What Our Patients Say",
+      "viewAll": "View All Testimonials"
+    },
+    "blog": {
+      "title": "Latest Articles",
+      "readMore": "Read More",
+      "viewAll": "View All Posts"
+    },
+    "cta": {
+      "title": "Book an Appointment",
+      "description": "Contact us for professional advice regarding your health concerns.",
+      "button": "Contact Now"
+    }
+  },
+  "symptoms": {
+    "title": "Symptoms & Treatment",
+    "subtitle": "Interactive Body Map",
+    "description": "Click on any body part to learn about common orthopedic conditions and treatment options.",
+    "categories": {
+      "title": "Treatment Areas"
+    },
+    "bodyMap": {
+      "title": "Interactive Body Map",
+      "instruction": "Click on any highlighted area to explore symptoms and treatments",
+      "tooltips": {
+        "shoulder": {
+          "title": "Shoulder Problems",
+          "description": "Rotator cuff injuries, impingement, and shoulder instability."
+        },
+        "elbow": {
+          "title": "Elbow Conditions",
+          "description": "Tennis elbow, fractures, and ligament injuries."
+        },
+        "wrist-hand": {
+          "title": "Wrist & Hand Issues",
+          "description": "Fractures, sprains, and overuse injuries."
+        },
+        "hip": {
+          "title": "Hip Problems",
+          "description": "Pediatric hip conditions, arthritis, and hip replacement."
+        },
+        "knee": {
+          "title": "Knee Conditions",
+          "description": "Meniscus tears, ACL injuries, and knee replacements."
+        },
+        "foot-ankle": {
+          "title": "Foot & Ankle Issues",
+          "description": "Clubfoot, ankle sprains, and fractures."
+        },
+        "pediatric-orthopedics": {
+          "title": "Pediatric Orthopedics",
+          "description": "Developmental dysplasia, clubfoot, and pediatric trauma."
+        }
+      }
+    },
+    "shoulder": {
+      "title": "Shoulder Pain & Conditions",
+      "overview": "The shoulder is one of the most mobile joints in the body, making it susceptible to various injuries and conditions. Our comprehensive approach addresses both acute injuries and chronic conditions.",
+      "causes": {
+        "title": "Common Causes",
+        "items": [
+          "Rotator cuff tears and impingement",
+          "Shoulder instability and dislocations",
+          "Frozen shoulder (adhesive capsulitis)",
+          "Arthritis and degenerative changes",
+          "Sports-related injuries",
+          "Fractures of the shoulder blade, collarbone, or upper arm"
+        ]
+      },
+      "symptoms": {
+        "title": "Symptoms",
+        "items": [
+          "Pain that worsens with overhead activities",
+          "Limited range of motion",
+          "Weakness in the arm",
+          "Clicking or popping sounds",
+          "Night pain that disrupts sleep",
+          "Stiffness and reduced flexibility"
+        ]
+      },
+      "treatments": {
+        "title": "Treatment Options",
+        "conservative": {
+          "title": "Conservative Treatment",
+          "items": [
+            "Physical therapy and rehabilitation",
+            "Anti-inflammatory medications",
+            "Corticosteroid injections",
+            "Activity modification",
+            "Ice and heat therapy"
+          ]
+        },
+        "surgical": {
+          "title": "Surgical Treatment",
+          "items": [
+            "Arthroscopic rotator cuff repair",
+            "Shoulder stabilization procedures",
+            "Shoulder replacement surgery",
+            "Bankart repair for instability",
+            "Subacromial decompression"
+          ]
+        }
+      },
+      "drTreatment": "Dr. Gürkan Eryanılmaz specializes in both arthroscopic and open shoulder surgeries, utilizing the latest minimally invasive techniques to ensure faster recovery and optimal outcomes."
+    },
+    "elbow": {
+      "title": "Elbow Conditions & Treatment",
+      "overview": "Elbow problems can significantly impact daily activities and sports performance. We provide comprehensive care for both acute injuries and chronic conditions affecting the elbow joint.",
+      "causes": {
+        "title": "Common Conditions",
+        "items": [
+          "Tennis elbow (lateral epicondylitis)",
+          "Golfer's elbow (medial epicondylitis)",
+          "Elbow fractures and dislocations",
+          "Ulnar nerve compression",
+          "Ligament injuries",
+          "Arthritis and joint degeneration"
+        ]
+      },
+      "symptoms": {
+        "title": "Symptoms",
+        "items": [
+          "Pain on the outside or inside of the elbow",
+          "Weakness in grip strength",
+          "Stiffness and limited motion",
+          "Numbness or tingling in fingers",
+          "Swelling around the joint",
+          "Pain that worsens with activity"
+        ]
+      },
+      "treatments": {
+        "title": "Treatment Approaches",
+        "conservative": {
+          "title": "Non-Surgical Treatment",
+          "items": [
+            "Rest and activity modification",
+            "Physical therapy exercises",
+            "Bracing and support",
+            "Corticosteroid injections",
+            "Platelet-rich plasma (PRP) therapy"
+          ]
+        },
+        "surgical": {
+          "title": "Surgical Options",
+          "items": [
+            "Arthroscopic elbow surgery",
+            "Tennis elbow release",
+            "Fracture fixation",
+            "Ligament reconstruction",
+            "Nerve decompression"
+          ]
+        }
+      },
+      "drTreatment": "Dr. Eryanılmaz employs both conservative and surgical approaches, with expertise in arthroscopic techniques for faster recovery and minimal scarring."
+    },
+    "wristHand": {
+      "title": "Wrist & Hand Conditions",
+      "overview": "Hand and wrist injuries can severely impact daily function. Our specialized care addresses everything from acute fractures to chronic conditions like carpal tunnel syndrome.",
+      "causes": {
+        "title": "Common Conditions",
+        "items": [
+          "Carpal tunnel syndrome",
+          "Wrist and hand fractures",
+          "Trigger finger",
+          "De Quervain's tenosynovitis",
+          "Arthritis of the hand and wrist",
+          "Ligament injuries and sprains"
+        ]
+      },
+      "symptoms": {
+        "title": "Symptoms",
+        "items": [
+          "Numbness and tingling in fingers",
+          "Pain and swelling",
+          "Weakness in grip",
+          "Stiffness and limited motion",
+          "Clicking or locking of fingers",
+          "Deformity after injury"
+        ]
+      },
+      "treatments": {
+        "title": "Treatment Options",
+        "conservative": {
+          "title": "Conservative Care",
+          "items": [
+            "Splinting and immobilization",
+            "Physical therapy",
+            "Corticosteroid injections",
+            "Activity modification",
+            "Anti-inflammatory medications"
+          ]
+        },
+        "surgical": {
+          "title": "Surgical Procedures",
+          "items": [
+            "Carpal tunnel release",
+            "Fracture fixation with plates/screws",
+            "Trigger finger release",
+            "Tendon repair",
+            "Joint replacement"
+          ]
+        }
+      },
+      "drTreatment": "Dr. Eryanılmaz provides comprehensive hand and wrist care, utilizing microsurgical techniques when necessary for optimal functional outcomes."
+    },
+    "hip": {
+      "title": "Hip Problems & Treatment",
+      "overview": "Hip conditions can affect patients of all ages, from pediatric developmental issues to adult arthritis. Our comprehensive approach ensures appropriate treatment for each age group and condition.",
+      "causes": {
+        "title": "Common Conditions",
+        "items": [
+          "Hip arthritis and degeneration",
+          "Hip fractures",
+          "Developmental dysplasia (pediatric)",
+          "Femoroacetabular impingement",
+          "Labral tears",
+          "Avascular necrosis"
+        ]
+      },
+      "symptoms": {
+        "title": "Symptoms",
+        "items": [
+          "Groin or hip pain",
+          "Limping or altered gait",
+          "Stiffness and reduced range of motion",
+          "Pain that worsens with activity",
+          "Difficulty with stairs",
+          "Night pain"
+        ]
+      },
+      "treatments": {
+        "title": "Treatment Approaches",
+        "conservative": {
+          "title": "Non-Surgical Treatment",
+          "items": [
+            "Physical therapy",
+            "Weight management",
+            "Activity modification",
+            "Injections (corticosteroid, hyaluronic acid)",
+            "Pain management"
+          ]
+        },
+        "surgical": {
+          "title": "Surgical Options",
+          "items": [
+            "Total hip replacement",
+            "Hip arthroscopy",
+            "Pediatric hip surgery",
+            "Fracture fixation",
+            "Hip resurfacing"
+          ]
+        }
+      },
+      "pediatric": {
+        "title": "Pediatric Hip Care",
+        "description": "Special expertise in treating developmental hip dysplasia, Perthes disease, and other pediatric hip conditions with age-appropriate techniques."
+      },
+      "drTreatment": "Dr. Eryanılmaz has extensive experience in both adult and pediatric hip surgery, with over 500 pediatric hip procedures performed throughout his career."
+    },
+    "knee": {
+      "title": "Knee Pain & Conditions",
+      "overview": "The knee is the largest joint in the body and bears significant stress during daily activities. Our comprehensive knee care addresses sports injuries, arthritis, and complex reconstructions.",
+      "causes": {
+        "title": "Common Conditions",
+        "items": [
+          "ACL, MCL, and meniscus tears",
+          "Knee arthritis",
+          "Patellofemoral pain syndrome",
+          "Fractures around the knee",
+          "Ligament instability",
+          "Cartilage damage"
+        ]
+      },
+      "symptoms": {
+        "title": "Symptoms",
+        "items": [
+          "Knee pain and swelling",
+          "Instability or giving way",
+          "Locking or catching",
+          "Stiffness and reduced motion",
+          "Difficulty bearing weight",
+          "Grinding or clicking sounds"
+        ]
+      },
+      "treatments": {
+        "title": "Treatment Options",
+        "conservative": {
+          "title": "Conservative Treatment",
+          "items": [
+            "Physical therapy and strengthening",
+            "Bracing and support",
+            "Injections (corticosteroid, hyaluronic acid)",
+            "Activity modification",
+            "Weight management"
+          ]
+        },
+        "surgical": {
+          "title": "Surgical Procedures",
+          "items": [
+            "ACL reconstruction",
+            "Meniscus repair/removal",
+            "Total knee replacement",
+            "Partial knee replacement",
+            "Arthroscopic surgery"
+          ]
+        }
+      },
+      "drTreatment": "Dr. Eryanılmaz has performed over 10,000 knee replacement surgeries and 5,000 arthroscopic procedures, making him one of the most experienced knee surgeons in the region."
+    },
+    "footAnkle": {
+      "title": "Foot & Ankle Conditions",
+      "overview": "Foot and ankle problems can significantly impact mobility and quality of life. We provide comprehensive care for both pediatric conditions like clubfoot and adult injuries.",
+      "causes": {
+        "title": "Common Conditions",
+        "items": [
+          "Ankle sprains and fractures",
+          "Clubfoot (pediatric)",
+          "Achilles tendon injuries",
+          "Plantar fasciitis",
+          "Arthritis of the foot and ankle",
+          "Stress fractures"
+        ]
+      },
+      "symptoms": {
+        "title": "Symptoms",
+        "items": [
+          "Pain and swelling",
+          "Difficulty walking",
+          "Instability or weakness",
+          "Deformity",
+          "Stiffness",
+          "Numbness or tingling"
+        ]
+      },
+      "treatments": {
+        "title": "Treatment Approaches",
+        "conservative": {
+          "title": "Non-Surgical Care",
+          "items": [
+            "Immobilization and casting",
+            "Physical therapy",
+            "Orthotics and bracing",
+            "Injections",
+            "Activity modification"
+          ]
+        },
+        "surgical": {
+          "title": "Surgical Options",
+          "items": [
+            "Clubfoot correction (Ponseti method)",
+            "Fracture fixation",
+            "Ligament reconstruction",
+            "Tendon repair",
+            "Arthroscopic surgery"
+          ]
+        }
+      },
+      "pediatric": {
+        "title": "Clubfoot Expertise",
+        "description": "Dr. Eryanılmaz has successfully treated over 350 cases of clubfoot using the Ponseti method, achieving excellent functional outcomes."
+      },
+      "drTreatment": "Specialized care for both pediatric foot deformities and adult foot and ankle injuries, with emphasis on preserving function and mobility."
+    },
+    "pediatric": {
+      "title": "Pediatric Orthopedics",
+      "overview": "Children's orthopedic conditions require specialized knowledge and age-appropriate treatment approaches. Our pediatric orthopedic care addresses developmental, traumatic, and congenital conditions.",
+      "conditions": {
+        "title": "Common Pediatric Conditions",
+        "items": [
+          "Developmental dysplasia of the hip",
+          "Clubfoot (congenital talipes equinovarus)",
+          "Pediatric fractures",
+          "Growth plate injuries",
+          "Limb length discrepancies",
+          "Scoliosis and spinal deformities"
+        ]
+      },
+      "approach": {
+        "title": "Our Approach",
+        "items": [
+          "Age-appropriate treatment methods",
+          "Minimally invasive techniques when possible",
+          "Family-centered care",
+          "Growth-friendly procedures",
+          "Long-term follow-up",
+          "Multidisciplinary team approach"
+        ]
+      },
+      "specialties": {
+        "title": "Specialized Treatments",
+        "hip": {
+          "title": "Hip Dysplasia",
+          "description": "Early detection and treatment of developmental hip dysplasia using Pavlik harness, casting, or surgical correction as needed."
+        },
+        "clubfoot": {
+          "title": "Clubfoot Correction",
+          "description": "Comprehensive clubfoot treatment using the Ponseti method, including casting, tenotomy, and bracing protocols."
+        },
+        "trauma": {
+          "title": "Pediatric Trauma",
+          "description": "Specialized care for children's fractures, considering growth plates and long-term development."
+        }
+      },
+      "drTreatment": "Dr. Eryanılmaz has extensive experience in pediatric orthopedics with over 500 pediatric hip surgeries and 350 clubfoot corrections, ensuring the best outcomes for young patients."
+    }
+  },
+  "about": {
+    "title": "About",
+    "subtitle": "Op. Dr. Gürkan Eryanılmaz",
+    "bio": {
+      "title": "Education & Experience",
+      "education": "Education",
+      "experience": "Experience",
+      "egeUniversity": "Ege University Faculty of Medicine (1987–1993)",
+      "doctorOfMedicine": "Doctor of Medicine",
+      "tepecikHospital": "İzmir Tepecik Training & Research Hospital",
+      "orthopedicsResidency": "Orthopedics and Traumatology Residency",
+      "mederaHospital": "Medera Hospital, Baku",
+      "orthopedicsSpecialist": "Orthopedics and Traumatology Specialist",
+      "afyonStateHospital": "Afyon State Hospital",
+      "orthopedicsSpecialistAfyon": "Orthopedics and Traumatology Specialist",
+      "balakanLankaran": "Balakən and Lankaran Regions",
+      "consultingSurgeon": "Consulting Orthopedic Surgeon",
+      "surgicalExperience": "Surgical Experience"
+    },
+    "personal": {
+      "title": "Personal Information",
+      "birthplace": "Birthplace:",
+      "birthdate": "Born:"
+    },
+    "philosophy": {
+      "title": "Medical Philosophy",
+      "content": "I believe that each patient is unique and deserves personalized medical care. My approach combines the use of cutting-edge technology with sincere and transparent communication with patients."
+    },
+    "clinic": {
+      "title": "About Our Clinic",
+      "content": "At Medera Hospital, our clinic is equipped with the latest technology to provide the highest quality medical services in orthopedics and traumatology."
+    },
+    "facilities": {
+      "diagnosticEquipment": "State-of-the-art diagnostic equipment",
+      "surgicalFacilities": "Modern surgical facilities",
+      "rehabServices": "Comprehensive rehabilitation services",
+      "multilingualStaff": "Multilingual staff for patient comfort"
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Areas of Expertise",
+    "specializations": {
+      "title": "Specializations",
+      "arthroscopicSurgery": "Arthroscopic Surgery",
+      "jointReplacements": "Joint Replacements",
+      "fractureTraumaSurgery": "Fracture & Trauma Surgery",
+      "pediatricOrthopedics": "Pediatric Orthopedics",
+      "sportsRehab": "Sports Injuries & Rehabilitation"
+    },
+    "viewDetails": "View Details"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Medical Articles",
+    "readMore": "Read More",
+    "categories": "Categories",
+    "recentPosts": "Recent Posts",
+    "searchPlaceholder": "Search articles..."
+  },
+  "testimonials": {
+    "title": "Patient Testimonials",
+    "subtitle": "Our Patients' Experience"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "For your inquiry or appointment",
+    "form": {
+      "name": "Your Name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message",
+      "submit": "Submit",
+      "sending": "Sending...",
+      "success": {
+        "title": "Thank You!",
+        "message": "Your message has been sent successfully. We will contact you soon.",
+        "sendAnother": "Send Another Message"
+      },
+      "error": {
+        "title": "An Error Occurred"
+      },
+      "validation": {
+        "nameRequired": "Name is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email address",
+        "messageRequired": "Message is required"
+      }
+    },
+    "info": {
+      "title": "Contact Information",
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email",
+      "workingHours": "Working Hours"
+    }
+  },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "services": {
+      "title": "Our Services",
+      "arthroscopic": "Arthroscopic Surgery",
+      "joint": "Joint Replacements",
+      "fracture": "Fracture & Trauma Surgery",
+      "pediatric": "Pediatric Orthopedics",
+      "sports": "Sports Injuries & Rehab"
+    },
+    "contact": "Contact",
+    "followUs": "Follow Us",
+    "copyright": " 2025 Op. Dr. Gürkan Eryanılmaz. All rights reserved."
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "message": "The page you are looking for doesn't exist.",
+    "button": "Return to Home"
+  }
+}

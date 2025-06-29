@@ -1,0 +1,574 @@
+{
+  "meta": {
+    "title": "Op. Dr. Gürkan Eryanılmaz - Ortopediya və Travmatologiya",
+    "description": "Op. Dr. Gürkan Eryanılmaz - 25+ il təcrübəsi olan Ortopediya və Travmatologiya mütəxəssisi. Artroskopik cərrahiyyə, oynaq əvəzlənməsi və idman zədələri üzrə ixtisaslaşmışdır."
+  },
+  "nav": {
+    "home": "Ana səhifə",
+    "about": "Haqqında",
+    "services": "Xidmətlər",
+    "symptoms": "Simptomlar və Müalicə",
+    "blog": "Blog",
+    "testimonials": "Rəylər",
+    "contact": "Əlaqə"
+  },
+  "home": {
+    "hero": {
+      "title": "Op. Dr. Gürkan Eryanılmaz",
+      "subtitle": "Ortopediya və Travmatologiya Mütəxəssisi",
+      "cta": "Görüş təyin edin"
+    },
+    "intro": {
+      "title": "Peşəkar Tibbi Qayğı",
+      "description": "Op. Dr. Gürkan Eryanılmaz 25+ illik təcrübəsi olan Ortopediya və Travmatologiya mütəxəssisidir. O, ən yüksək keyfiyyətli tibbi xidmət göstərərərək, həyat keyfiyyətinizi yaxşılaşdırmağa kömək edir.",
+      "yearsExperience": "İllik Təcrübə",
+      "specializations": "İxtisas Sahələri",
+      "operations": "Əməliyyat",
+      "yearsExperienceShort": "İl Təcrübə"
+    },
+    "services": {
+      "title": "İxtisas Sahələri",
+      "viewAll": "Bütün xidmətləri göstər"
+    },
+    "stats": {
+      "title": "Rəqəmlərlə Təcrübə",
+      "yearsExperience": "İllik Təcrübə",
+      "yearsExperienceShort": "İl Təcrübə",
+      "specializations": "İxtisas Sahələri",
+      "operations": "Əməliyyat",
+      "patients": "Pasiyent",
+      "surgeries": "Aparılan Əməliyyat",
+      "satisfaction": "Pasiyent Məmnuniyyəti",
+      "kneeReplacements": "Diz Əvəzləmələri",
+      "fractureSurgeries": "Sınıq Cərrahiləri",
+      "arthroscopies": "Artroskopik Əməliyyatlar",
+      "pediatricHipSurgeries": "Uşaq omba Əməliyyatları",
+      "clubfootCorrections": "Əyripəncə Düzəldilməsi",
+      "hipSurgeries": "Uşaq Omba Əməliyyatları",
+      "clubfoot": "Əyripəncə Düzəldilməsi"
+    },
+    "testimonials": {
+      "title": "Xəstələrimizin Dedikləri",
+      "viewAll": "Bütün rəyləri göstər"
+    },
+    "blog": {
+      "title": "Ən Son Məqalələr",
+      "readMore": "Daha ətraflı",
+      "viewAll": "Bütün yazıları göstər"
+    },
+    "cta": {
+      "title": "Görüş təyin edin",
+      "description": "Sağlamlıq problemlərinizlə bağlı peşəkar məsləhət almaq üçün bizimlə əlaqə saxlayın.",
+      "button": "İndi Əlaqə saxlayın"
+    }
+  },
+  "symptoms": {
+    "title": "Simptomlar və Müalicə",
+    "subtitle": "İnteraktiv Bədən Xəritəsi",
+    "description": "Ümumi ortopedik vəziyyətlər və müalicə seçimləri haqqında məlumat əldə etmək üçün istənilən bədən hissəsinə klikləyin.",
+    "categories": {
+      "title": "Müalicə Sahələri"
+    },
+    "bodyMap": {
+      "title": "İnteraktiv Bədən Xəritəsi",
+      "instruction": "Simptomları və müalicələri kəşf etmək üçün vurğulanan istənilən sahəyə klikləyin",
+      "tooltips": {
+        "shoulder": {
+          "title": "Çiyin Problemləri",
+          "description": "Rotator manşet zədələri, sıxılma və çiyin qeyri-sabitliyi."
+        },
+        "elbow": {
+          "title": "Dirsək Vəziyyətləri",
+          "description": "Tennis dirsəyi, sınıqlar və bağ zədələri."
+        },
+        "wrist-hand": {
+          "title": "Bilək və Əl Problemləri",
+          "description": "Sınıqlar, burkulma və həddindən artıq istifadə zədələri."
+        },
+        "hip": {
+          "title": "Bud Problemləri",
+          "description": "Pediatrik bud vəziyyətləri, artrit və bud əvəzlənməsi."
+        },
+        "knee": {
+          "title": "Diz Vəziyyətləri",
+          "description": "Menisküs cırılması, ACL zədələri və diz əvəzlənməsi."
+        },
+        "foot-ankle": {
+          "title": "Ayaq və Topuq Problemləri",
+          "description": "Əyripəncə, topuq burkulması və sınıqlar."
+        },
+        "pediatric-orthopedics": {
+          "title": "Pediatrik Ortopediya",
+          "description": "İnkişaf displaziyası, əyripəncə və pediatrik travma."
+        }
+      }
+    },
+    "shoulder": {
+      "title": "Çiyin Ağrısı və Vəziyyətləri",
+      "overview": "Çiyin bədəndəki ən hərəkətli oynaqlardan biridir və bu onu müxtəlif zədələr və vəziyyətlərə həssas edir. Hərtərəfli yanaşmamız həm kəskin zədələri, həm də xroniki vəziyyətləri əhatə edir.",
+      "causes": {
+        "title": "Ümumi Səbəblər",
+        "items": [
+          "Rotator manşet cırılması və sıxılması",
+          "Çiyin qeyri-sabitliyi və çıxıqları",
+          "Donmuş çiyin (adeziv kapsulit)",
+          "Artrit və degenerativ dəyişikliklər",
+          "İdmanla əlaqəli zədələr",
+          "Çiyin bıçağı, körpücük sümüyü və ya yuxarı qol sınıqları"
+        ]
+      },
+      "symptoms": {
+        "title": "Simptomlar",
+        "items": [
+          "Baş üstü fəaliyyətlərlə pisləşən ağrı",
+          "Məhdud hərəkət diapazonu",
+          "Qolda zəiflik",
+          "Klik və ya partlama səsləri",
+          "Yuxunu pozan gecə ağrısı",
+          "Sərtlik və azalmış çeviklik"
+        ]
+      },
+      "treatments": {
+        "title": "Müalicə Seçimləri",
+        "conservative": {
+          "title": "Konservativ Müalicə",
+          "items": [
+            "Fiziki terapiya və reabilitasiya",
+            "Anti-iltihab dərmanları",
+            "Kortikosteroid inyeksiyaları",
+            "Fəaliyyət modifikasiyası",
+            "Buz və istilik terapiyası"
+          ]
+        },
+        "surgical": {
+          "title": "Cərrahi Müalicə",
+          "items": [
+            "Artroskopik rotator manşet təmiri",
+            "Çiyin sabitləşdirmə prosedurları",
+            "Çiyin əvəzlənməsi cərrahiyyəsi",
+            "Qeyri-sabitlik üçün Bankart təmiri",
+            "Subakromial dekompressiya"
+          ]
+        }
+      },
+      "drTreatment": "Dr. Gürkan Eryanılmaz həm artroskopik, həm də açıq çiyin cərrahiyyələrində ixtisaslaşır, daha sürətli sağalma və optimal nəticələr təmin etmək üçün ən son minimal invaziv texnikaları istifadə edir."
+    },
+    "elbow": {
+      "title": "Dirsək Vəziyyətləri və Müalicə",
+      "overview": "Dirsək problemləri gündəlik fəaliyyətləri və idman performansını əhəmiyyətli dərəcədə təsir edə bilər. Dirsək oynağını təsir edən həm kəskin zədələr, həm də xroniki vəziyyətlər üçün hərtərəfli qayğı təqdim edirik.",
+      "causes": {
+        "title": "Ümumi Vəziyyətlər",
+        "items": [
+          "Tennis dirsəyi (lateral epikondilit)",
+          "Qolf dirsəyi (medial epikondilit)",
+          "Dirsək sınıqları və çıxıqları",
+          "Ulnar sinir sıxılması",
+          "Bağ zədələri",
+          "Artrit və oynaq degenerasiyası"
+        ]
+      },
+      "symptoms": {
+        "title": "Simptomlar",
+        "items": [
+          "Dirsəyin xarici və ya daxili tərəfində ağrı",
+          "Tutma gücündə zəiflik",
+          "Sərtlik və məhdud hərəkət",
+          "Barmaqlarında uyuşma və ya qarışqalanma",
+          "Oynaq ətrafında şişkinlik",
+          "Fəaliyyətlə pisləşən ağrı"
+        ]
+      },
+      "treatments": {
+        "title": "Müalicə Yanaşmaları",
+        "conservative": {
+          "title": "Qeyri-Cərrahi Müalicə",
+          "items": [
+            "İstirahət və fəaliyyət modifikasiyası",
+            "Fiziki terapiya məşqləri",
+            "Dəstək və dayaq",
+            "Kortikosteroid inyeksiyaları",
+            "Trombositlə zəngin plazma (PRP) terapiyası"
+          ]
+        },
+        "surgical": {
+          "title": "Cərrahi Seçimlər",
+          "items": [
+            "Artroskopik dirsək cərrahiyyəsi",
+            "Tennis dirsəyi buraxılması",
+            "Sınıq fiksasiyası",
+            "Bağ rekonstruksiyası",
+            "Sinir dekompressiyası"
+          ]
+        }
+      },
+      "drTreatment": "Dr. Eryanılmaz həm konservativ, həm də cərrahi yanaşmaları tətbiq edir, daha sürətli sağalma və minimal çapıq üçün artroskopik texnikalarda təcrübəyə malikdir."
+    },
+    "wristHand": {
+      "title": "Bilək və Əl Vəziyyətləri",
+      "overview": "Əl və bilək zədələri gündəlik funksiyaya ciddi təsir göstərə bilər. İxtisaslaşmış qayğımız kəskin sınıqlardan karpal tunel sindromu kimi xroniki vəziyyətlərə qədər hər şeyi əhatə edir.",
+      "causes": {
+        "title": "Ümumi Vəziyyətlər",
+        "items": [
+          "Karpal tunel sindromu",
+          "Bilək və əl sınıqları",
+          "Tətik barmaq",
+          "De Quervain tenosinoviti",
+          "Əl və bilək artriti",
+          "Bağ zədələri və burkulmaları"
+        ]
+      },
+      "symptoms": {
+        "title": "Simptomlar",
+        "items": [
+          "Barmaqlarında uyuşma və qarışqalanma",
+          "Ağrı və şişkinlik",
+          "Tutmada zəiflik",
+          "Sərtlik və məhdud hərəkət",
+          "Barmaqların klik etməsi və ya kilidlənməsi",
+          "Zədədən sonra deformasiya"
+        ]
+      },
+      "treatments": {
+        "title": "Müalicə Seçimləri",
+        "conservative": {
+          "title": "Konservativ Qayğı",
+          "items": [
+            "Şina və immobilizasiya",
+            "Fiziki terapiya",
+            "Kortikosteroid inyeksiyaları",
+            "Fəaliyyət modifikasiyası",
+            "Anti-iltihab dərmanları"
+          ]
+        },
+        "surgical": {
+          "title": "Cərrahi Prosedurlar",
+          "items": [
+            "Karpal tunel buraxılması",
+            "Lövhə/vida ilə sınıq fiksasiyası",
+            "Tətik barmaq buraxılması",
+            "Tendon təmiri",
+            "Oynaq əvəzlənməsi"
+          ]
+        }
+      },
+      "drTreatment": "Dr. Eryanılmaz hərtərəfli əl və bilək qayğısı təqdim edir, optimal funksional nəticələr üçün lazım olduqda mikrocərrahi texnikaları istifadə edir."
+    },
+    "hip": {
+      "title": "Bud Problemləri və Müalicə",
+      "overview": "Bud vəziyyətləri pediatrik inkişaf problemlərindən yetişkin artritinə qədər bütün yaş qruplarındakı xəstələri təsir edə bilər. Hərtərəfli yanaşmamız hər yaş qrupu və vəziyyət üçün uyğun müalicə təmin edir.",
+      "causes": {
+        "title": "Ümumi Vəziyyətlər",
+        "items": [
+          "Bud artriti və degenerasiyası",
+          "Bud sınıqları",
+          "İnkişaf displaziyası (pediatrik)",
+          "Femoroasetabular sıxılma",
+          "Labral cırıqlar",
+          "Avaskulyar nekroz"
+        ]
+      },
+      "symptoms": {
+        "title": "Simptomlar",
+        "items": [
+          "Qasıq və ya bud ağrısı",
+          "Axsama və ya dəyişmiş yerişmə",
+          "Sərtlik və azalmış hərəkət diapazonu",
+          "Fəaliyyətlə pisləşən ağrı",
+          "Pilləkənlərlə çətinlik",
+          "Gecə ağrısı"
+        ]
+      },
+      "treatments": {
+        "title": "Müalicə Yanaşmaları",
+        "conservative": {
+          "title": "Qeyri-Cərrahi Müalicə",
+          "items": [
+            "Fiziki terapiya",
+            "Çəki idarəetməsi",
+            "Fəaliyyət modifikasiyası",
+            "İnyeksiyalar (kortikosteroid, hialuron turşusu)",
+            "Ağrı idarəetməsi"
+          ]
+        },
+        "surgical": {
+          "title": "Cərrahi Seçimlər",
+          "items": [
+            "Total bud əvəzlənməsi",
+            "Bud artroskopiyası",
+            "Pediatrik bud cərrahiyyəsi",
+            "Sınıq fiksasiyası",
+            "Bud yenidən səthləməsi"
+          ]
+        }
+      },
+      "pediatric": {
+        "title": "Pediatrik Bud Qayğısı",
+        "description": "İnkişaf bud displaziyası, Perthes xəstəliyi və digər pediatrik bud vəziyyətlərini yaşa uyğun texnikalarla müalicə etməkdə xüsusi təcrübə."
+      },
+      "drTreatment": "Dr. Eryanılmaz həm yetişkin, həm də pediatrik bud cərrahiyyəsində geniş təcrübəyə malikdir, karyerası boyunca 500-dən çox pediatrik bud proseduru həyata keçirmişdir."
+    },
+    "knee": {
+      "title": "Diz Ağrısı və Vəziyyətləri",
+      "overview": "Diz bədəndəki ən böyük oynaqdir və gündəlik fəaliyyətlər zamanı əhəmiyyətli stress daşıyır. Hərtərəfli diz qayğımız idman zədələri, artrit və mürəkkəb rekonstruksiyaları əhatə edir.",
+      "causes": {
+        "title": "Ümumi Vəziyyətlər",
+        "items": [
+          "ACL, MCL və menisküs cırılması",
+          "Diz artriti",
+          "Patellofemoral ağrı sindromu",
+          "Diz ətrafında sınıqlar",
+          "Bağ qeyri-sabitliyi",
+          "Qığırdaq zədəsi"
+        ]
+      },
+      "symptoms": {
+        "title": "Simptomlar",
+        "items": [
+          "Diz ağrısı və şişkinlik",
+          "Qeyri-sabitlik və ya boşalma",
+          "Kilidlənmə və ya ilişmə",
+          "Sərtlik və azalmış hərəkət",
+          "Çəki daşımada çətinlik",
+          "Xırıltı və ya klik səsləri"
+        ]
+      },
+      "treatments": {
+        "title": "Müalicə Seçimləri",
+        "conservative": {
+          "title": "Konservativ Müalicə",
+          "items": [
+            "Fiziki terapiya və gücləndirilmə",
+            "Dəstək və dayaq",
+            "İnyeksiyalar (kortikosteroid, hialuron turşusu)",
+            "Fəaliyyət modifikasiyası",
+            "Çəki idarəetməsi"
+          ]
+        },
+        "surgical": {
+          "title": "Cərrahi Prosedurlar",
+          "items": [
+            "ACL rekonstruksiyası",
+            "Menisküs təmiri/çıxarılması",
+            "Total diz əvəzlənməsi",
+            "Qismən diz əvəzlənməsi",
+            "Artroskopik cərrahiyyə"
+          ]
+        }
+      },
+      "drTreatment": "Dr. Eryanılmaz 10.000-dən çox diz əvəzlənməsi cərrahiyyəsi və 5.000 artroskopik prosedur həyata keçirmişdir və bölgədəki ən təcrübəli diz cərrahlarından biridir."
+    },
+    "footAnkle": {
+      "title": "Ayaq və Topuq Vəziyyətləri",
+      "overview": "Ayaq və topuq problemləri hərəkətliliyi və həyat keyfiyyətini əhəmiyyətli dərəcədə təsir edə bilər. Əyripəncə kimi pediatrik vəziyyətlərdən yetişkin zədələrinə qədər hərtərəfli qayğı təqdim edirik.",
+      "causes": {
+        "title": "Ümumi Vəziyyətlər",
+        "items": [
+          "Topuq burkulması və sınıqları",
+          "Əyripəncə (pediatrik)",
+          "Axil tendonu zədələri",
+          "Plantar fasiit",
+          "Ayaq və topuq artriti",
+          "Stress sınıqları"
+        ]
+      },
+      "symptoms": {
+        "title": "Simptomlar",
+        "items": [
+          "Ağrı və şişkinlik",
+          "Yerişmədə çətinlik",
+          "Qeyri-sabitlik və ya zəiflik",
+          "Deformasiya",
+          "Sərtlik",
+          "Uyuşma və ya qarışqalanma"
+        ]
+      },
+      "treatments": {
+        "title": "Müalicə Yanaşmaları",
+        "conservative": {
+          "title": "Qeyri-Cərrahi Qayğı",
+          "items": [
+            "İmmobilizasiya və gips",
+            "Fiziki terapiya",
+            "Ortotik və dəstək",
+            "İnyeksiyalar",
+            "Fəaliyyət modifikasiyası"
+          ]
+        },
+        "surgical": {
+          "title": "Cərrahi Seçimlər",
+          "items": [
+            "Əyripəncə düzəltməsi (Ponseti metodu)",
+            "Sınıq fiksasiyası",
+            "Bağ rekonstruksiyası",
+            "Tendon təmiri",
+            "Artroskopik cərrahiyyə"
+          ]
+        }
+      },
+      "pediatric": {
+        "title": "Əyripəncə Təcrübəsi",
+        "description": "Dr. Eryanılmaz Ponseti metodunu istifadə edərək 350-dən çox əyripəncə halını uğurla müalicə etmiş, əla funksional nəticələr əldə etmişdir."
+      },
+      "drTreatment": "Həm pediatrik ayaq deformasiyaları, həm də yetişkin ayaq və topuq zədələri üçün ixtisaslaşmış qayğı, funksiya və hərəkətliliyi qorumağa diqqət yetirərək."
+    },
+    "pediatric": {
+      "title": "Pediatrik Ortopediya",
+      "overview": "Uşaqların ortopedik vəziyyətləri ixtisaslaşmış bilik və yaşa uyğun müalicə yanaşmaları tələb edir. Pediatrik ortopedik qayğımız inkişaf, travmatik və anadangəlmə vəziyyətləri əhatə edir.",
+      "conditions": {
+        "title": "Ümumi Pediatrik Vəziyyətlər",
+        "items": [
+          "Budun inkişaf displaziyası",
+          "Əyripəncə (anadangəlmə talipes ekinovarus)",
+          "Pediatrik sınıqlar",
+          "Böyümə lövhəsi zədələri",
+          "Əza uzunluğu fərqləri",
+          "Skolyoz və onurğa deformasiyaları"
+        ]
+      },
+      "approach": {
+        "title": "Yanaşmamız",
+        "items": [
+          "Yaşa uyğun müalicə metodları",
+          "Mümkün olduqda minimal invaziv texnikalar",
+          "Ailə mərkəzli qayğı",
+          "Böyümə dostu prosedurlar",
+          "Uzunmüddətli izləmə",
+          "Multidisiplinar komanda yanaşması"
+        ]
+      },
+      "specialties": {
+        "title": "İxtisaslaşmış Müalicələr",
+        "hip": {
+          "title": "Bud Displaziyası",
+          "description": "Pavlik koşum sistemi, gips və ya lazım olduqda cərrahi düzəltmə istifadə edərək inkişaf bud displaziyasının erkən aşkarlanması və müalicəsi."
+        },
+        "clubfoot": {
+          "title": "Əyripəncə Düzəltməsi",
+          "description": "Gips, tenotomiya və dəstək protokolları daxil olmaqla Ponseti metodunu istifadə edərək hərtərəfli əyripəncə müalicəsi."
+        },
+        "trauma": {
+          "title": "Pediatrik Travma",
+          "description": "Böyümə lövhələrini və uzunmüddətli inkişafı nəzərə alaraq uşaq sınıqları üçün ixtisaslaşmış qayğı."
+        }
+      },
+      "drTreatment": "Dr. Eryanılmaz 500-dən çox pediatrik bud cərrahiyyəsi və 350 əyripəncə düzəltməsi ilə pediatrik ortopediyada geniş təcrübəyə malikdir, gənc xəstələr üçün ən yaxşı nəticələri təmin edir."
+    }
+  },
+  "about": {
+    "title": "Haqqında",
+    "subtitle": "Op. Dr. Gürkan Eryanılmaz",
+    "bio": {
+      "title": "Təhsil və İş Təcrübəsi",
+      "education": "Təhsil",
+      "experience": "Təcrübə",
+      "egeUniversity": "Ege Universiteti Tibb Fakültəsi (1987–1993)",
+      "doctorOfMedicine": "Tibb Doktoru",
+      "tepecikHospital": "İzmir Tepecik Təlim və Araşdırma Xəstəxanası",
+      "orthopedicsResidency": "Ortopediya və Travmatologiya İxtisası",
+      "mederaHospital": "Medera Xəstəxanası, Bakı",
+      "orthopedicsSpecialist": "Ortopediya və Travmatologiya Mütəxəssisi",
+      "afyonStateHospital": "Afyon Dövlət Xəstəxanası",
+      "orthopedicsSpecialistAfyon": "Ortopediya və Travmatologiya Mütəxəssisi",
+      "balakanLankaran": "Balakən və Lənkəran Bölgələri",
+      "consultingSurgeon": "Məsləhətçi Ortopediya Cərrahı",
+      "surgicalExperience": "Cərrahi Təcrübə"
+    },
+    "personal": {
+      "title": "Şəxsi Məlumat",
+      "birthplace": "Doğum yeri:",
+      "birthdate": "Doğum tarixi:"
+    },
+    "philosophy": {
+      "title": "Tibb Fəlsəfəsi",
+      "content": "Mən hər xəstənin unikal olduğuna və şəxsi tibbi qayğıya layiq olduğuna inanıram. Mənim yanaşmam ən müasir texnologiyalardan istifadə etməklə yanaşı, xəstələrlə səmimi və şəffaf ünsiyyət qurmaqdır."
+    },
+    "clinic": {
+      "title": "Klinikamız haqqında",
+      "content": "Medera Xəstəxanasında ən müasir avadanlıqlarla təchiz olunmuş klinkamızda biz ortopediya və travmatologiya sahəsində ən yüksək keyfiyyətli tibbi xidmətlər təklif edirik."
+    },
+    "facilities": {
+      "title": "Klinikamızın İmkanları",
+      "diagnosticEquipment": "Son texnologiyalı diaqnostik avadanlıq",
+      "surgicalFacilities": "Müasir cərrahiyyə mərkəzləri",
+      "rehabServices": "Hərtərəfli reabilitasiya xidmətləri",
+      "multilingualStaff": "Xəstə rahatlığı üçün çoxdilli işçi heyəti"
+    }
+  },
+  "services": {
+    "title": "Xidmətlərimiz",
+    "subtitle": "İxtisas Sahələri",
+    "viewDetails": "Ətraflı baxın",
+    "specializations": {
+      "title": "İxtisaslar",
+      "arthroscopicSurgery": "Artroskopik Cərrahiyyə",
+      "jointReplacements": "Oynaqların Əvəzedilməsi",
+      "fractureTraumaSurgery": "Qırıq və Travma Cərrahiyyəsi",
+      "pediatricOrthopedics": "Uşaq Ortopediyası",
+      "sportsRehab": "İdman Zədələri və Reabilitasiya"
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Tibbi Məqalələr",
+    "readMore": "Daha ətraflı",
+    "categories": "Kateqoriyalar",
+    "recentPosts": "Son Yazılar",
+    "searchPlaceholder": "Məqalələri axtar..."
+  },
+  "testimonials": {
+    "title": "Xəstə Rəyləri",
+    "subtitle": "Xəstələrimizin Təcrübəsi"
+  },
+  "contact": {
+    "title": "Bizimlə Əlaqə Saxlayın",
+    "subtitle": "Sorğunuz və ya görüşünüz üçün",
+    "form": {
+      "name": "Adınız",
+      "email": "E-poçt",
+      "phone": "Telefon",
+      "message": "Mesaj",
+      "submit": "Göndər",
+      "sending": "Göndərilir...",
+      "success": {
+        "title": "Təşəkkürlər!",
+        "message": "Mesajınız uğurla göndərildi. Tezliklə sizinlə əlaqə saxlayacağıq.",
+        "sendAnother": "Başqa mesaj göndər"
+      },
+      "error": {
+        "title": "Xəta baş verdi"
+      },
+      "validation": {
+        "nameRequired": "Ad tələb olunur",
+        "emailRequired": "E-poçt tələb olunur",
+        "emailInvalid": "Düzgün e-poçt ünvanı daxil edin",
+        "messageRequired": "Mesaj tələb olunur"
+      }
+    },
+    "info": {
+      "title": "Əlaqə Məlumatı",
+      "address": "Ünvan",
+      "phone": "Telefon",
+      "email": "E-poçt",
+      "workingHours": "İş Saatları"
+    }
+  },
+  "footer": {
+    "quickLinks": "Sürətli Keçidlər",
+    "services": {
+      "title": "Xidmətlərimiz",
+      "arthroscopic": "Artroskopik Cərrahiyyə",
+      "joint": "Oynaqların Protezləşdirilməsi",
+      "fracture": "Qırıq və Travma Cərrahiyyəsi",
+      "pediatric": "Uşaq Ortopediyası",
+      "sports": "İdman Zədələri və Reabilitasiya"
+    },
+    "contact": "Əlaqə",
+    "followUs": "Bizi izləyin",
+    "copyright": " 2025 Op. Dr. Gürkan Eryanılmaz. Bütün hüquqlar qorunur."
+  },
+  "notFound": {
+    "title": "Səhifə tapılmadı",
+    "message": "Axtardığınız səhifə mövcud deyil.",
+    "button": "Ana səhifəyə qayıt"
+  }
+}
