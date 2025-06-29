@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Clock, CheckCircle, XCircle, AlertCircle, User, Phone, Mail, Calendar } from 'lucide-react';
 import { getAppointments, updateAppointmentStatus, deleteAppointment, Appointment } from '../../lib/supabase';
 
 const AppointmentRequests: React.FC = () => {
+  const { t } = useTranslation();
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -18,7 +20,7 @@ const AppointmentRequests: React.FC = () => {
       const pendingRequests = data.filter(apt => apt.status === 'pending');
       setAppointments(pendingRequests);
     } catch (err) {
-      setError('Failed to load appointment requests');
+      setError(t('admin.appointments.requests.error'));
       console.error(err);
     } finally {
       setLoading(false);
@@ -96,14 +98,14 @@ const AppointmentRequests: React.FC = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <Clock className="w-6 h-6 text-primary-600" />
-          <h2 className="text-2xl font-bold text-gray-900">Appointment Requests</h2>
+          <h2 className="text-2xl font-bold text-gray-900">{t('admin.appointments.requests.title')}</h2>
         </div>
         <button
           onClick={loadAppointments}
           className="btn btn-outline"
           disabled={loading}
         >
-          {loading ? 'Loading...' : 'Refresh'}
+          {loading ? t('admin.appointments.requests.loading') : t('admin.appointments.requests.refresh')}
         </button>
       </div>
 
@@ -111,7 +113,7 @@ const AppointmentRequests: React.FC = () => {
         <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start">
           <AlertCircle className="w-5 h-5 text-red-500 mr-3 mt-0.5 flex-shrink-0" />
           <div>
-            <h4 className="text-red-800 font-medium">Error</h4>
+            <h4 className="text-red-800 font-medium">{t('admin.appointments.requests.error')}</h4>
             <p className="text-red-700 text-sm mt-1">{error}</p>
           </div>
         </div>
@@ -121,13 +123,13 @@ const AppointmentRequests: React.FC = () => {
       {loading ? (
         <div className="text-center py-8">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600 mx-auto"></div>
-          <p className="mt-2 text-gray-600">Loading appointment requests...</p>
+          <p className="mt-2 text-gray-600">{t('admin.appointments.requests.loading')}</p>
         </div>
       ) : appointments.length === 0 ? (
         <div className="text-center py-12 bg-gray-50 rounded-lg">
           <Clock className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-xl font-semibold text-gray-700 mb-2">No pending requests</h3>
-          <p className="text-gray-600">All appointment requests have been processed.</p>
+          <h3 className="text-xl font-semibold text-gray-700 mb-2">{t('admin.appointments.requests.noPendingRequests')}</h3>
+          <p className="text-gray-600">{t('admin.appointments.requests.allProcessed')}</p>
         </div>
       ) : (
         <div className="space-y-4">
@@ -147,19 +149,19 @@ const AppointmentRequests: React.FC = () => {
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900">{appointment.name}</h3>
                       <span className="inline-flex px-2 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-800">
-                        Pending Approval
+                        {t('admin.appointments.requests.pendingApproval')}
                       </span>
                     </div>
                   </div>
                   
                   <div className="text-right text-sm text-gray-500">
-                    Requested on {formatDate(appointment.created_at)}
+                    {t('admin.appointments.requests.requestedOn')} {formatDate(appointment.created_at)}
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div>
-                    <h4 className="text-sm font-medium text-gray-900 mb-3">Contact Information</h4>
+                    <h4 className="text-sm font-medium text-gray-900 mb-3">{t('admin.appointments.requests.contactInformation')}</h4>
                     <div className="space-y-2">
                       <div className="flex items-center text-sm">
                         <Mail className="w-4 h-4 text-gray-400 mr-2" />
@@ -173,7 +175,7 @@ const AppointmentRequests: React.FC = () => {
                   </div>
 
                   <div>
-                    <h4 className="text-sm font-medium text-gray-900 mb-3">Appointment Details</h4>
+                    <h4 className="text-sm font-medium text-gray-900 mb-3">{t('admin.appointments.requests.appointmentDetails')}</h4>
                     <div className="space-y-2">
                       <div className="flex items-center text-sm">
                         <Calendar className="w-4 h-4 text-gray-400 mr-2" />
@@ -193,7 +195,7 @@ const AppointmentRequests: React.FC = () => {
 
                 {appointment.message && (
                   <div className="mb-6 p-4 bg-gray-50 rounded-lg">
-                    <h4 className="text-sm font-medium text-gray-900 mb-2">Patient Message:</h4>
+                    <h4 className="text-sm font-medium text-gray-900 mb-2">{t('admin.appointments.requests.patientMessage')}</h4>
                     <p className="text-gray-700 text-sm">{appointment.message}</p>
                   </div>
                 )}
@@ -206,7 +208,7 @@ const AppointmentRequests: React.FC = () => {
                       className="btn btn-primary flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <CheckCircle className="w-4 h-4" />
-                      <span>Confirm</span>
+                      <span>{t('admin.appointments.requests.actions.confirm')}</span>
                     </button>
                     
                     <button
@@ -215,7 +217,7 @@ const AppointmentRequests: React.FC = () => {
                       className="btn btn-outline border-red-300 text-red-600 hover:bg-red-50 flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <XCircle className="w-4 h-4" />
-                      <span>Decline</span>
+                      <span>{t('admin.appointments.requests.actions.decline')}</span>
                     </button>
                   </div>
 
@@ -223,7 +225,7 @@ const AppointmentRequests: React.FC = () => {
                     onClick={() => handleDeleteAppointment(appointment.id)}
                     disabled={isProcessing}
                     className="text-gray-400 hover:text-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                    title="Delete Request"
+                    title={t('admin.appointments.requests.actions.delete')}
                   >
                     <XCircle className="w-5 h-5" />
                   </button>

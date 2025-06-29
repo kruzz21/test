@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Clock, Plus, Edit, Trash2, CheckCircle, XCircle, AlertCircle, User, Phone, Mail } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
+import { getEnhancedCalendarData } from '../../lib/enhanced-supabase';
 
 interface CalendarSlot {
   date: string;
@@ -38,6 +39,7 @@ const AppointmentManagement: React.FC = () => {
   });
   const [blockReason, setBlockReason] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
 
   const serviceTypes = [
     'Knee Consultation',
@@ -64,13 +66,14 @@ const AppointmentManagement: React.FC = () => {
       setError(null);
       const { start, end } = getWeekDates(currentDate);
       
-      const { data, error } = await supabase.rpc('get_calendar_data', {
-        start_date: start.toISOString().split('T')[0],
-        end_date: end.toISOString().split('T')[0]
-      });
-
-      if (error) throw error;
-      setCalendarData(data || []);
+      const data = await getEnhancedCalendarData(
+        start.toISOString(),
+        end.toISOString()
+      );
+      
+      // Filter to only show booked appointments
+      const bookedSlots = (data || []).filter((slot: CalendarSlot) => slot.status === 'booked');
+      setCalendarData(bookedSlots);
     } catch (error) {
       console.error('Error loading calendar data:', error);
       setError('Failed to load calendar data');
@@ -85,9 +88,6 @@ const AppointmentManagement: React.FC = () => {
 
   const handleSlotClick = (slot: CalendarSlot) => {
     setSelectedSlot(slot);
-    if (slot.status === 'available') {
-      setShowAppointmentForm(true);
-    }
   };
 
   const handleCreateAppointment = async (e: React.FormEvent) => {
@@ -125,47 +125,30 @@ const AppointmentManagement: React.FC = () => {
     }
   };
 
-  const handleBlockSlot = async () => {
-    if (!selectedSlot) return;
-
-    try {
-      setError(null);
-      const { data, error } = await supabase.rpc('block_time_slots', {
-        block_date: selectedSlot.date,
-        start_time_param: selectedSlot.time,
-        end_time_param: addMinutes(selectedSlot.time, 30),
-        reason_param: blockReason
-      });
-
-      if (error) throw error;
-
-      if (data && !data.success) {
-        throw new Error(data.message);
-      }
-
-      setShowBlockForm(false);
-      setBlockReason('');
-      setSelectedSlot(null);
-      loadCalendarData();
-    } catch (error) {
-      console.error('Error blocking slot:', error);
-      setError('Failed to block slot');
-    }
-  };
-
   const handleDeleteAppointment = async (appointmentId: string) => {
     try {
       setError(null);
-      const { error } = await supabase
-        .from('appointments')
-        .delete()
-        .eq('id', appointmentId);
+      
+      // Use the safe delete function
+      const { data, error } = await supabase.rpc('delete_appointment_safe', {
+        appointment_id: appointmentId
+      });
 
-      if (error) throw error;
-      loadCalendarData();
+      if (error) {
+        throw error;
+      }
+
+      if (!data.success) {
+        throw new Error(data.error || 'Failed to delete appointment');
+      }
+
+      // Remove from local state immediately
+      setCalendarData(prev => prev.filter(slot => slot.appointment_id !== appointmentId));
+      setDeleteConfirm(null);
+      
     } catch (error) {
       console.error('Error deleting appointment:', error);
-      setError('Failed to delete appointment');
+      setError(`Failed to delete appointment: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   };
 
@@ -177,8 +160,8 @@ const AppointmentManagement: React.FC = () => {
     return `${newHours.toString().padStart(2, '0')}:${newMins.toString().padStart(2, '0')}`;
   };
 
-  const formatTime = (time: string) => {
-    return new Date(`2000-01-01T${time}`).toLocaleTimeString('en-US', {
+  const formatTime = (timeString: string) => {
+    return new Date(`2000-01-01T${timeString}`).toLocaleTimeString('en-US', {
       hour: '2-digit',
       minute: '2-digit',
       hour12: false
@@ -230,6 +213,18 @@ const AppointmentManagement: React.FC = () => {
     weekDates.push(new Date(d));
   }
 
+  // Generate time slots for the add appointment form
+  const generateTimeSlots = () => {
+    const slots = [];
+    for (let hour = 9; hour < 18; hour++) {
+      slots.push(`${hour.toString().padStart(2, '0')}:00`);
+      slots.push(`${hour.toString().padStart(2, '0')}:30`);
+    }
+    return slots;
+  };
+
+  const timeSlots = generateTimeSlots();
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -254,6 +249,13 @@ const AppointmentManagement: React.FC = () => {
             className="btn btn-outline"
           >
             Next Week
+          </button>
+          <button
+            onClick={() => setShowAppointmentForm(true)}
+            className="btn btn-primary flex items-center space-x-2"
+          >
+            <Plus size={16} />
+            <span>Add Appointment</span>
           </button>
         </div>
       </div>
@@ -296,7 +298,7 @@ const AppointmentManagement: React.FC = () => {
                     {daySlots.length === 0 ? (
                       <div className="text-center py-8 text-gray-400">
                         <Clock className="w-6 h-6 mx-auto mb-2" />
-                        <p className="text-sm">No slots</p>
+                        <p className="text-sm">No appointments</p>
                       </div>
                     ) : (
                       daySlots.map((slot, slotIndex) => (
@@ -322,17 +324,43 @@ const AppointmentManagement: React.FC = () => {
                                 }`}>
                                   {slot.appointment_status}
                                 </span>
-                                <button
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    if (slot.appointment_id) {
-                                      handleDeleteAppointment(slot.appointment_id);
-                                    }
-                                  }}
-                                  className="text-red-500 hover:text-red-700"
-                                >
-                                  <Trash2 className="w-3 h-3" />
-                                </button>
+                                {slot.appointment_id && (
+                                  deleteConfirm === slot.appointment_id ? (
+                                    <div className="flex space-x-1">
+                                      <button
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          handleDeleteAppointment(slot.appointment_id!);
+                                        }}
+                                        className="text-red-600 hover:text-red-900 text-xs bg-red-50 px-1 rounded"
+                                        title="Confirm Delete"
+                                      >
+                                        Confirm
+                                      </button>
+                                      <button
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          setDeleteConfirm(null);
+                                        }}
+                                        className="text-gray-600 hover:text-gray-900 text-xs bg-gray-50 px-1 rounded"
+                                        title="Cancel"
+                                      >
+                                        Cancel
+                                      </button>
+                                    </div>
+                                  ) : (
+                                    <button
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        setDeleteConfirm(slot.appointment_id!);
+                                      }}
+                                      className="text-red-500 hover:text-red-700"
+                                      title="Delete Appointment"
+                                    >
+                                      <Trash2 className="w-3 h-3" />
+                                    </button>
+                                  )
+                                )}
                               </div>
                             </div>
                           )}
@@ -348,12 +376,10 @@ const AppointmentManagement: React.FC = () => {
       )}
 
       {/* Add Appointment Form Modal */}
-      {showAppointmentForm && selectedSlot && (
+      {showAppointmentForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
-            <h3 className="text-lg font-semibold mb-4">
-              Add Appointment - {formatDate(selectedSlot.date)} at {formatTime(selectedSlot.time)}
-            </h3>
+          <div className="bg-white rounded-lg p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
+            <h3 className="text-lg font-semibold mb-4">Add New Appointment</h3>
             
             <form onSubmit={handleCreateAppointment} className="space-y-4">
               <div>
@@ -388,6 +414,32 @@ const AppointmentManagement: React.FC = () => {
                   required
                 />
               </div>
+
+              <div>
+                <label className="form-label">Date</label>
+                <input
+                  type="date"
+                  className="form-input"
+                  value={selectedSlot?.date || ''}
+                  onChange={(e) => setSelectedSlot(prev => prev ? {...prev, date: e.target.value} : {date: e.target.value, time: '', status: 'available'})}
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="form-label">Time</label>
+                <select
+                  className="form-input"
+                  value={selectedSlot?.time || ''}
+                  onChange={(e) => setSelectedSlot(prev => prev ? {...prev, time: e.target.value} : {date: '', time: e.target.value, status: 'available'})}
+                  required
+                >
+                  <option value="">Select time</option>
+                  {timeSlots.map((time) => (
+                    <option key={time} value={time}>{formatTime(time)}</option>
+                  ))}
+                </select>
+              </div>
               
               <div>
                 <label className="form-label">Service Type</label>
@@ -420,7 +472,17 @@ const AppointmentManagement: React.FC = () => {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setShowAppointmentForm(false)}
+                  onClick={() => {
+                    setShowAppointmentForm(false);
+                    setSelectedSlot(null);
+                    setAppointmentForm({
+                      name: '',
+                      email: '',
+                      phone: '',
+                      service_type: '',
+                      message: ''
+                    });
+                  }}
                   className="btn btn-outline flex-1"
                 >
                   Cancel
@@ -431,60 +493,13 @@ const AppointmentManagement: React.FC = () => {
         </div>
       )}
 
-      {/* Block Slot Modal */}
-      {showBlockForm && selectedSlot && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
-            <h3 className="text-lg font-semibold mb-4">
-              Block Time Slot - {formatDate(selectedSlot.date)} at {formatTime(selectedSlot.time)}
-            </h3>
-            
-            <div className="space-y-4">
-              <div>
-                <label className="form-label">Reason (Optional)</label>
-                <input
-                  type="text"
-                  className="form-input"
-                  value={blockReason}
-                  onChange={(e) => setBlockReason(e.target.value)}
-                  placeholder="e.g., Doctor unavailable, maintenance"
-                />
-              </div>
-              
-              <div className="flex space-x-3">
-                <button
-                  onClick={handleBlockSlot}
-                  className="btn btn-primary flex-1"
-                >
-                  Block Slot
-                </button>
-                <button
-                  onClick={() => setShowBlockForm(false)}
-                  className="btn btn-outline flex-1"
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Legend */}
       <div className="bg-white rounded-lg p-4 shadow">
         <h3 className="text-lg font-semibold mb-3">Legend</h3>
         <div className="flex flex-wrap gap-4">
           <div className="flex items-center">
-            <div className="w-4 h-4 bg-blue-100 border border-blue-200 rounded mr-2"></div>
-            <span className="text-sm">Available (Click to add appointment)</span>
-          </div>
-          <div className="flex items-center">
             <div className="w-4 h-4 bg-green-100 border border-green-300 rounded mr-2"></div>
-            <span className="text-sm">Booked</span>
-          </div>
-          <div className="flex items-center">
-            <div className="w-4 h-4 bg-red-100 border border-red-300 rounded mr-2"></div>
-            <span className="text-sm">Blocked</span>
+            <span className="text-sm">Confirmed Appointments</span>
           </div>
         </div>
       </div>

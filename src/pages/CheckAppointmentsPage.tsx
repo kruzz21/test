@@ -68,16 +68,7 @@ const CheckAppointmentsPage = () => {
   };
 
   const getStatusText = (status: string) => {
-    switch (status) {
-      case 'confirmed':
-        return 'Confirmed';
-      case 'cancelled':
-        return 'Cancelled';
-      case 'completed':
-        return 'Completed';
-      default:
-        return 'Pending';
-    }
+    return t(`appointment.checkAppointments.status.${status}`);
   };
 
   const getStatusColor = (status: string) => {
@@ -125,14 +116,14 @@ const CheckAppointmentsPage = () => {
   return (
     <>
       <Helmet>
-        <title>Check Your Appointments | {t('meta.title')}</title>
+        <title>{t('appointment.checkAppointments.title')} | {t('meta.title')}</title>
       </Helmet>
 
       {/* Page Header */}
       <div className="pt-24 pb-12 bg-primary-600 text-white">
         <div className="container">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4">Check Your Appointments</h1>
-          <p className="text-xl text-primary-100">Find and view your scheduled appointments</p>
+          <h1 className="text-3xl md:text-5xl font-bold mb-4">{t('appointment.checkAppointments.title')}</h1>
+          <p className="text-xl text-primary-100">{t('appointment.checkAppointments.subtitle')}</p>
         </div>
       </div>
 
@@ -142,15 +133,15 @@ const CheckAppointmentsPage = () => {
           <div className="max-w-2xl mx-auto">
             <div className="bg-white rounded-lg shadow-lg p-8">
               <div className="text-center mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Find Your Appointments</h2>
-                <p className="text-gray-600">Enter your details to search for your appointments</p>
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">{t('appointment.checkAppointments.searchTitle')}</h2>
+                <p className="text-gray-600">{t('appointment.checkAppointments.searchDescription')}</p>
               </div>
 
               {searchError && (
                 <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start mb-6">
                   <AlertCircle className="w-5 h-5 text-red-500 mr-3 mt-0.5 flex-shrink-0" />
                   <div>
-                    <h4 className="text-red-800 font-medium">Error</h4>
+                    <h4 className="text-red-800 font-medium">{t('contact.form.error.title')}</h4>
                     <p className="text-red-700 text-sm mt-1">{searchError}</p>
                   </div>
                 </div>
@@ -159,7 +150,7 @@ const CheckAppointmentsPage = () => {
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div>
                   <label htmlFor="patientName" className="form-label">
-                    Full Name <span className="text-red-500">*</span>
+                    {t('appointment.checkAppointments.fullName')} <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
                     <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
@@ -169,7 +160,7 @@ const CheckAppointmentsPage = () => {
                       placeholder="Enter your full name as used when booking"
                       className={`form-input pl-10 ${errors.patientName ? 'border-red-500' : ''}`}
                       {...register('patientName', { 
-                        required: 'Full name is required',
+                        required: t('appointment.form.validation.nameRequired'),
                         minLength: {
                           value: 2,
                           message: 'Name must be at least 2 characters'
@@ -184,7 +175,7 @@ const CheckAppointmentsPage = () => {
 
                 <div>
                   <label htmlFor="patientPhone" className="form-label">
-                    Phone Number <span className="text-red-500">*</span>
+                    {t('appointment.checkAppointments.phoneNumber')} <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
@@ -194,7 +185,7 @@ const CheckAppointmentsPage = () => {
                       placeholder="Enter your phone number as used when booking"
                       className={`form-input pl-10 ${errors.patientPhone ? 'border-red-500' : ''}`}
                       {...register('patientPhone', { 
-                        required: 'Phone number is required',
+                        required: t('appointment.form.validation.phoneRequired'),
                         minLength: {
                           value: 10,
                           message: 'Phone number must be at least 10 digits'
@@ -218,12 +209,12 @@ const CheckAppointmentsPage = () => {
                   {isSearching ? (
                     <>
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                      <span>Searching...</span>
+                      <span>{t('appointment.checkAppointments.searching')}</span>
                     </>
                   ) : (
                     <>
                       <Search size={20} />
-                      <span>Search Appointments</span>
+                      <span>{t('appointment.checkAppointments.searchButton')}</span>
                     </>
                   )}
                 </button>
@@ -238,19 +229,19 @@ const CheckAppointmentsPage = () => {
         <section className="py-16 bg-white">
           <div className="container">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl font-bold text-gray-900 mb-8">Your Appointments</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-8">{t('appointment.checkAppointments.yourAppointments')}</h2>
               
               {appointments.length === 0 ? (
                 <div className="text-center py-12 bg-gray-50 rounded-lg">
                   <AlertCircle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-gray-700 mb-2">No appointments found</h3>
+                  <h3 className="text-xl font-semibold text-gray-700 mb-2">{t('appointment.checkAppointments.noAppointmentsFound')}</h3>
                   <p className="text-gray-600 mb-4">
-                    We couldn't find any appointments with the provided information.
+                    {t('appointment.checkAppointments.noAppointmentsMessage')}
                   </p>
                   <div className="text-sm text-gray-500 space-y-1">
-                    <p>• Make sure you entered your name exactly as when booking</p>
-                    <p>• Check that your phone number matches the one used for booking</p>
-                    <p>• Contact us if you need assistance finding your appointment</p>
+                    <p>{t('appointment.checkAppointments.searchTips.exactName')}</p>
+                    <p>{t('appointment.checkAppointments.searchTips.correctPhone')}</p>
+                    <p>{t('appointment.checkAppointments.searchTips.contactUs')}</p>
                   </div>
                 </div>
               ) : (
@@ -267,7 +258,7 @@ const CheckAppointmentsPage = () => {
                           </div>
                           <div className="flex items-center space-x-2">
                             <div className="text-right text-sm text-gray-500">
-                              Booked on {formatDate(appointment.created_at)}
+                              {t('appointment.checkAppointments.appointmentInfo.bookedOn')} {formatDate(appointment.created_at)}
                             </div>
                             {appointment.status === 'pending' && (
                               deleteConfirm === appointment.id ? (
@@ -277,21 +268,21 @@ const CheckAppointmentsPage = () => {
                                     className="text-red-600 hover:text-red-900 p-1 rounded text-xs bg-red-50"
                                     title="Confirm Delete"
                                   >
-                                    Confirm
+                                    {t('appointment.checkAppointments.actions.confirmDelete')}
                                   </button>
                                   <button
                                     onClick={() => setDeleteConfirm(null)}
                                     className="text-gray-600 hover:text-gray-900 p-1 rounded text-xs bg-gray-50"
                                     title="Cancel Delete"
                                   >
-                                    Cancel
+                                    {t('appointment.checkAppointments.actions.cancelDelete')}
                                   </button>
                                 </div>
                               ) : (
                                 <button
                                   onClick={() => setDeleteConfirm(appointment.id)}
                                   className="text-red-600 hover:text-red-900 p-1 rounded"
-                                  title="Cancel Appointment"
+                                  title={t('appointment.checkAppointments.actions.cancelAppointment')}
                                 >
                                   <Trash2 size={16} />
                                 </button>
@@ -302,7 +293,7 @@ const CheckAppointmentsPage = () => {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div>
-                            <h3 className="text-lg font-semibold text-gray-900 mb-4">Patient Information</h3>
+                            <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('appointment.checkAppointments.appointmentInfo.patientInformation')}</h3>
                             <div className="space-y-3">
                               <div className="flex items-center">
                                 <User size={16} className="text-gray-400 mr-3" />
@@ -320,7 +311,7 @@ const CheckAppointmentsPage = () => {
                           </div>
 
                           <div>
-                            <h3 className="text-lg font-semibold text-gray-900 mb-4">Appointment Details</h3>
+                            <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('appointment.checkAppointments.appointmentInfo.appointmentDetails')}</h3>
                             <div className="space-y-3">
                               <div className="flex items-center">
                                 <Calendar size={16} className="text-gray-400 mr-3" />
@@ -334,7 +325,7 @@ const CheckAppointmentsPage = () => {
                                 <div className="flex items-start">
                                   <div className="w-4 h-4 bg-primary-600 rounded-full mr-3 mt-1 flex-shrink-0"></div>
                                   <div>
-                                    <p className="font-medium text-gray-900">Service: {appointment.service_type}</p>
+                                    <p className="font-medium text-gray-900">{t('appointment.checkAppointments.appointmentInfo.service')}: {appointment.service_type}</p>
                                   </div>
                                 </div>
                               )}
@@ -344,7 +335,7 @@ const CheckAppointmentsPage = () => {
 
                         {appointment.message && (
                           <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-                            <h4 className="font-medium text-gray-900 mb-2">Additional Message:</h4>
+                            <h4 className="font-medium text-gray-900 mb-2">{t('appointment.checkAppointments.appointmentInfo.additionalMessage')}</h4>
                             <p className="text-gray-700">{appointment.message}</p>
                           </div>
                         )}
@@ -352,7 +343,7 @@ const CheckAppointmentsPage = () => {
                         {appointment.status === 'confirmed' && (
                           <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                             <p className="text-green-800">
-                              <strong>Confirmed:</strong> Your appointment is confirmed. Please arrive 15 minutes early.
+                              <strong>{t('appointment.checkAppointments.statusMessages.confirmed')}</strong>
                             </p>
                           </div>
                         )}
@@ -360,7 +351,7 @@ const CheckAppointmentsPage = () => {
                         {appointment.status === 'cancelled' && (
                           <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
                             <p className="text-red-800">
-                              <strong>Cancelled:</strong> This appointment has been cancelled. Please contact us if you need to reschedule.
+                              <strong>{t('appointment.checkAppointments.statusMessages.cancelled')}</strong>
                             </p>
                           </div>
                         )}

@@ -57,6 +57,190 @@
       "button": "Contact Now"
     }
   },
+  "appointment": {
+    "title": "Request an Appointment",
+    "subtitle": "Submit your appointment request for review and confirmation",
+    "form": {
+      "personalInfo": "Personal Information",
+      "appointmentDetails": "Appointment Details",
+      "name": "Full Name",
+      "email": "Email",
+      "phone": "Phone Number",
+      "serviceType": "Service Type",
+      "preferredDate": "Preferred Date",
+      "availableTimeSlots": "Available Time Slots",
+      "additionalMessage": "Additional Message",
+      "submit": "Submit Appointment Request",
+      "submitting": "Submitting Request...",
+      "selectService": "Select a service",
+      "selectDate": "Select a date",
+      "selectTime": "Select a time",
+      "loadingSlots": "Loading available slots...",
+      "noSlotsAvailable": "No available slots for this date",
+      "selectDifferentDate": "Please select a different date",
+      "symptomDescription": "Please describe your symptoms or concerns...",
+      "note": "This is a request for an appointment. We will review your request and contact you within 24 hours to confirm your appointment time and provide any additional instructions.",
+      "validation": {
+        "nameRequired": "Full name is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email address",
+        "phoneRequired": "Phone number is required",
+        "phoneInvalid": "Please enter a valid phone number (10-15 digits)",
+        "serviceRequired": "Please select a service type",
+        "dateRequired": "Please select a date",
+        "timeRequired": "Please select a time",
+        "submitError": "Failed to book appointment. Please try again or contact us directly.",
+        "note": "Note"
+      }
+    },
+    "success": {
+      "title": "Appointment Request Submitted!",
+      "message": "Your appointment request has been submitted for review. We will contact you within 24 hours to confirm your appointment.",
+      "bookAnother": "Book Another Appointment",
+      "checkAppointments": "Check Your Appointments"
+    },
+    "serviceTypes": {
+      "kneeConsultation": "Knee Consultation",
+      "hipConsultation": "Hip Consultation",
+      "shoulderConsultation": "Shoulder Consultation",
+      "pediatricConsultation": "Pediatric Consultation",
+      "generalConsultation": "General Orthopedic Consultation",
+      "sportsConsultation": "Sports Injury Consultation",
+      "followUp": "Follow-up Appointment"
+    },
+    "checkAppointments": {
+      "title": "Check Your Appointments",
+      "subtitle": "Find and view your scheduled appointments",
+      "searchTitle": "Find Your Appointments",
+      "searchDescription": "Enter your details to search for your appointments",
+      "fullName": "Full Name",
+      "phoneNumber": "Phone Number",
+      "searchButton": "Search Appointments",
+      "searching": "Searching...",
+      "yourAppointments": "Your Appointments",
+      "noAppointmentsFound": "No appointments found",
+      "noAppointmentsMessage": "We couldn't find any appointments with the provided information.",
+      "searchTips": {
+        "exactName": "• Make sure you entered your name exactly as when booking",
+        "correctPhone": "• Check that your phone number matches the one used for booking",
+        "contactUs": "• Contact us if you need assistance finding your appointment"
+      },
+      "appointmentInfo": {
+        "patientInformation": "Patient Information",
+        "appointmentDetails": "Appointment Details",
+        "additionalMessage": "Additional Message:",
+        "bookedOn": "Booked on",
+        "service": "Service"
+      },
+      "status": {
+        "pending": "Pending",
+        "confirmed": "Confirmed",
+        "cancelled": "Cancelled",
+        "completed": "Completed"
+      },
+      "statusMessages": {
+        "confirmed": "Confirmed: Your appointment is confirmed. Please arrive 15 minutes early.",
+        "cancelled": "Cancelled: This appointment has been cancelled. Please contact us if you need to reschedule."
+      },
+      "actions": {
+        "cancelAppointment": "Cancel Appointment",
+        "confirmDelete": "Confirm",
+        "cancelDelete": "Cancel"
+      }
+    }
+  },
+  "admin": {
+    "login": {
+      "title": "Admin Login",
+      "subtitle": "Access the administrative dashboard",
+      "email": "Email Address",
+      "password": "Password",
+      "emailPlaceholder": "Enter your email",
+      "passwordPlaceholder": "Enter your password",
+      "signIn": "Sign in",
+      "signingIn": "Signing in...",
+      "loginFailed": "Login Failed",
+      "accessDenied": "Access denied. Admin privileges required.",
+      "invalidCredentials": "Invalid credentials",
+      "loginFailedMessage": "Login failed. Please try again.",
+      "secureAuth": "Secure authentication with industry-standard encryption",
+      "validation": {
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email address",
+        "passwordRequired": "Password is required"
+      }
+    },
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "welcome": "Welcome back",
+      "logout": "Logout",
+      "stats": {
+        "pendingRequests": "Pending Requests",
+        "confirmed": "Confirmed",
+        "totalAppointments": "Total Appointments",
+        "blogPosts": "Blog Posts"
+      },
+      "tabs": {
+        "requests": "Appointment Requests",
+        "calendar": "Calendar & Add Appointments",
+        "analytics": "Analytics"
+      },
+      "analytics": {
+        "title": "Analytics Overview",
+        "appointmentDistribution": "Appointment Status Distribution",
+        "total": "Total",
+        "pending": "Pending",
+        "confirmed": "Confirmed",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      }
+    },
+    "appointments": {
+      "requests": {
+        "title": "Appointment Requests",
+        "refresh": "Refresh",
+        "loading": "Loading appointment requests...",
+        "noPendingRequests": "No pending requests",
+        "allProcessed": "All appointment requests have been processed.",
+        "pendingApproval": "Pending Approval",
+        "requestedOn": "Requested on",
+        "contactInformation": "Contact Information",
+        "appointmentDetails": "Appointment Details",
+        "patientMessage": "Patient Message:",
+        "actions": {
+          "confirm": "Confirm",
+          "decline": "Decline",
+          "delete": "Delete Request"
+        },
+        "error": "Error",
+        "processing": "Processing..."
+      },
+      "management": {
+        "title": "Appointment Management",
+        "previousWeek": "Previous Week",
+        "nextWeek": "Next Week",
+        "addAppointment": "Add Appointment",
+        "loadingCalendar": "Loading calendar...",
+        "noAppointments": "No appointments",
+        "legend": "Legend",
+        "confirmedAppointments": "Confirmed Appointments",
+        "addNewAppointment": "Add New Appointment",
+        "patientName": "Patient Name",
+        "email": "Email",
+        "phone": "Phone",
+        "date": "Date",
+        "time": "Time",
+        "serviceType": "Service Type",
+        "message": "Message (Optional)",
+        "selectService": "Select a service",
+        "selectTime": "Select time",
+        "cancel": "Cancel",
+        "confirmDelete": "Confirm",
+        "deleteAppointment": "Delete Appointment",
+        "error": "Error"
+      }
+    }
+  },
   "symptoms": {
     "title": "Symptoms & Treatment",
     "subtitle": "Interactive Body Map",

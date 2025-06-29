@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import { 
   Calendar, 
   Users, 
@@ -21,8 +22,10 @@ import { isAuthenticated, signOut, getCurrentUser, getSessionToken } from '../li
 import { blogPosts } from '../data/blogPosts';
 import AppointmentManagement from '../components/admin/AppointmentManagement';
 import AppointmentRequests from '../components/admin/AppointmentRequests';
+import AdminLanguageSwitcher from '../components/admin/LanguageSwitcher';
 
 const AdminDashboardPage = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('requests');
   const [stats, setStats] = useState<AppointmentStats>({ total: 0, pending: 0, confirmed: 0, cancelled: 0, completed: 0 });
@@ -66,25 +69,25 @@ const AdminDashboardPage = () => {
 
   const dashboardStats = [
     {
-      title: 'Pending Requests',
+      title: t('admin.dashboard.stats.pendingRequests'),
       value: stats.pending,
       icon: Clock,
       color: 'bg-yellow-500'
     },
     {
-      title: 'Confirmed',
+      title: t('admin.dashboard.stats.confirmed'),
       value: stats.confirmed,
       icon: CheckCircle,
       color: 'bg-green-500'
     },
     {
-      title: 'Total Appointments',
+      title: t('admin.dashboard.stats.totalAppointments'),
       value: stats.total,
       icon: Calendar,
       color: 'bg-blue-500'
     },
     {
-      title: 'Blog Posts',
+      title: t('admin.dashboard.stats.blogPosts'),
       value: blogPosts.length,
       icon: FileText,
       color: 'bg-purple-500'
@@ -94,7 +97,7 @@ const AdminDashboardPage = () => {
   return (
     <>
       <Helmet>
-        <title>Admin Dashboard | Dr. Gürkan Eryanılmaz</title>
+        <title>{t('admin.dashboard.title')} | Dr. Gürkan Eryanılmaz</title>
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">
@@ -103,18 +106,21 @@ const AdminDashboardPage = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-4">
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
+                <h1 className="text-2xl font-bold text-gray-900">{t('admin.dashboard.title')}</h1>
                 {currentUser && (
-                  <p className="text-sm text-gray-600">Welcome back, {currentUser.email}</p>
+                  <p className="text-sm text-gray-600">{t('admin.dashboard.welcome')}, {currentUser.email}</p>
                 )}
               </div>
-              <button
-                onClick={handleLogout}
-                className="flex items-center px-4 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
-              >
-                <LogOut size={16} className="mr-2" />
-                Logout
-              </button>
+              <div className="flex items-center space-x-4">
+                <AdminLanguageSwitcher />
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center px-4 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
+                >
+                  <LogOut size={16} className="mr-2" />
+                  {t('admin.dashboard.logout')}
+                </button>
+              </div>
             </div>
           </div>
         </header>
@@ -150,7 +156,7 @@ const AdminDashboardPage = () => {
                   }`}
                 >
                   <UserCheck size={16} className="inline mr-2" />
-                  Appointment Requests ({stats.pending})
+                  {t('admin.dashboard.tabs.requests')} ({stats.pending})
                 </button>
                 <button
                   onClick={() => setActiveTab('calendar')}
@@ -161,7 +167,7 @@ const AdminDashboardPage = () => {
                   }`}
                 >
                   <Calendar size={16} className="inline mr-2" />
-                  Calendar & Add Appointments
+                  {t('admin.dashboard.tabs.calendar')}
                 </button>
                 <button
                   onClick={() => setActiveTab('analytics')}
@@ -172,7 +178,7 @@ const AdminDashboardPage = () => {
                   }`}
                 >
                   <BarChart3 size={16} className="inline mr-2" />
-                  Analytics
+                  {t('admin.dashboard.tabs.analytics')}
                 </button>
               </nav>
             </div>
@@ -185,35 +191,35 @@ const AdminDashboardPage = () => {
 
               {activeTab === 'analytics' && (
                 <div>
-                  <h2 className="text-xl font-semibold text-gray-900 mb-6">Analytics Overview</h2>
+                  <h2 className="text-xl font-semibold text-gray-900 mb-6">{t('admin.dashboard.analytics.title')}</h2>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                     <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-6 text-white">
-                      <h3 className="text-lg font-semibold mb-2">Total Appointments</h3>
+                      <h3 className="text-lg font-semibold mb-2">{t('admin.dashboard.analytics.total')}</h3>
                       <p className="text-3xl font-bold">{stats.total}</p>
                     </div>
                     <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-lg p-6 text-white">
-                      <h3 className="text-lg font-semibold mb-2">Pending</h3>
+                      <h3 className="text-lg font-semibold mb-2">{t('admin.dashboard.analytics.pending')}</h3>
                       <p className="text-3xl font-bold">{stats.pending}</p>
                     </div>
                     <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-lg p-6 text-white">
-                      <h3 className="text-lg font-semibold mb-2">Confirmed</h3>
+                      <h3 className="text-lg font-semibold mb-2">{t('admin.dashboard.analytics.confirmed')}</h3>
                       <p className="text-3xl font-bold">{stats.confirmed}</p>
                     </div>
                     <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg p-6 text-white">
-                      <h3 className="text-lg font-semibold mb-2">Completed</h3>
+                      <h3 className="text-lg font-semibold mb-2">{t('admin.dashboard.analytics.completed')}</h3>
                       <p className="text-3xl font-bold">{stats.completed}</p>
                     </div>
                   </div>
 
                   <div className="bg-white rounded-lg border border-gray-200 p-6">
-                    <h3 className="text-lg font-semibold mb-4">Appointment Status Distribution</h3>
+                    <h3 className="text-lg font-semibold mb-4">{t('admin.dashboard.analytics.appointmentDistribution')}</h3>
                     <div className="space-y-4">
                       {[
-                        { label: 'Pending', value: stats.pending, total: stats.total, color: 'bg-yellow-500' },
-                        { label: 'Confirmed', value: stats.confirmed, total: stats.total, color: 'bg-green-500' },
-                        { label: 'Completed', value: stats.completed, total: stats.total, color: 'bg-blue-500' },
-                        { label: 'Cancelled', value: stats.cancelled, total: stats.total, color: 'bg-red-500' }
+                        { label: t('admin.dashboard.analytics.pending'), value: stats.pending, total: stats.total, color: 'bg-yellow-500' },
+                        { label: t('admin.dashboard.analytics.confirmed'), value: stats.confirmed, total: stats.total, color: 'bg-green-500' },
+                        { label: t('admin.dashboard.analytics.completed'), value: stats.completed, total: stats.total, color: 'bg-blue-500' },
+                        { label: t('admin.dashboard.analytics.cancelled'), value: stats.cancelled, total: stats.total, color: 'bg-red-500' }
                       ].map((item) => {
                         const percentage = stats.total > 0 ? (item.value / stats.total) * 100 : 0;
                         return (

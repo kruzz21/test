@@ -1,4 +1,5 @@
 import { supabase } from './supabase';
+import { getAppointments, type Appointment } from './supabase';
 
 // Enhanced appointment functions using the new database improvements
 
@@ -69,6 +70,18 @@ export interface DetailedStats {
     cancelled: number;
     completed: number;
   };
+}
+
+export interface CalendarSlot {
+  date: string;
+  time: string;
+  status: 'available' | 'booked' | 'blocked';
+  appointment_id?: string;
+  patient_name?: string;
+  patient_email?: string;
+  patient_phone?: string;
+  service_type?: string;
+  appointment_status?: string;
 }
 
 // Get detailed appointment statistics
@@ -184,21 +197,60 @@ export const checkAppointmentConflicts = async (
   return data || [];
 };
 
-// Get enhanced calendar data with conflict detection
+// Get enhanced calendar data with conflict detection and fallback mechanism
 export const getEnhancedCalendarData = async (
   startDate: string,
   endDate: string
-) => {
-  const { data, error } = await supabase.rpc('get_calendar_data_enhanced', {
-    start_date: startDate,
-    end_date: endDate
-  });
+): Promise<CalendarSlot[]> => {
+  try {
+    // Try the enhanced RPC function first
+    const { data, error } = await supabase.rpc('get_calendar_data_enhanced', {
+      start_date: startDate,
+      end_date: endDate
+    });
 
-  if (error) {
-    throw new Error(error.message);
+    if (error) {
+      throw error;
+    }
+
+    return data || [];
+  } catch (error) {
+    console.warn('Enhanced calendar data function failed, falling back to basic appointments:', error);
+    
+    // Fallback: Use the basic getAppointments function
+    try {
+      const appointments = await getAppointments();
+      
+      // Filter appointments by date range and confirmed status
+      const startDateObj = new Date(startDate);
+      const endDateObj = new Date(endDate);
+      
+      const filteredAppointments = appointments.filter((appointment: Appointment) => {
+        const appointmentDate = new Date(appointment.date);
+        return appointmentDate >= startDateObj && 
+               appointmentDate <= endDateObj && 
+               appointment.status === 'confirmed';
+      });
+
+      // Map appointments to CalendarSlot format
+      const calendarSlots: CalendarSlot[] = filteredAppointments.map((appointment: Appointment) => ({
+        date: appointment.date,
+        time: appointment.time,
+        status: 'booked' as const,
+        appointment_id: appointment.id,
+        patient_name: appointment.name,
+        patient_email: appointment.email,
+        patient_phone: appointment.phone,
+        service_type: appointment.service_type,
+        appointment_status: appointment.status
+      }));
+
+      return calendarSlots;
+    } catch (fallbackError) {
+      console.error('Fallback calendar data loading also failed:', fallbackError);
+      throw new Error('Failed to load calendar data');
+    }
   }
-
-  return data || [];
 };
 
 // Generate patient ID

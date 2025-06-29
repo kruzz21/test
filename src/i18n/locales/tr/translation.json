@@ -62,6 +62,190 @@
       "button": "Şimdi İletişime Geç"
     }
   },
+  "appointment": {
+    "title": "Randevu Talep Et",
+    "subtitle": "İnceleme ve onay için randevu talebinizi gönderin",
+    "form": {
+      "personalInfo": "Kişisel Bilgiler",
+      "appointmentDetails": "Randevu Detayları",
+      "name": "Tam Ad",
+      "email": "E-posta",
+      "phone": "Telefon Numarası",
+      "serviceType": "Hizmet Türü",
+      "preferredDate": "Tercih Edilen Tarih",
+      "availableTimeSlots": "Mevcut Zaman Slotları",
+      "additionalMessage": "Ek Mesaj",
+      "submit": "Randevu Talebini Gönder",
+      "submitting": "Talep gönderiliyor...",
+      "selectService": "Bir hizmet seçin",
+      "selectDate": "Bir tarih seçin",
+      "selectTime": "Bir zaman seçin",
+      "loadingSlots": "Mevcut slotlar yükleniyor...",
+      "noSlotsAvailable": "Bu tarih için mevcut slot yok",
+      "selectDifferentDate": "Lütfen farklı bir tarih seçin",
+      "symptomDescription": "Lütfen semptomlarınızı veya endişelerinizi açıklayın...",
+      "note": "Bu bir randevu talebidir. Talebinizi inceleyeceğiz ve randevu zamanınızı onaylamak ve ek talimatlar vermek için 24 saat içinde sizinle iletişime geçeceğiz.",
+      "validation": {
+        "nameRequired": "Tam ad gereklidir",
+        "emailRequired": "E-posta gereklidir",
+        "emailInvalid": "Lütfen geçerli bir e-posta adresi girin",
+        "phoneRequired": "Telefon numarası gereklidir",
+        "phoneInvalid": "Lütfen geçerli bir telefon numarası girin (10-15 haneli)",
+        "serviceRequired": "Lütfen bir hizmet türü seçin",
+        "dateRequired": "Lütfen bir tarih seçin",
+        "timeRequired": "Lütfen bir zaman seçin",
+        "submitError": "Randevu rezervasyonu başarısız oldu. Lütfen tekrar deneyin veya doğrudan bizimle iletişime geçin.",
+        "note": "Not"
+      }
+    },
+    "success": {
+      "title": "Randevu Talebi Gönderildi!",
+      "message": "Randevu talebiniz incelenmek üzere gönderildi. Randevunuzu onaylamak için 24 saat içinde sizinle iletişime geçeceğiz.",
+      "bookAnother": "Başka Randevu Al",
+      "checkAppointments": "Randevularınızı Kontrol Edin"
+    },
+    "serviceTypes": {
+      "kneeConsultation": "Diz Konsültasyonu",
+      "hipConsultation": "Kalça Konsültasyonu",
+      "shoulderConsultation": "Omuz Konsültasyonu",
+      "pediatricConsultation": "Pediatrik Konsültasyon",
+      "generalConsultation": "Genel Ortopedik Konsültasyon",
+      "sportsConsultation": "Spor Yaralanması Konsültasyonu",
+      "followUp": "Takip Randevusu"
+    },
+    "checkAppointments": {
+      "title": "Randevularınızı Kontrol Edin",
+      "subtitle": "Planlanmış randevularınızı bulun ve görüntüleyin",
+      "searchTitle": "Randevularınızı Bulun",
+      "searchDescription": "Randevularınızı aramak için bilgilerinizi girin",
+      "fullName": "Tam Ad",
+      "phoneNumber": "Telefon Numarası",
+      "searchButton": "Randevuları Ara",
+      "searching": "Aranıyor...",
+      "yourAppointments": "Randevularınız",
+      "noAppointmentsFound": "Randevu bulunamadı",
+      "noAppointmentsMessage": "Sağlanan bilgilerle herhangi bir randevu bulamadık.",
+      "searchTips": {
+        "exactName": "• Rezervasyon yaparken kullandığınız adınızı tam olarak girdiğinizden emin olun",
+        "correctPhone": "• Telefon numaranızın rezervasyon için kullanılanla eşleştiğini kontrol edin",
+        "contactUs": "• Randevunuzu bulmada yardıma ihtiyacınız varsa bizimle iletişime geçin"
+      },
+      "appointmentInfo": {
+        "patientInformation": "Hasta Bilgileri",
+        "appointmentDetails": "Randevu Detayları",
+        "additionalMessage": "Ek Mesaj:",
+        "bookedOn": "Rezervasyon tarihi",
+        "service": "Hizmet"
+      },
+      "status": {
+        "pending": "Beklemede",
+        "confirmed": "Onaylandı",
+        "cancelled": "İptal Edildi",
+        "completed": "Tamamlandı"
+      },
+      "statusMessages": {
+        "confirmed": "Onaylandı: Randevunuz onaylandı. Lütfen 15 dakika erken gelin.",
+        "cancelled": "İptal Edildi: Bu randevu iptal edildi. Yeniden planlamak için bizimle iletişime geçin."
+      },
+      "actions": {
+        "cancelAppointment": "Randevuyu İptal Et",
+        "confirmDelete": "Onayla",
+        "cancelDelete": "İptal"
+      }
+    }
+  },
+  "admin": {
+    "login": {
+      "title": "Admin Girişi",
+      "subtitle": "Yönetim paneline erişin",
+      "email": "E-posta Adresi",
+      "password": "Şifre",
+      "emailPlaceholder": "E-postanızı girin",
+      "passwordPlaceholder": "Şifrenizi girin",
+      "signIn": "Giriş Yap",
+      "signingIn": "Giriş yapılıyor...",
+      "loginFailed": "Giriş Başarısız",
+      "accessDenied": "Erişim reddedildi. Admin yetkileri gerekli.",
+      "invalidCredentials": "Geçersiz kimlik bilgileri",
+      "loginFailedMessage": "Giriş başarısız. Lütfen tekrar deneyin.",
+      "secureAuth": "Endüstri standardı şifreleme ile güvenli kimlik doğrulama",
+      "validation": {
+        "emailRequired": "E-posta gereklidir",
+        "emailInvalid": "Lütfen geçerli bir e-posta adresi girin",
+        "passwordRequired": "Şifre gereklidir"
+      }
+    },
+    "dashboard": {
+      "title": "Admin Paneli",
+      "welcome": "Hoş geldiniz",
+      "logout": "Çıkış",
+      "stats": {
+        "pendingRequests": "Bekleyen Talepler",
+        "confirmed": "Onaylanmış",
+        "totalAppointments": "Toplam Randevular",
+        "blogPosts": "Blog Yazıları"
+      },
+      "tabs": {
+        "requests": "Randevu Talepleri",
+        "calendar": "Takvim ve Randevu Ekle",
+        "analytics": "Analitik"
+      },
+      "analytics": {
+        "title": "Analitik Genel Bakış",
+        "appointmentDistribution": "Randevu Durum Dağılımı",
+        "total": "Toplam",
+        "pending": "Beklemede",
+        "confirmed": "Onaylanmış",
+        "completed": "Tamamlanmış",
+        "cancelled": "İptal Edilmiş"
+      }
+    },
+    "appointments": {
+      "requests": {
+        "title": "Randevu Talepleri",
+        "refresh": "Yenile",
+        "loading": "Randevu talepleri yükleniyor...",
+        "noPendingRequests": "Bekleyen talep yok",
+        "allProcessed": "Tüm randevu talepleri işlendi.",
+        "pendingApproval": "Onay Bekliyor",
+        "requestedOn": "Talep tarihi",
+        "contactInformation": "İletişim Bilgileri",
+        "appointmentDetails": "Randevu Detayları",
+        "patientMessage": "Hasta Mesajı:",
+        "actions": {
+          "confirm": "Onayla",
+          "decline": "Reddet",
+          "delete": "Talebi Sil"
+        },
+        "error": "Hata",
+        "processing": "İşleniyor..."
+      },
+      "management": {
+        "title": "Randevu Yönetimi",
+        "previousWeek": "Önceki Hafta",
+        "nextWeek": "Sonraki Hafta",
+        "addAppointment": "Randevu Ekle",
+        "loadingCalendar": "Takvim yükleniyor...",
+        "noAppointments": "Randevu yok",
+        "legend": "Açıklama",
+        "confirmedAppointments": "Onaylanmış Randevular",
+        "addNewAppointment": "Yeni Randevu Ekle",
+        "patientName": "Hasta Adı",
+        "email": "E-posta",
+        "phone": "Telefon",
+        "date": "Tarih",
+        "time": "Zaman",
+        "serviceType": "Hizmet Türü",
+        "message": "Mesaj (İsteğe bağlı)",
+        "selectService": "Bir hizmet seçin",
+        "selectTime": "Zaman seçin",
+        "cancel": "İptal",
+        "confirmDelete": "Onayla",
+        "deleteAppointment": "Randevuyu Sil",
+        "error": "Hata"
+      }
+    }
+  },
   "symptoms": {
     "title": "Semptomlar ve Tedavi",
     "subtitle": "İnteraktif Vücut Haritası",

@@ -36,13 +36,13 @@ const StreamlinedAppointmentBooking = () => {
   const watchedDate = watch('date');
 
   const serviceTypes = [
-    'Knee Consultation',
-    'Hip Consultation', 
-    'Shoulder Consultation',
-    'Pediatric Consultation',
-    'General Orthopedic Consultation',
-    'Sports Injury Consultation',
-    'Follow-up Appointment'
+    { key: 'kneeConsultation', value: 'Knee Consultation' },
+    { key: 'hipConsultation', value: 'Hip Consultation' },
+    { key: 'shoulderConsultation', value: 'Shoulder Consultation' },
+    { key: 'pediatricConsultation', value: 'Pediatric Consultation' },
+    { key: 'generalConsultation', value: 'General Orthopedic Consultation' },
+    { key: 'sportsConsultation', value: 'Sports Injury Consultation' },
+    { key: 'followUp', value: 'Follow-up Appointment' }
   ];
 
   // Load available slots when date changes
@@ -102,7 +102,7 @@ const StreamlinedAppointmentBooking = () => {
       
     } catch (error) {
       console.error('Appointment booking error:', error);
-      setSubmitError(error instanceof Error ? error.message : 'Failed to book appointment. Please try again or contact us directly.');
+      setSubmitError(error instanceof Error ? error.message : t('appointment.form.validation.submitError'));
     }
   };
 
@@ -165,24 +165,24 @@ const StreamlinedAppointmentBooking = () => {
       <div className="text-center py-8">
         <CheckCircle2 className="w-16 h-16 text-green-500 mx-auto mb-4" />
         <h3 className="text-2xl font-semibold text-green-800 mb-2">
-          Appointment Request Submitted!
+          {t('appointment.success.title')}
         </h3>
         <p className="text-green-700 mb-6">
-          Your appointment request has been submitted for review. We will contact you within 24 hours to confirm your appointment.
+          {t('appointment.success.message')}
         </p>
         <div className="space-y-3">
           <button
             onClick={() => setIsSubmitted(false)}
             className="btn btn-outline text-green-600 border-green-600 hover:bg-green-50 mr-4"
           >
-            Book Another Appointment
+            {t('appointment.success.bookAnother')}
           </button>
           <Link
             to="/appointments"
             className="btn btn-primary inline-flex items-center"
           >
             <Search size={16} className="mr-2" />
-            Check Your Appointments
+            {t('appointment.success.checkAppointments')}
           </Link>
         </div>
       </div>
@@ -192,15 +192,15 @@ const StreamlinedAppointmentBooking = () => {
   return (
     <div>
       <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">Request an Appointment</h2>
-        <p className="text-gray-600">Submit your appointment request for review and confirmation</p>
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">{t('appointment.title')}</h2>
+        <p className="text-gray-600">{t('appointment.subtitle')}</p>
       </div>
 
       {submitError && (
         <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start mb-6">
           <AlertCircle className="w-5 h-5 text-red-500 mr-3 mt-0.5 flex-shrink-0" />
           <div>
-            <h4 className="text-red-800 font-medium">Booking Failed</h4>
+            <h4 className="text-red-800 font-medium">{t('contact.form.error.title')}</h4>
             <p className="text-red-700 text-sm mt-1">{submitError}</p>
           </div>
         </div>
@@ -211,19 +211,19 @@ const StreamlinedAppointmentBooking = () => {
         <div className="bg-gray-50 p-6 rounded-lg">
           <h3 className="text-lg font-semibold mb-4 flex items-center">
             <User size={20} className="mr-2 text-primary-600" />
-            Personal Information
+            {t('appointment.form.personalInfo')}
           </h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label htmlFor="name" className="form-label">
-                Full Name <span className="text-red-500">*</span>
+                {t('appointment.form.name')} <span className="text-red-500">*</span>
               </label>
               <input
                 id="name"
                 type="text"
                 className={`form-input ${errors.name ? 'border-red-500' : ''}`}
-                {...register('name', { required: 'Full name is required' })}
+                {...register('name', { required: t('appointment.form.validation.nameRequired') })}
               />
               {errors.name && (
                 <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
@@ -233,17 +233,17 @@ const StreamlinedAppointmentBooking = () => {
             <div>
               <label htmlFor="email" className="form-label">
                 <Mail size={16} className="inline mr-1" />
-                Email <span className="text-red-500">*</span>
+                {t('appointment.form.email')} <span className="text-red-500">*</span>
               </label>
               <input
                 id="email"
                 type="email"
                 className={`form-input ${errors.email ? 'border-red-500' : ''}`}
                 {...register('email', {
-                  required: 'Email is required',
+                  required: t('appointment.form.validation.emailRequired'),
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Please enter a valid email address'
+                    message: t('appointment.form.validation.emailInvalid')
                   }
                 })}
               />
@@ -256,7 +256,7 @@ const StreamlinedAppointmentBooking = () => {
           <div className="mt-6">
             <label htmlFor="phone" className="form-label">
               <Phone size={16} className="inline mr-1" />
-              Phone Number <span className="text-red-500">*</span>
+              {t('appointment.form.phone')} <span className="text-red-500">*</span>
             </label>
             <input
               id="phone"
@@ -264,10 +264,10 @@ const StreamlinedAppointmentBooking = () => {
               placeholder="+994553977874"
               className={`form-input ${errors.phone ? 'border-red-500' : ''}`}
               {...register('phone', {
-                required: 'Phone number is required',
+                required: t('appointment.form.validation.phoneRequired'),
                 pattern: {
                   value: /^\+?[0-9]{10,15}$/,
-                  message: 'Please enter a valid phone number (10-15 digits)'
+                  message: t('appointment.form.validation.phoneInvalid')
                 }
               })}
             />
@@ -281,22 +281,22 @@ const StreamlinedAppointmentBooking = () => {
         <div className="bg-gray-50 p-6 rounded-lg">
           <h3 className="text-lg font-semibold mb-4 flex items-center">
             <Calendar size={20} className="mr-2 text-primary-600" />
-            Appointment Details
+            {t('appointment.form.appointmentDetails')}
           </h3>
 
           <div>
             <label htmlFor="service_type" className="form-label">
-              Service Type <span className="text-red-500">*</span>
+              {t('appointment.form.serviceType')} <span className="text-red-500">*</span>
             </label>
             <select
               id="service_type"
               className={`form-input ${errors.service_type ? 'border-red-500' : ''}`}
-              {...register('service_type', { required: 'Please select a service type' })}
+              {...register('service_type', { required: t('appointment.form.validation.serviceRequired') })}
             >
-              <option value="">Select a service</option>
+              <option value="">{t('appointment.form.selectService')}</option>
               {serviceTypes.map((service) => (
-                <option key={service} value={service}>
-                  {service}
+                <option key={service.value} value={service.value}>
+                  {t(`appointment.serviceTypes.${service.key}`)}
                 </option>
               ))}
             </select>
@@ -308,14 +308,14 @@ const StreamlinedAppointmentBooking = () => {
           <div className="mt-6">
             <label htmlFor="date" className="form-label">
               <Calendar size={16} className="inline mr-2" />
-              Preferred Date <span className="text-red-500">*</span>
+              {t('appointment.form.preferredDate')} <span className="text-red-500">*</span>
             </label>
             <input
               id="date"
               type="date"
               min={getMinDate()}
               className={`form-input ${errors.date ? 'border-red-500' : ''}`}
-              {...register('date', { required: 'Please select a date' })}
+              {...register('date', { required: t('appointment.form.validation.dateRequired') })}
             />
             {errors.date && (
               <p className="mt-1 text-sm text-red-500">{errors.date.message}</p>
@@ -327,13 +327,13 @@ const StreamlinedAppointmentBooking = () => {
             <div className="mt-6">
               <label className="form-label">
                 <Clock size={16} className="inline mr-2" />
-                Available Time Slots <span className="text-red-500">*</span>
+                {t('appointment.form.availableTimeSlots')} <span className="text-red-500">*</span>
               </label>
               
               {loadingSlots ? (
                 <div className="text-center py-4">
                   <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary-600 mx-auto"></div>
-                  <p className="mt-2 text-sm text-gray-600">Loading available slots...</p>
+                  <p className="mt-2 text-sm text-gray-600">{t('appointment.form.loadingSlots')}</p>
                 </div>
               ) : availableSlots.length > 0 ? (
                 <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 mt-2">
@@ -367,8 +367,8 @@ const StreamlinedAppointmentBooking = () => {
               ) : (
                 <div className="text-center py-4 text-gray-500">
                   <Clock className="w-8 h-8 mx-auto mb-2 text-gray-400" />
-                  <p>No available slots for this date</p>
-                  <p className="text-sm">Please select a different date</p>
+                  <p>{t('appointment.form.noSlotsAvailable')}</p>
+                  <p className="text-sm">{t('appointment.form.selectDifferentDate')}</p>
                 </div>
               )}
               
@@ -380,12 +380,12 @@ const StreamlinedAppointmentBooking = () => {
 
           <div className="mt-6">
             <label htmlFor="message" className="form-label">
-              Additional Message
+              {t('appointment.form.additionalMessage')}
             </label>
             <textarea
               id="message"
               rows={4}
-              placeholder="Please describe your symptoms or concerns..."
+              placeholder={t('appointment.form.symptomDescription')}
               className="form-input"
               {...register('message')}
             />
@@ -394,7 +394,7 @@ const StreamlinedAppointmentBooking = () => {
 
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
           <p className="text-blue-800 text-sm">
-            <strong>Note:</strong> This is a request for an appointment. We will review your request and contact you within 24 hours to confirm your appointment time and provide any additional instructions.
+            <strong>{t('contact.form.validation.note')}:</strong> {t('appointment.form.note')}
           </p>
         </div>
 
@@ -403,7 +403,7 @@ const StreamlinedAppointmentBooking = () => {
           className="btn btn-primary w-full"
           disabled={isSubmitting || !selectedDate || !selectedTime || availableSlots.length === 0}
         >
-          {isSubmitting ? 'Submitting Request...' : 'Submit Appointment Request'}
+          {isSubmitting ? t('appointment.form.submitting') : t('appointment.form.submit')}
         </button>
       </form>
 
@@ -413,7 +413,7 @@ const StreamlinedAppointmentBooking = () => {
           className="text-primary-600 hover:text-primary-700 inline-flex items-center text-sm"
         >
           <Search size={16} className="mr-1" />
-          Check Your Existing Appointments
+          {t('appointment.success.checkAppointments')}
         </Link>
       </div>
     </div>

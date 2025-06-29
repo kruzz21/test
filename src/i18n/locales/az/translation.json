@@ -62,6 +62,190 @@
       "button": "İndi Əlaqə saxlayın"
     }
   },
+  "appointment": {
+    "title": "Randevu Tələb Et",
+    "subtitle": "Nəzərdən keçirilmə və təsdiq üçün randevu tələbinizi göndərin",
+    "form": {
+      "personalInfo": "Şəxsi Məlumat",
+      "appointmentDetails": "Randevu Təfərrüatları",
+      "name": "Tam Ad",
+      "email": "E-poçt",
+      "phone": "Telefon Nömrəsi",
+      "serviceType": "Xidmət Növü",
+      "preferredDate": "Üstünlük verilən tarix",
+      "availableTimeSlots": "Mövcud Vaxt Slotları",
+      "additionalMessage": "Əlavə Mesaj",
+      "submit": "Randevu Tələbini Göndər",
+      "submitting": "Tələb göndərilir...",
+      "selectService": "Xidmət seçin",
+      "selectDate": "Tarix seçin",
+      "selectTime": "Vaxt seçin",
+      "loadingSlots": "Mövcud slotlar yüklənir...",
+      "noSlotsAvailable": "Bu tarix üçün mövcud slot yoxdur",
+      "selectDifferentDate": "Zəhmət olmasa fərqli tarix seçin",
+      "symptomDescription": "Simptomlarınızı və ya narahatlıqlarınızı təsvir edin...",
+      "note": "Qeyd: Bu randevu üçün tələbdir. Biz sizin tələbinizi nəzərdən keçirəcəyik və randevu vaxtınızı təsdiq etmək və əlavə təlimatlar vermək üçün 24 saat ərzində sizinlə əlaqə saxlayacağıq.",
+      "validation": {
+        "nameRequired": "Tam ad tələb olunur",
+        "emailRequired": "E-poçt tələb olunur",
+        "emailInvalid": "Zəhmət olmasa düzgün e-poçt ünvanı daxil edin",
+        "phoneRequired": "Telefon nömrəsi tələb olunur",
+        "phoneInvalid": "Zəhmət olmasa düzgün telefon nömrəsi daxil edin (10-15 rəqəm)",
+        "serviceRequired": "Zəhmət olmasa xidmət növü seçin",
+        "dateRequired": "Zəhmət olmasa tarix seçin",
+        "timeRequired": "Zəhmət olmasa vaxt seçin",
+        "submitError": "Randevu rezervasiyası uğursuz oldu. Zəhmət olmasa yenidən cəhd edin və ya birbaşa bizimlə əlaqə saxlayın.",
+        "note": "Qeyd"
+      }
+    },
+    "success": {
+      "title": "Randevu Tələbi Göndərildi!",
+      "message": "Sizin randevu tələbiniz nəzərdən keçirilmək üçün göndərildi. Randevunuzu təsdiq etmək üçün 24 saat ərzində sizinlə əlaqə saxlayacağıq.",
+      "bookAnother": "Başqa Randevu Al",
+      "checkAppointments": "Randevularınızı Yoxlayın"
+    },
+    "serviceTypes": {
+      "kneeConsultation": "Diz Konsultasiyası",
+      "hipConsultation": "Omba Konsultasiyası",
+      "shoulderConsultation": "Çiyin Konsultasiyası",
+      "pediatricConsultation": "Pediatrik Konsultasiya",
+      "generalConsultation": "Ümumi Ortopedik Konsultasiya",
+      "sportsConsultation": "İdman Zədəsi Konsultasiyası",
+      "followUp": "Təkrar Randevu"
+    },
+    "checkAppointments": {
+      "title": "Randevularınızı Yoxlayın",
+      "subtitle": "Planlaşdırılmış randevularınızı tapın və görün",
+      "searchTitle": "Randevularınızı Tapın",
+      "searchDescription": "Randevularınızı axtarmaq üçün məlumatlarınızı daxil edin",
+      "fullName": "Tam Ad",
+      "phoneNumber": "Telefon Nömrəsi",
+      "searchButton": "Randevuları Axtar",
+      "searching": "Axtarılır...",
+      "yourAppointments": "Sizin Randevularınız",
+      "noAppointmentsFound": "Randevu tapılmadı",
+      "noAppointmentsMessage": "Təqdim edilən məlumatlarla heç bir randevu tapa bilmədik.",
+      "searchTips": {
+        "exactName": "• Rezervasiya zamanı daxil etdiyiniz adınızı dəqiq daxil etdiyinizdən əmin olun",
+        "correctPhone": "• Telefon nömrənizin rezervasiya üçün istifadə edilənlə uyğun olduğunu yoxlayın",
+        "contactUs": "• Randevunuzu tapmaqda kömək lazımdırsa bizimlə əlaqə saxlayın"
+      },
+      "appointmentInfo": {
+        "patientInformation": "Xəstə Məlumatı",
+        "appointmentDetails": "Randevu Təfərrüatları",
+        "additionalMessage": "Əlavə Mesaj:",
+        "bookedOn": "Rezervasiya tarixi",
+        "service": "Xidmət"
+      },
+      "status": {
+        "pending": "Gözləyir",
+        "confirmed": "Təsdiqləndi",
+        "cancelled": "Ləğv edildi",
+        "completed": "Tamamlandı"
+      },
+      "statusMessages": {
+        "confirmed": "Təsdiqləndi: Randevunuz təsdiqləndi. Zəhmət olmasa 15 dəqiqə əvvəl gəlin.",
+        "cancelled": "Ləğv edildi: Bu randevu ləğv edildi. Yenidən planlaşdırmaq üçün bizimlə əlaqə saxlayın."
+      },
+      "actions": {
+        "cancelAppointment": "Randevunu Ləğv Et",
+        "confirmDelete": "Təsdiq Et",
+        "cancelDelete": "Ləğv Et"
+      }
+    }
+  },
+  "admin": {
+    "login": {
+      "title": "Admin Girişi",
+      "subtitle": "İnzibati panelə daxil olun",
+      "email": "E-poçt Ünvanı",
+      "password": "Şifrə",
+      "emailPlaceholder": "E-poçtunuzu daxil edin",
+      "passwordPlaceholder": "Şifrənizi daxil edin",
+      "signIn": "Daxil ol",
+      "signingIn": "Daxil olunur...",
+      "loginFailed": "Giriş uğursuz oldu",
+      "accessDenied": "Giriş rədd edildi. Admin səlahiyyətləri tələb olunur.",
+      "invalidCredentials": "Yanlış məlumatlar",
+      "loginFailedMessage": "Giriş uğursuz oldu. Zəhmət olmasa yenidən cəhd edin.",
+      "secureAuth": "Sənaye standartı şifrələmə ilə təhlükəsiz autentifikasiya",
+      "validation": {
+        "emailRequired": "E-poçt tələb olunur",
+        "emailInvalid": "Zəhmət olmasa düzgün e-poçt ünvanı daxil edin",
+        "passwordRequired": "Şifrə tələb olunur"
+      }
+    },
+    "dashboard": {
+      "title": "Admin Paneli",
+      "welcome": "Xoş gəlmisiniz",
+      "logout": "Çıxış",
+      "stats": {
+        "pendingRequests": "Gözləyən Tələblər",
+        "confirmed": "Təsdiqlənmiş",
+        "totalAppointments": "Ümumi Randevular",
+        "blogPosts": "Blog Yazıları"
+      },
+      "tabs": {
+        "requests": "Randevu Tələbləri",
+        "calendar": "Təqvim və Randevu Əlavə Et",
+        "analytics": "Analitika"
+      },
+      "analytics": {
+        "title": "Analitika İcmalı",
+        "appointmentDistribution": "Randevu Status Paylanması",
+        "total": "Ümumi",
+        "pending": "Gözləyir",
+        "confirmed": "Təsdiqlənmiş",
+        "completed": "Tamamlanmış",
+        "cancelled": "Ləğv edilmiş"
+      }
+    },
+    "appointments": {
+      "requests": {
+        "title": "Randevu Tələbləri",
+        "refresh": "Yenilə",
+        "loading": "Randevu tələbləri yüklənir...",
+        "noPendingRequests": "Gözləyən tələb yoxdur",
+        "allProcessed": "Bütün randevu tələbləri işlənib.",
+        "pendingApproval": "Təsdiq Gözləyir",
+        "requestedOn": "Tələb tarixi",
+        "contactInformation": "Əlaqə Məlumatı",
+        "appointmentDetails": "Randevu Təfərrüatları",
+        "patientMessage": "Xəstə Mesajı:",
+        "actions": {
+          "confirm": "Təsdiq Et",
+          "decline": "Rədd Et",
+          "delete": "Tələbi Sil"
+        },
+        "error": "Xəta",
+        "processing": "İşlənir..."
+      },
+      "management": {
+        "title": "Randevu İdarəetməsi",
+        "previousWeek": "Əvvəlki Həftə",
+        "nextWeek": "Növbəti Həftə",
+        "addAppointment": "Randevu Əlavə Et",
+        "loadingCalendar": "Təqvim yüklənir...",
+        "noAppointments": "Randevu yoxdur",
+        "legend": "Açıqlama",
+        "confirmedAppointments": "Təsdiqlənmiş Randevular",
+        "addNewAppointment": "Yeni Randevu Əlavə Et",
+        "patientName": "Xəstə Adı",
+        "email": "E-poçt",
+        "phone": "Telefon",
+        "date": "Tarix",
+        "time": "Vaxt",
+        "serviceType": "Xidmət Növü",
+        "message": "Mesaj (İstəyə bağlı)",
+        "selectService": "Xidmət seçin",
+        "selectTime": "Vaxt seçin",
+        "cancel": "Ləğv Et",
+        "confirmDelete": "Təsdiq Et",
+        "deleteAppointment": "Randevunu Sil",
+        "error": "Xəta"
+      }
+    }
+  },
   "symptoms": {
     "title": "Simptomlar və Müalicə",
     "subtitle": "İnteraktiv Bədən Xəritəsi",
@@ -170,7 +354,7 @@
       "symptoms": {
         "title": "Simptomlar",
         "items": [
-          "Dirsəyin xarici və ya daxili tərəfində ağrı",
+          "Dirseğin xarici və ya daxili tərəfində ağrı",
           "Tutma gücündə zəiflik",
           "Sərtlik və məhdud hərəkət",
           "Barmaqlarında uyuşma və ya qarışqalanma",
