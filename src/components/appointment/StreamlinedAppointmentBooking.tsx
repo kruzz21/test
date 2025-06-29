@@ -3,16 +3,25 @@ import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { Calendar, Clock, CheckCircle2, AlertCircle, Search, User, Mail, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { createAppointment, getAvailableSlots, CreateAppointmentData, AppointmentSlot } from '../../lib/supabase';
+import { createAppointment, CreateAppointmentData } from '../../lib/supabase';
+import { supabase } from '../../lib/supabase';
 
 interface FormData extends CreateAppointmentData {}
 
-const AppointmentBooking = () => {
+interface TimeSlot {
+  id: string;
+  time: string;
+  available: boolean;
+  created_at: string;
+}
+
+const StreamlinedAppointmentBooking = () => {
   const { t } = useTranslation();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const [availableSlots, setAvailableSlots] = useState<AppointmentSlot[]>([]);
+  const [availableSlots, setAvailableSlots] = useState<TimeSlot[]>([]);
   const [selectedDate, setSelectedDate] = useState<string>('');
+  const [selectedTime, setSelectedTime] = useState<string>('');
   const [loadingSlots, setLoadingSlots] = useState(false);
   
   const { 
@@ -40,15 +49,22 @@ const AppointmentBooking = () => {
   useEffect(() => {
     if (watchedDate && watchedDate !== selectedDate) {
       setSelectedDate(watchedDate);
+      setSelectedTime('');
+      setValue('time', '');
       loadAvailableSlots(watchedDate);
     }
-  }, [watchedDate, selectedDate]);
+  }, [watchedDate, selectedDate, setValue]);
 
   const loadAvailableSlots = async (date: string) => {
     try {
       setLoadingSlots(true);
-      const slots = await getAvailableSlots(date);
-      setAvailableSlots(slots);
+      
+      const { data, error } = await supabase.rpc('get_available_slots_enhanced', {
+        target_date: date
+      });
+
+      if (error) throw error;
+      setAvailableSlots(data || []);
     } catch (error) {
       console.error('Failed to load available slots:', error);
       setAvailableSlots([]);
@@ -61,16 +77,27 @@ const AppointmentBooking = () => {
     try {
       setSubmitError(null);
       
-      await createAppointment(data);
+      // Create appointment with pending status for admin approval
+      await createAppointment({
+        ...data,
+        // Note: status will be set to 'pending' by default in the database
+      });
+      
       setIsSubmitted(true);
       reset();
       setAvailableSlots([]);
       setSelectedDate('');
+      setSelectedTime('');
       
     } catch (error) {
       console.error('Appointment booking error:', error);
       setSubmitError(error instanceof Error ? error.message : 'Failed to book appointment. Please try again or contact us directly.');
     }
+  };
+
+  const handleTimeSelection = (time: string) => {
+    setSelectedTime(time);
+    setValue('time', time);
   };
 
   const formatTime = (timeString: string) => {
@@ -81,15 +108,29 @@ const AppointmentBooking = () => {
     });
   };
 
+  const isTimeSlotDisabled = (date: string, time: string) => {
+    const slotDateTime = new Date(`${date}T${time}`);
+    const now = new Date();
+    const minAdvanceTime = new Date(now.getTime() + 2 * 60 * 60 * 1000); // 2 hours minimum advance booking
+    
+    return slotDateTime < minAdvanceTime;
+  };
+
+  const getMinDate = () => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow.toISOString().split('T')[0];
+  };
+
   if (isSubmitted) {
     return (
       <div className="text-center py-8">
         <CheckCircle2 className="w-16 h-16 text-green-500 mx-auto mb-4" />
         <h3 className="text-2xl font-semibold text-green-800 mb-2">
-          Appointment Booked Successfully!
+          Appointment Request Submitted!
         </h3>
         <p className="text-green-700 mb-6">
-          We have received your appointment request. We will contact you shortly to confirm the details.
+          Your appointment request has been submitted for review. We will contact you within 24 hours to confirm your appointment.
         </p>
         <div className="space-y-3">
           <button
@@ -113,8 +154,8 @@ const AppointmentBooking = () => {
   return (
     <div>
       <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">Book an Appointment</h2>
-        <p className="text-gray-600">Schedule your consultation with Dr. Gürkan Eryanılmaz</p>
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">Request an Appointment</h2>
+        <p className="text-gray-600">Submit your appointment request for review and confirmation</p>
       </div>
 
       {submitError && (
@@ -234,7 +275,7 @@ const AppointmentBooking = () => {
             <input
               id="date"
               type="date"
-              min={new Date().toISOString().split('T')[0]}
+              min={getMinDate()}
               className={`form-input ${errors.date ? 'border-red-500' : ''}`}
               {...register('date', { required: 'Please select a date' })}
             />
@@ -258,22 +299,28 @@ const AppointmentBooking = () => {
                 </div>
               ) : availableSlots.length > 0 ? (
                 <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 mt-2">
-                  {availableSlots.map((slot) => (
-                    <label
-                      key={slot.id}
-                      className="flex items-center justify-center p-3 border border-gray-300 rounded-md cursor-pointer hover:bg-primary-50 hover:border-primary-300 transition-colors"
-                    >
-                      <input
-                        type="radio"
-                        value={slot.time}
-                        className="sr-only"
-                        {...register('time', { required: 'Please select a time' })}
-                      />
-                      <span className="text-sm font-medium">
+                  {availableSlots.map((slot) => {
+                    const isDisabled = isTimeSlotDisabled(selectedDate, slot.time);
+                    const isSelected = selectedTime === slot.time;
+                    
+                    return (
+                      <button
+                        key={slot.id}
+                        type="button"
+                        onClick={() => !isDisabled && handleTimeSelection(slot.time)}
+                        disabled={isDisabled}
+                        className={`p-3 border rounded-md text-sm font-medium transition-all duration-200 ${
+                          isDisabled
+                            ? 'border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed'
+                            : isSelected
+                            ? 'border-blue-500 bg-blue-500 text-white shadow-md transform scale-105'
+                            : 'border-gray-300 bg-white text-gray-700 hover:border-blue-300 hover:bg-blue-50 cursor-pointer'
+                        }`}
+                      >
                         {formatTime(slot.time)}
-                      </span>
-                    </label>
-                  ))}
+                      </button>
+                    );
+                  })}
                 </div>
               ) : (
                 <div className="text-center py-4 text-gray-500">
@@ -305,16 +352,16 @@ const AppointmentBooking = () => {
 
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
           <p className="text-blue-800 text-sm">
-            <strong>Note:</strong> This is a request for an appointment. We will contact you within 24 hours to confirm your appointment time and provide any additional instructions.
+            <strong>Note:</strong> This is a request for an appointment. We will review your request and contact you within 24 hours to confirm your appointment time and provide any additional instructions.
           </p>
         </div>
 
         <button
           type="submit"
           className="btn btn-primary w-full"
-          disabled={isSubmitting || !selectedDate || availableSlots.length === 0}
+          disabled={isSubmitting || !selectedDate || !selectedTime || availableSlots.length === 0}
         >
-          {isSubmitting ? 'Booking Appointment...' : 'Book Appointment'}
+          {isSubmitting ? 'Submitting Request...' : 'Submit Appointment Request'}
         </button>
       </form>
 
@@ -331,4 +378,4 @@ const AppointmentBooking = () => {
   );
 };
 
-export default AppointmentBooking;
+export default StreamlinedAppointmentBooking;

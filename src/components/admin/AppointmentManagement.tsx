@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, Clock, Plus, Edit, Trash2, Ban, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
+import { Calendar, Clock, Plus, Edit, Trash2, CheckCircle, XCircle, AlertCircle, User, Phone, Mail } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 
 interface CalendarSlot {
@@ -22,7 +22,7 @@ interface AppointmentFormData {
   message?: string;
 }
 
-const CalendarView: React.FC = () => {
+const AppointmentManagement: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [calendarData, setCalendarData] = useState<CalendarSlot[]>([]);
   const [loading, setLoading] = useState(true);
@@ -37,6 +37,7 @@ const CalendarView: React.FC = () => {
     message: ''
   });
   const [blockReason, setBlockReason] = useState('');
+  const [error, setError] = useState<string | null>(null);
 
   const serviceTypes = [
     'Knee Consultation',
@@ -60,6 +61,7 @@ const CalendarView: React.FC = () => {
   const loadCalendarData = async () => {
     try {
       setLoading(true);
+      setError(null);
       const { start, end } = getWeekDates(currentDate);
       
       const { data, error } = await supabase.rpc('get_calendar_data', {
@@ -71,6 +73,7 @@ const CalendarView: React.FC = () => {
       setCalendarData(data || []);
     } catch (error) {
       console.error('Error loading calendar data:', error);
+      setError('Failed to load calendar data');
     } finally {
       setLoading(false);
     }
@@ -92,6 +95,7 @@ const CalendarView: React.FC = () => {
     if (!selectedSlot) return;
 
     try {
+      setError(null);
       const { error } = await supabase.from('appointments').insert({
         name: appointmentForm.name,
         email: appointmentForm.email,
@@ -117,6 +121,7 @@ const CalendarView: React.FC = () => {
       loadCalendarData();
     } catch (error) {
       console.error('Error creating appointment:', error);
+      setError('Failed to create appointment');
     }
   };
 
@@ -124,7 +129,8 @@ const CalendarView: React.FC = () => {
     if (!selectedSlot) return;
 
     try {
-      const { error } = await supabase.rpc('block_time_slots', {
+      setError(null);
+      const { data, error } = await supabase.rpc('block_time_slots', {
         block_date: selectedSlot.date,
         start_time_param: selectedSlot.time,
         end_time_param: addMinutes(selectedSlot.time, 30),
@@ -133,17 +139,23 @@ const CalendarView: React.FC = () => {
 
       if (error) throw error;
 
+      if (data && !data.success) {
+        throw new Error(data.message);
+      }
+
       setShowBlockForm(false);
       setBlockReason('');
       setSelectedSlot(null);
       loadCalendarData();
     } catch (error) {
       console.error('Error blocking slot:', error);
+      setError('Failed to block slot');
     }
   };
 
   const handleDeleteAppointment = async (appointmentId: string) => {
     try {
+      setError(null);
       const { error } = await supabase
         .from('appointments')
         .delete()
@@ -153,6 +165,7 @@ const CalendarView: React.FC = () => {
       loadCalendarData();
     } catch (error) {
       console.error('Error deleting appointment:', error);
+      setError('Failed to delete appointment');
     }
   };
 
@@ -185,7 +198,7 @@ const CalendarView: React.FC = () => {
       case 'booked':
         return <CheckCircle className="w-4 h-4 text-green-500" />;
       case 'blocked':
-        return <Ban className="w-4 h-4 text-red-500" />;
+        return <XCircle className="w-4 h-4 text-red-500" />;
       default:
         return <Clock className="w-4 h-4 text-gray-400" />;
     }
@@ -223,7 +236,7 @@ const CalendarView: React.FC = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <Calendar className="w-6 h-6 text-primary-600" />
-          <h2 className="text-2xl font-bold text-gray-900">Calendar Management</h2>
+          <h2 className="text-2xl font-bold text-gray-900">Appointment Management</h2>
         </div>
         
         <div className="flex items-center space-x-4">
@@ -244,6 +257,16 @@ const CalendarView: React.FC = () => {
           </button>
         </div>
       </div>
+
+      {error && (
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start">
+          <AlertCircle className="w-5 h-5 text-red-500 mr-3 mt-0.5 flex-shrink-0" />
+          <div>
+            <h4 className="text-red-800 font-medium">Error</h4>
+            <p className="text-red-700 text-sm mt-1">{error}</p>
+          </div>
+        </div>
+      )}
 
       {/* Calendar Grid */}
       {loading ? (
@@ -324,12 +347,12 @@ const CalendarView: React.FC = () => {
         </div>
       )}
 
-      {/* Appointment Form Modal */}
+      {/* Add Appointment Form Modal */}
       {showAppointmentForm && selectedSlot && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-md">
             <h3 className="text-lg font-semibold mb-4">
-              Create Appointment - {formatDate(selectedSlot.date)} at {formatTime(selectedSlot.time)}
+              Add Appointment - {formatDate(selectedSlot.date)} at {formatTime(selectedSlot.time)}
             </h3>
             
             <form onSubmit={handleCreateAppointment} className="space-y-4">
@@ -393,7 +416,7 @@ const CalendarView: React.FC = () => {
               
               <div className="flex space-x-3">
                 <button type="submit" className="btn btn-primary flex-1">
-                  Create Appointment
+                  Add Appointment
                 </button>
                 <button
                   type="button"
@@ -453,7 +476,7 @@ const CalendarView: React.FC = () => {
         <div className="flex flex-wrap gap-4">
           <div className="flex items-center">
             <div className="w-4 h-4 bg-blue-100 border border-blue-200 rounded mr-2"></div>
-            <span className="text-sm">Available</span>
+            <span className="text-sm">Available (Click to add appointment)</span>
           </div>
           <div className="flex items-center">
             <div className="w-4 h-4 bg-green-100 border border-green-300 rounded mr-2"></div>
@@ -469,4 +492,4 @@ const CalendarView: React.FC = () => {
   );
 };
 
-export default CalendarView;
+export default AppointmentManagement;
