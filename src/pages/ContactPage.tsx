@@ -1,8 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { Phone, Mail, MapPin, Clock, Instagram, MessageCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Instagram, MessageCircle, Paperclip } from 'lucide-react';
 import SectionHeading from '../components/common/SectionHeading';
-import ContactForm from '../components/contact/ContactForm';
 import AppointmentBooking from '../components/contact/AppointmentBooking';
 
 const ContactPage = () => {
@@ -26,32 +25,10 @@ const ContactPage = () => {
       <section className="py-16 bg-gray-50">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* Left Column - Appointment Booking and Contact Form */}
-            <div className="space-y-8">
-              {/* Appointment Booking Section */}
+            {/* Left Column - Appointment Booking */}
+            <div>
               <div className="bg-white rounded-lg shadow-md p-8" data-aos="fade-up">
                 <AppointmentBooking />
-              </div>
-
-              {/* Divider */}
-              <div className="text-center" data-aos="fade-up">
-                <div className="relative">
-                  <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-gray-300"></div>
-                  </div>
-                  <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-gray-50 text-gray-500">or</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Contact Form */}
-              <div className="bg-white rounded-lg shadow-md p-8" data-aos="fade-up">
-                <SectionHeading 
-                  title="Let Us Call You"
-                  subtitle="Fill out the form and we'll contact you"
-                />
-                <ContactForm />
               </div>
             </div>
             
@@ -94,17 +71,12 @@ const ContactPage = () => {
                     </div>
                   </li>
                   <li className="flex items-start">
-                    <div className="flex space-x-4 mt-1">
-                      <Instagram size={24} className="text-primary-600 flex-shrink-0" />
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-primary-600 flex-shrink-0">
-                        <path d="M9.5 2v11.5a3.5 3.5 0 1 1-3.5-3.5 3.6 3.6 0 0 1 .9.1V9a6.5 6.5 0 1 0 5.7 6.5V7.6a7.2 7.2 0 0 0 3.4.9V5.4a3.9 3.9 0 0 1-3.4-3.9V2z"/>
-                      </svg>
-                      <MessageCircle size={24} className="text-primary-600 flex-shrink-0" />
-                    </div>
-                    <div className="ml-4">
+                    <Paperclip size={24} className="text-primary-600 mr-4 flex-shrink-0 mt-1" />
+                    <div>
                       <h3 className="font-semibold text-lg mb-1">Social Media & Live Support</h3>
-                      <div className="space-y-2">
-                        <p className="text-gray-700">
+                      <div className="space-y-3">
+                        <p className="text-gray-700 flex items-center">
+                          <Instagram size={20} className="text-primary-600 mr-3" />
                           <a 
                             href="https://www.instagram.com/uzmantravmatolojiortoped" 
                             target="_blank" 
@@ -114,7 +86,10 @@ const ContactPage = () => {
                             Instagram: @uzmantravmatolojiortoped
                           </a>
                         </p>
-                        <p className="text-gray-700">
+                        <p className="text-gray-700 flex items-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-primary-600 mr-3 flex-shrink-0">
+                            <path d="M9.5 2v11.5a3.5 3.5 0 1 1-3.5-3.5 3.6 3.6 0 0 1 .9.1V9a6.5 6.5 0 1 0 5.7 6.5V7.6a7.2 7.2 0 0 0 3.4.9V5.4a3.9 3.9 0 0 1-3.4-3.9V2z"/>
+                          </svg>
                           <a 
                             href="https://www.tiktok.com/@opdrgeryanilmaz" 
                             target="_blank" 
@@ -124,14 +99,14 @@ const ContactPage = () => {
                             TikTok: @opdrgeryanilmaz
                           </a>
                         </p>
-                        <p className="text-gray-700">
+                        <p className="text-gray-700 flex items-center">
+                          <MessageCircle size={20} className="text-primary-600 mr-3" />
                           <a 
                             href="https://wa.me/994553977874" 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="hover:text-primary-600 transition-colors inline-flex items-center"
+                            className="hover:text-primary-600 transition-colors"
                           >
-                            <MessageCircle size={16} className="mr-1" />
                             WhatsApp Live Support
                           </a>
                         </p>

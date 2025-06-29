@@ -13,38 +13,55 @@ import {
   Plus,
   Edit,
   Trash2,
-  AlertTriangle
+  AlertTriangle,
+  RefreshCw,
+  BarChart3
 } from 'lucide-react';
-import { getAppointments, updateAppointmentStatus, deleteAppointment, Appointment } from '../lib/supabase';
+import { 
+  getAppointments, 
+  getAppointmentStats,
+  updateAppointmentStatus, 
+  deleteAppointment, 
+  Appointment,
+  AppointmentStats
+} from '../lib/supabase';
+import { isAuthenticated, signOut, getCurrentUser } from '../lib/auth';
 import { blogPosts } from '../data/blogPosts';
 
 const AdminDashboardPage = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('appointments');
   const [appointments, setAppointments] = useState<Appointment[]>([]);
+  const [stats, setStats] = useState<AppointmentStats>({ total: 0, pending: 0, confirmed: 0, cancelled: 0, completed: 0 });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+  const [processingIds, setProcessingIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     // Check authentication
-    const isAuthenticated = localStorage.getItem('adminAuth') === 'true';
-    if (!isAuthenticated) {
+    if (!isAuthenticated()) {
       navigate('/admin');
       return;
     }
 
-    loadAppointments();
+    loadData();
   }, [navigate]);
 
-  const loadAppointments = async () => {
+  const loadData = async () => {
     try {
       setIsLoading(true);
       setError(null);
-      const data = await getAppointments();
-      setAppointments(data);
+      
+      const [appointmentsData, statsData] = await Promise.all([
+        getAppointments(),
+        getAppointmentStats()
+      ]);
+      
+      setAppointments(appointmentsData);
+      setStats(statsData);
     } catch (err) {
-      setError('Failed to load appointments');
+      setError('Failed to load data');
       console.error(err);
     } finally {
       setIsLoading(false);
@@ -52,44 +69,106 @@ const AdminDashboardPage = () => {
   };
 
   const handleStatusUpdate = async (id: string, status: Appointment['status']) => {
+    // Prevent multiple simultaneous operations on the same appointment
+    if (processingIds.has(id)) {
+      return;
+    }
+
     try {
+      setProcessingIds(prev => new Set(prev).add(id));
       setError(null);
-      await updateAppointmentStatus(id, status);
+      
+      const updatedAppointment = await updateAppointmentStatus(id, status);
+      
       // Update the local state immediately for better UX
       setAppointments(prev => 
         prev.map(apt => 
           apt.id === id 
-            ? { ...apt, status, updated_at: new Date().toISOString() }
+            ? updatedAppointment
             : apt
         )
       );
+
+      // Update stats
+      await loadStats();
     } catch (err) {
-      setError(`Failed to update appointment status: ${err instanceof Error ? err.message : 'Unknown error'}`);
-      console.error(err);
-      // Reload appointments to sync with database state
-      await loadAppointments();
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+      
+      // If appointment was not found, remove it from local state and show a less alarming message
+      if (errorMessage.includes('not found') || errorMessage.includes('deleted')) {
+        setAppointments(prev => prev.filter(apt => apt.id !== id));
+        setError('This appointment was already modified or removed. The list has been updated.');
+      } else {
+        setError(`Failed to update appointment status: ${errorMessage}`);
+        // Reload appointments to sync with database state
+        await loadData();
+      }
+    } finally {
+      setProcessingIds(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(id);
+        return newSet;
+      });
     }
   };
 
   const handleDeleteAppointment = async (id: string) => {
+    // Prevent multiple simultaneous operations on the same appointment
+    if (processingIds.has(id)) {
+      return;
+    }
+
     try {
+      setProcessingIds(prev => new Set(prev).add(id));
       setError(null);
+      
       await deleteAppointment(id);
+      
       // Remove from local state immediately
       setAppointments(prev => prev.filter(apt => apt.id !== id));
       setDeleteConfirm(null);
+
+      // Update stats
+      await loadStats();
     } catch (err) {
-      setError(`Failed to delete appointment: ${err instanceof Error ? err.message : 'Unknown error'}`);
-      console.error(err);
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+      
+      // If appointment was not found, remove it from local state
+      if (errorMessage.includes('not found') || errorMessage.includes('deleted')) {
+        setAppointments(prev => prev.filter(apt => apt.id !== id));
+        setError('This appointment was already removed. The list has been updated.');
+      } else {
+        setError(`Failed to delete appointment: ${errorMessage}`);
+        // Reload appointments to sync with database state
+        await loadData();
+      }
+      
       setDeleteConfirm(null);
-      // Reload appointments to sync with database state
-      await loadAppointments();
+    } finally {
+      setProcessingIds(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(id);
+        return newSet;
+      });
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('adminAuth');
+  const loadStats = async () => {
+    try {
+      const statsData = await getAppointmentStats();
+      setStats(statsData);
+    } catch (err) {
+      console.error('Failed to load stats:', err);
+    }
+  };
+
+  const handleLogout = async () => {
+    await signOut();
     navigate('/admin');
+  };
+
+  const dismissError = () => {
+    setError(null);
   };
 
   const getStatusColor = (status: string) => {
@@ -121,22 +200,24 @@ const AdminDashboardPage = () => {
     });
   };
 
-  const stats = [
+  const currentUser = getCurrentUser();
+
+  const dashboardStats = [
     {
       title: 'Total Appointments',
-      value: appointments.length,
+      value: stats.total,
       icon: Calendar,
       color: 'bg-blue-500'
     },
     {
       title: 'Pending',
-      value: appointments.filter(a => a.status === 'pending').length,
+      value: stats.pending,
       icon: Clock,
       color: 'bg-yellow-500'
     },
     {
       title: 'Confirmed',
-      value: appointments.filter(a => a.status === 'confirmed').length,
+      value: stats.confirmed,
       icon: CheckCircle,
       color: 'bg-green-500'
     },
@@ -151,7 +232,7 @@ const AdminDashboardPage = () => {
   return (
     <>
       <Helmet>
-        <title>Admin Dashboard</title>
+        <title>Admin Dashboard | Dr. Gürkan Eryanılmaz</title>
       </Helmet>
 
       <div className="min-h-screen bg-gray-50">
@@ -159,7 +240,12 @@ const AdminDashboardPage = () => {
         <header className="bg-white shadow-sm border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-4">
-              <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
+                {currentUser && (
+                  <p className="text-sm text-gray-600">Welcome back, {currentUser.email}</p>
+                )}
+              </div>
               <button
                 onClick={handleLogout}
                 className="flex items-center px-4 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
@@ -174,7 +260,7 @@ const AdminDashboardPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            {stats.map((stat, index) => (
+            {dashboardStats.map((stat, index) => (
               <div key={index} className="bg-white rounded-lg shadow p-6">
                 <div className="flex items-center">
                   <div className={`${stat.color} rounded-lg p-3`}>
@@ -202,7 +288,18 @@ const AdminDashboardPage = () => {
                   }`}
                 >
                   <Calendar size={16} className="inline mr-2" />
-                  Appointments
+                  Appointments ({stats.total})
+                </button>
+                <button
+                  onClick={() => setActiveTab('analytics')}
+                  className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                    activeTab === 'analytics'
+                      ? 'border-primary-500 text-primary-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
+                >
+                  <BarChart3 size={16} className="inline mr-2" />
+                  Analytics
                 </button>
                 <button
                   onClick={() => setActiveTab('blog')}
@@ -223,23 +320,30 @@ const AdminDashboardPage = () => {
               {activeTab === 'appointments' && (
                 <div>
                   <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-xl font-semibold text-gray-900">Appointments</h2>
+                    <h2 className="text-xl font-semibold text-gray-900">Appointments Management</h2>
                     <button
-                      onClick={loadAppointments}
-                      className="btn btn-outline"
+                      onClick={loadData}
+                      className="btn btn-outline flex items-center"
                       disabled={isLoading}
                     >
+                      <RefreshCw size={16} className={`mr-2 ${isLoading ? 'animate-spin' : ''}`} />
                       {isLoading ? 'Loading...' : 'Refresh'}
                     </button>
                   </div>
 
                   {error && (
-                    <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 flex items-start">
-                      <AlertTriangle className="w-5 h-5 text-red-500 mr-3 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <h4 className="text-red-800 font-medium">Error</h4>
-                        <p className="text-red-700 text-sm mt-1">{error}</p>
+                    <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6 flex items-start">
+                      <AlertTriangle className="w-5 h-5 text-amber-500 mr-3 mt-0.5 flex-shrink-0" />
+                      <div className="flex-1">
+                        <h4 className="text-amber-800 font-medium">Notice</h4>
+                        <p className="text-amber-700 text-sm mt-1">{error}</p>
                       </div>
+                      <button
+                        onClick={dismissError}
+                        className="text-amber-500 hover:text-amber-700 ml-3"
+                      >
+                        <XCircle size={16} />
+                      </button>
                     </div>
                   )}
 
@@ -279,101 +383,165 @@ const AdminDashboardPage = () => {
                           </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
-                          {appointments.map((appointment) => (
-                            <tr key={appointment.id} className="hover:bg-gray-50">
-                              <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm font-medium text-gray-900">
-                                  {appointment.patient_name}
-                                </div>
-                              </td>
-                              <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-gray-900">{appointment.patient_email}</div>
-                                <div className="text-sm text-gray-500">{appointment.patient_phone}</div>
-                              </td>
-                              <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-gray-900">
-                                  {formatDate(appointment.appointment_date)}
-                                </div>
-                                <div className="text-sm text-gray-500">
-                                  {formatTime(appointment.appointment_time)}
-                                </div>
-                              </td>
-                              <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-gray-900">{appointment.service_type}</div>
-                                {appointment.message && (
-                                  <div className="text-xs text-gray-500 mt-1 max-w-xs truncate" title={appointment.message}>
-                                    {appointment.message}
+                          {appointments.map((appointment) => {
+                            const isProcessing = processingIds.has(appointment.id);
+                            return (
+                              <tr key={appointment.id} className={`hover:bg-gray-50 ${isProcessing ? 'opacity-50' : ''}`}>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                  <div className="text-sm font-medium text-gray-900">
+                                    {appointment.name}
                                   </div>
-                                )}
-                              </td>
-                              <td className="px-6 py-4 whitespace-nowrap">
-                                <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(appointment.status)}`}>
-                                  {appointment.status}
-                                </span>
-                              </td>
-                              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <div className="flex space-x-2">
-                                  {appointment.status === 'pending' && (
-                                    <button
-                                      onClick={() => handleStatusUpdate(appointment.id, 'confirmed')}
-                                      className="text-green-600 hover:text-green-900 p-1 rounded"
-                                      title="Confirm Appointment"
-                                    >
-                                      <CheckCircle size={16} />
-                                    </button>
-                                  )}
-                                  {appointment.status !== 'cancelled' && appointment.status !== 'completed' && (
-                                    <button
-                                      onClick={() => handleStatusUpdate(appointment.id, 'cancelled')}
-                                      className="text-red-600 hover:text-red-900 p-1 rounded"
-                                      title="Cancel Appointment"
-                                    >
-                                      <XCircle size={16} />
-                                    </button>
-                                  )}
-                                  {appointment.status === 'confirmed' && (
-                                    <button
-                                      onClick={() => handleStatusUpdate(appointment.id, 'completed')}
-                                      className="text-blue-600 hover:text-blue-900 p-1 rounded"
-                                      title="Mark as Completed"
-                                    >
-                                      <CheckCircle size={16} />
-                                    </button>
-                                  )}
-                                  {deleteConfirm === appointment.id ? (
-                                    <div className="flex space-x-1">
-                                      <button
-                                        onClick={() => handleDeleteAppointment(appointment.id)}
-                                        className="text-red-600 hover:text-red-900 p-1 rounded text-xs"
-                                        title="Confirm Delete"
-                                      >
-                                        ✓
-                                      </button>
-                                      <button
-                                        onClick={() => setDeleteConfirm(null)}
-                                        className="text-gray-600 hover:text-gray-900 p-1 rounded text-xs"
-                                        title="Cancel Delete"
-                                      >
-                                        ✕
-                                      </button>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                  <div className="text-sm text-gray-900">{appointment.email}</div>
+                                  <div className="text-sm text-gray-500">{appointment.phone}</div>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                  <div className="text-sm text-gray-900">
+                                    {formatDate(appointment.date)}
+                                  </div>
+                                  <div className="text-sm text-gray-500">
+                                    {formatTime(appointment.time)}
+                                  </div>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                  <div className="text-sm text-gray-900">{appointment.service_type}</div>
+                                  {appointment.message && (
+                                    <div className="text-xs text-gray-500 mt-1 max-w-xs truncate" title={appointment.message}>
+                                      {appointment.message}
                                     </div>
-                                  ) : (
-                                    <button
-                                      onClick={() => setDeleteConfirm(appointment.id)}
-                                      className="text-red-600 hover:text-red-900 p-1 rounded"
-                                      title="Delete Appointment"
-                                    >
-                                      <Trash2 size={16} />
-                                    </button>
                                   )}
-                                </div>
-                              </td>
-                            </tr>
-                          ))}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                  <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(appointment.status)}`}>
+                                    {appointment.status}
+                                  </span>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                  <div className="flex space-x-2">
+                                    {appointment.status === 'pending' && (
+                                      <button
+                                        onClick={() => handleStatusUpdate(appointment.id, 'confirmed')}
+                                        disabled={isProcessing}
+                                        className="text-green-600 hover:text-green-900 p-1 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+                                        title="Confirm Appointment"
+                                      >
+                                        <CheckCircle size={16} />
+                                      </button>
+                                    )}
+                                    {appointment.status !== 'cancelled' && appointment.status !== 'completed' && (
+                                      <button
+                                        onClick={() => handleStatusUpdate(appointment.id, 'cancelled')}
+                                        disabled={isProcessing}
+                                        className="text-red-600 hover:text-red-900 p-1 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+                                        title="Cancel Appointment"
+                                      >
+                                        <XCircle size={16} />
+                                      </button>
+                                    )}
+                                    {appointment.status === 'confirmed' && (
+                                      <button
+                                        onClick={() => handleStatusUpdate(appointment.id, 'completed')}
+                                        disabled={isProcessing}
+                                        className="text-blue-600 hover:text-blue-900 p-1 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+                                        title="Mark as Completed"
+                                      >
+                                        <CheckCircle size={16} />
+                                      </button>
+                                    )}
+                                    {deleteConfirm === appointment.id ? (
+                                      <div className="flex space-x-1">
+                                        <button
+                                          onClick={() => handleDeleteAppointment(appointment.id)}
+                                          disabled={isProcessing}
+                                          className="text-red-600 hover:text-red-900 p-1 rounded text-xs disabled:opacity-50 disabled:cursor-not-allowed"
+                                          title="Confirm Delete"
+                                        >
+                                          ✓
+                                        </button>
+                                        <button
+                                          onClick={() => setDeleteConfirm(null)}
+                                          disabled={isProcessing}
+                                          className="text-gray-600 hover:text-gray-900 p-1 rounded text-xs disabled:opacity-50 disabled:cursor-not-allowed"
+                                          title="Cancel Delete"
+                                        >
+                                          ✕
+                                        </button>
+                                      </div>
+                                    ) : (
+                                      <button
+                                        onClick={() => setDeleteConfirm(appointment.id)}
+                                        disabled={isProcessing}
+                                        className="text-red-600 hover:text-red-900 p-1 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+                                        title="Delete Appointment"
+                                      >
+                                        <Trash2 size={16} />
+                                      </button>
+                                    )}
+                                  </div>
+                                </td>
+                              </tr>
+                            );
+                          })}
                         </tbody>
                       </table>
                     </div>
                   )}
+                </div>
+              )}
+
+              {activeTab === 'analytics' && (
+                <div>
+                  <h2 className="text-xl font-semibold text-gray-900 mb-6">Analytics Overview</h2>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+                      <h3 className="text-lg font-semibold mb-2">Total Appointments</h3>
+                      <p className="text-3xl font-bold">{stats.total}</p>
+                    </div>
+                    <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-lg p-6 text-white">
+                      <h3 className="text-lg font-semibold mb-2">Pending</h3>
+                      <p className="text-3xl font-bold">{stats.pending}</p>
+                    </div>
+                    <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-lg p-6 text-white">
+                      <h3 className="text-lg font-semibold mb-2">Confirmed</h3>
+                      <p className="text-3xl font-bold">{stats.confirmed}</p>
+                    </div>
+                    <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+                      <h3 className="text-lg font-semibold mb-2">Completed</h3>
+                      <p className="text-3xl font-bold">{stats.completed}</p>
+                    </div>
+                  </div>
+
+                  <div className="bg-white rounded-lg border border-gray-200 p-6">
+                    <h3 className="text-lg font-semibold mb-4">Appointment Status Distribution</h3>
+                    <div className="space-y-4">
+                      {[
+                        { label: 'Pending', value: stats.pending, total: stats.total, color: 'bg-yellow-500' },
+                        { label: 'Confirmed', value: stats.confirmed, total: stats.total, color: 'bg-green-500' },
+                        { label: 'Completed', value: stats.completed, total: stats.total, color: 'bg-blue-500' },
+                        { label: 'Cancelled', value: stats.cancelled, total: stats.total, color: 'bg-red-500' }
+                      ].map((item) => {
+                        const percentage = stats.total > 0 ? (item.value / stats.total) * 100 : 0;
+                        return (
+                          <div key={item.label} className="flex items-center">
+                            <div className="w-24 text-sm font-medium">{item.label}</div>
+                            <div className="flex-1 mx-4">
+                              <div className="bg-gray-200 rounded-full h-2">
+                                <div 
+                                  className={`${item.color} h-2 rounded-full transition-all duration-300`}
+                                  style={{ width: `${percentage}%` }}
+                                ></div>
+                              </div>
+                            </div>
+                            <div className="w-16 text-sm text-gray-600 text-right">
+                              {item.value} ({percentage.toFixed(1)}%)
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
               )}
 

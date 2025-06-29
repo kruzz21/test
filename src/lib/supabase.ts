@@ -14,32 +14,41 @@ export interface AppointmentSlot {
   id: string;
   date: string;
   time: string;
-  is_available: boolean;
+  available: boolean;
   created_at: string;
 }
 
 export interface Appointment {
   id: string;
-  patient_name: string;
-  patient_email: string;
-  patient_phone: string;
-  appointment_date: string;
-  appointment_time: string;
+  name: string;
+  email: string;
+  phone: string;
+  date: string;
+  time: string;
   service_type: string;
   message?: string;
   status: 'pending' | 'confirmed' | 'cancelled' | 'completed';
   created_at: string;
   updated_at: string;
+  patient_id?: string;
 }
 
 export interface CreateAppointmentData {
-  patient_name: string;
-  patient_email: string;
-  patient_phone: string;
-  appointment_date: string;
-  appointment_time: string;
+  name: string;
+  email: string;
+  phone: string;
+  date: string;
+  time: string;
   service_type: string;
   message?: string;
+}
+
+export interface AppointmentStats {
+  total: number;
+  pending: number;
+  confirmed: number;
+  cancelled: number;
+  completed: number;
 }
 
 // Appointment functions
@@ -61,7 +70,8 @@ export const getAppointments = async (): Promise<Appointment[]> => {
   const { data, error } = await supabase
     .from('appointments')
     .select('*')
-    .order('appointment_date', { ascending: true });
+    .order('date', { ascending: true })
+    .order('time', { ascending: true });
 
   if (error) {
     throw new Error(error.message);
@@ -70,52 +80,70 @@ export const getAppointments = async (): Promise<Appointment[]> => {
   return data || [];
 };
 
+export const getAppointmentStats = async (): Promise<AppointmentStats> => {
+  try {
+    const { data, error } = await supabase.rpc('get_appointment_stats');
+    
+    if (error) {
+      throw error;
+    }
+    
+    return data as AppointmentStats;
+  } catch (error) {
+    console.error('Error fetching appointment stats:', error);
+    // Fallback to manual calculation
+    const appointments = await getAppointments();
+    return {
+      total: appointments.length,
+      pending: appointments.filter(a => a.status === 'pending').length,
+      confirmed: appointments.filter(a => a.status === 'confirmed').length,
+      cancelled: appointments.filter(a => a.status === 'cancelled').length,
+      completed: appointments.filter(a => a.status === 'completed').length,
+    };
+  }
+};
+
 export const updateAppointmentStatus = async (
   id: string, 
   status: Appointment['status']
 ): Promise<Appointment> => {
-  // First check if the appointment exists
-  const { data: existingAppointment, error: checkError } = await supabase
-    .from('appointments')
-    .select('id')
-    .eq('id', id)
-    .maybeSingle();
+  try {
+    const { data, error } = await supabase.rpc('update_appointment_status_safe', {
+      appointment_id: id,
+      new_status: status
+    });
 
-  if (checkError) {
-    throw new Error(`Failed to check appointment: ${checkError.message}`);
+    if (error) {
+      throw error;
+    }
+
+    if (!data.success) {
+      throw new Error(data.error || 'Failed to update appointment');
+    }
+
+    return data.appointment as Appointment;
+  } catch (error) {
+    console.error('Error updating appointment status:', error);
+    throw new Error(error instanceof Error ? error.message : 'Failed to update appointment status');
   }
-
-  if (!existingAppointment) {
-    throw new Error('Appointment not found or may have been deleted');
-  }
-
-  // Now perform the update
-  const { data, error } = await supabase
-    .from('appointments')
-    .update({ status, updated_at: new Date().toISOString() })
-    .eq('id', id)
-    .select()
-    .maybeSingle();
-
-  if (error) {
-    throw new Error(`Failed to update appointment: ${error.message}`);
-  }
-
-  if (!data) {
-    throw new Error('Appointment not found or may have been deleted');
-  }
-
-  return data;
 };
 
 export const deleteAppointment = async (id: string): Promise<void> => {
-  const { error } = await supabase
-    .from('appointments')
-    .delete()
-    .eq('id', id);
+  try {
+    const { data, error } = await supabase.rpc('delete_appointment_safe', {
+      appointment_id: id
+    });
 
-  if (error) {
-    throw new Error(`Failed to delete appointment: ${error.message}`);
+    if (error) {
+      throw error;
+    }
+
+    if (!data.success) {
+      throw new Error(data.error || 'Failed to delete appointment');
+    }
+  } catch (error) {
+    console.error('Error deleting appointment:', error);
+    throw new Error(error instanceof Error ? error.message : 'Failed to delete appointment');
   }
 };
 
@@ -129,9 +157,9 @@ export const searchAppointments = async (
   const { data, error } = await supabase
     .from('appointments')
     .select('*')
-    .ilike('patient_name', `%${patientName}%`)
-    .or(`patient_phone.like.%${cleanPhone.slice(-10)},patient_phone.like.%${cleanPhone}%`)
-    .order('appointment_date', { ascending: true });
+    .ilike('name', `%${patientName}%`)
+    .or(`phone.like.%${cleanPhone.slice(-10)},phone.like.%${cleanPhone}%`)
+    .order('date', { ascending: true });
 
   if (error) {
     throw new Error(error.message);
@@ -146,7 +174,7 @@ export const getAvailableSlots = async (date: string): Promise<AppointmentSlot[]
     .from('appointment_slots')
     .select('*')
     .eq('date', date)
-    .eq('is_available', true)
+    .eq('available', true)
     .order('time', { ascending: true });
 
   if (error) {
@@ -175,11 +203,11 @@ export const createAppointmentSlot = async (
 
 export const updateSlotAvailability = async (
   id: string, 
-  isAvailable: boolean
+  available: boolean
 ): Promise<AppointmentSlot> => {
   const { data, error } = await supabase
     .from('appointment_slots')
-    .update({ is_available: isAvailable })
+    .update({ available })
     .eq('id', id)
     .select()
     .single();

@@ -35,7 +35,7 @@ const CheckAppointmentsPage = () => {
       setHasSearched(true);
     } catch (error) {
       console.error('Search error:', error);
-      setSearchError('Failed to search appointments. Please try again.');
+      setSearchError(error instanceof Error ? error.message : 'Failed to search appointments. Please try again.');
     } finally {
       setIsSearching(false);
     }
@@ -306,15 +306,15 @@ const CheckAppointmentsPage = () => {
                             <div className="space-y-3">
                               <div className="flex items-center">
                                 <User size={16} className="text-gray-400 mr-3" />
-                                <span className="text-gray-700">{appointment.patient_name}</span>
+                                <span className="text-gray-700">{appointment.name}</span>
                               </div>
                               <div className="flex items-center">
                                 <Mail size={16} className="text-gray-400 mr-3" />
-                                <span className="text-gray-700">{appointment.patient_email}</span>
+                                <span className="text-gray-700">{appointment.email}</span>
                               </div>
                               <div className="flex items-center">
                                 <Phone size={16} className="text-gray-400 mr-3" />
-                                <span className="text-gray-700">{formatPhone(appointment.patient_phone)}</span>
+                                <span className="text-gray-700">{formatPhone(appointment.phone)}</span>
                               </div>
                             </div>
                           </div>
@@ -324,18 +324,20 @@ const CheckAppointmentsPage = () => {
                             <div className="space-y-3">
                               <div className="flex items-center">
                                 <Calendar size={16} className="text-gray-400 mr-3" />
-                                <span className="text-gray-700">{formatDate(appointment.appointment_date)}</span>
+                                <span className="text-gray-700">{formatDate(appointment.date)}</span>
                               </div>
                               <div className="flex items-center">
                                 <Clock size={16} className="text-gray-400 mr-3" />
-                                <span className="text-gray-700">{formatTime(appointment.appointment_time)}</span>
+                                <span className="text-gray-700">{formatTime(appointment.time)}</span>
                               </div>
-                              <div className="flex items-start">
-                                <div className="w-4 h-4 bg-primary-600 rounded-full mr-3 mt-1 flex-shrink-0"></div>
-                                <div>
-                                  <p className="font-medium text-gray-900">Service: {appointment.service_type}</p>
+                              {appointment.service_type && (
+                                <div className="flex items-start">
+                                  <div className="w-4 h-4 bg-primary-600 rounded-full mr-3 mt-1 flex-shrink-0"></div>
+                                  <div>
+                                    <p className="font-medium text-gray-900">Service: {appointment.service_type}</p>
+                                  </div>
                                 </div>
-                              </div>
+                              )}
                             </div>
                           </div>
                         </div>
