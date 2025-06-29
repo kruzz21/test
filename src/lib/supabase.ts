@@ -168,20 +168,34 @@ export const searchAppointments = async (
   return data || [];
 };
 
-// Appointment slots functions
+// Enhanced appointment slots functions using the new calendar system
 export const getAvailableSlots = async (date: string): Promise<AppointmentSlot[]> => {
-  const { data, error } = await supabase
-    .from('appointment_slots')
-    .select('*')
-    .eq('date', date)
-    .eq('available', true)
-    .order('time', { ascending: true });
+  try {
+    const { data, error } = await supabase.rpc('get_available_slots_enhanced', {
+      target_date: date
+    });
 
-  if (error) {
-    throw new Error(error.message);
+    if (error) {
+      throw error;
+    }
+
+    return data || [];
+  } catch (error) {
+    console.error('Error fetching available slots:', error);
+    // Fallback to old method if new function fails
+    const { data, error: fallbackError } = await supabase
+      .from('appointment_slots')
+      .select('*')
+      .eq('date', date)
+      .eq('available', true)
+      .order('time', { ascending: true });
+
+    if (fallbackError) {
+      throw new Error(fallbackError.message);
+    }
+
+    return data || [];
   }
-
-  return data || [];
 };
 
 export const createAppointmentSlot = async (

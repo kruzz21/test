@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { Lock, User, AlertCircle, Eye, EyeOff } from 'lucide-react';
-import { authenticateAdmin, setAuthState } from '../lib/auth';
+import { authenticateUser, setAuthState } from '../lib/auth';
 
 interface LoginForm {
   email: string;
@@ -27,10 +27,16 @@ const AdminLoginPage = () => {
     setLoginError(null);
 
     try {
-      const response = await authenticateAdmin(data.email, data.password);
+      const response = await authenticateUser(data.email, data.password);
       
-      if (response.success && response.user) {
-        setAuthState(response.user);
+      if (response.success && response.user && response.session_token) {
+        // Check if user is admin
+        if (response.user.role !== 'admin') {
+          setLoginError('Access denied. Admin privileges required.');
+          return;
+        }
+        
+        setAuthState(response.user, response.session_token);
         navigate('/admin/dashboard');
       } else {
         setLoginError(response.message || 'Invalid credentials');
@@ -144,6 +150,12 @@ const AdminLoginPage = () => {
                 </button>
               </div>
             </form>
+
+            <div className="mt-6 text-center">
+              <p className="text-xs text-gray-500">
+                Secure authentication with industry-standard encryption
+              </p>
+            </div>
           </div>
         </div>
       </div>

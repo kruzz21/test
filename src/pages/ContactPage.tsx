@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { Phone, Mail, MapPin, Clock, Instagram, MessageCircle, Paperclip } from 'lucide-react';
 import SectionHeading from '../components/common/SectionHeading';
-import AppointmentBooking from '../components/contact/AppointmentBooking';
+import EnhancedAppointmentBooking from '../components/appointment/EnhancedAppointmentBooking';
 
 const ContactPage = () => {
   const { t } = useTranslation();
@@ -25,10 +25,10 @@ const ContactPage = () => {
       <section className="py-16 bg-gray-50">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* Left Column - Appointment Booking */}
+            {/* Left Column - Enhanced Appointment Booking */}
             <div>
               <div className="bg-white rounded-lg shadow-md p-8" data-aos="fade-up">
-                <AppointmentBooking />
+                <EnhancedAppointmentBooking />
               </div>
             </div>
             

@@ -25,12 +25,14 @@ import {
   Appointment,
   AppointmentStats
 } from '../lib/supabase';
-import { isAuthenticated, signOut, getCurrentUser } from '../lib/auth';
+import { isAuthenticated, signOut, getCurrentUser, getSessionToken } from '../lib/auth';
 import { blogPosts } from '../data/blogPosts';
+import CalendarView from '../components/admin/CalendarView';
+import AvailabilitySettings from '../components/admin/AvailabilitySettings';
 
 const AdminDashboardPage = () => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState('appointments');
+  const [activeTab, setActiveTab] = useState('calendar');
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [stats, setStats] = useState<AppointmentStats>({ total: 0, pending: 0, confirmed: 0, cancelled: 0, completed: 0 });
   const [isLoading, setIsLoading] = useState(true);
@@ -41,6 +43,12 @@ const AdminDashboardPage = () => {
   useEffect(() => {
     // Check authentication
     if (!isAuthenticated()) {
+      navigate('/admin');
+      return;
+    }
+
+    const user = getCurrentUser();
+    if (!user || user.role !== 'admin') {
       navigate('/admin');
       return;
     }
@@ -163,7 +171,8 @@ const AdminDashboardPage = () => {
   };
 
   const handleLogout = async () => {
-    await signOut();
+    const sessionToken = getSessionToken();
+    await signOut(sessionToken || undefined);
     navigate('/admin');
   };
 
@@ -280,6 +289,17 @@ const AdminDashboardPage = () => {
             <div className="border-b border-gray-200">
               <nav className="-mb-px flex space-x-8 px-6">
                 <button
+                  onClick={() => setActiveTab('calendar')}
+                  className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                    activeTab === 'calendar'
+                      ? 'border-primary-500 text-primary-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
+                >
+                  <Calendar size={16} className="inline mr-2" />
+                  Calendar View
+                </button>
+                <button
                   onClick={() => setActiveTab('appointments')}
                   className={`py-4 px-1 border-b-2 font-medium text-sm ${
                     activeTab === 'appointments'
@@ -287,8 +307,19 @@ const AdminDashboardPage = () => {
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                   }`}
                 >
-                  <Calendar size={16} className="inline mr-2" />
+                  <Users size={16} className="inline mr-2" />
                   Appointments ({stats.total})
+                </button>
+                <button
+                  onClick={() => setActiveTab('availability')}
+                  className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                    activeTab === 'availability'
+                      ? 'border-primary-500 text-primary-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
+                >
+                  <Settings size={16} className="inline mr-2" />
+                  Availability Settings
                 </button>
                 <button
                   onClick={() => setActiveTab('analytics')}
@@ -301,22 +332,15 @@ const AdminDashboardPage = () => {
                   <BarChart3 size={16} className="inline mr-2" />
                   Analytics
                 </button>
-                <button
-                  onClick={() => setActiveTab('blog')}
-                  className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                    activeTab === 'blog'
-                      ? 'border-primary-500 text-primary-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                  }`}
-                >
-                  <FileText size={16} className="inline mr-2" />
-                  Blog Management
-                </button>
               </nav>
             </div>
 
             {/* Tab Content */}
             <div className="p-6">
+              {activeTab === 'calendar' && <CalendarView />}
+              
+              {activeTab === 'availability' && <AvailabilitySettings />}
+
               {activeTab === 'appointments' && (
                 <div>
                   <div className="flex justify-between items-center mb-6">
@@ -541,51 +565,6 @@ const AdminDashboardPage = () => {
                         );
                       })}
                     </div>
-                  </div>
-                </div>
-              )}
-
-              {activeTab === 'blog' && (
-                <div>
-                  <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-xl font-semibold text-gray-900">Blog Management</h2>
-                    <button className="btn btn-primary flex items-center">
-                      <Plus size={16} className="mr-2" />
-                      Create New Post
-                    </button>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {blogPosts.map((post) => (
-                      <div key={post.id} className="bg-white border border-gray-200 rounded-lg overflow-hidden">
-                        <img 
-                          src={post.image} 
-                          alt={post.title.en}
-                          className="w-full h-48 object-cover"
-                        />
-                        <div className="p-4">
-                          <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
-                            {post.title.en}
-                          </h3>
-                          <p className="text-sm text-gray-600 mb-3 line-clamp-2">
-                            {post.excerpt.en}
-                          </p>
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs text-gray-500">
-                              {formatDate(post.date)}
-                            </span>
-                            <div className="flex space-x-2">
-                              <button className="text-blue-600 hover:text-blue-800">
-                                <Edit size={16} />
-                              </button>
-                              <button className="text-red-600 hover:text-red-800">
-                                <Trash2 size={16} />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
                   </div>
                 </div>
               )}
