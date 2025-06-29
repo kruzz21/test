@@ -10,7 +10,7 @@ interface FormData extends CreateAppointmentData {}
 
 interface TimeSlot {
   id: string;
-  time: string;
+  slot_time: string;
   available: boolean;
   created_at: string;
 }
@@ -59,12 +59,23 @@ const StreamlinedAppointmentBooking = () => {
     try {
       setLoadingSlots(true);
       
-      const { data, error } = await supabase.rpc('get_available_slots_enhanced', {
+      // Use the new function that returns all slots (available and unavailable)
+      const { data, error } = await supabase.rpc('get_all_slots_for_date', {
         target_date: date
       });
 
-      if (error) throw error;
-      setAvailableSlots(data || []);
+      if (error) {
+        console.error('Error loading slots:', error);
+        // Fallback to the original function if the new one fails
+        const { data: fallbackData, error: fallbackError } = await supabase.rpc('get_available_slots_enhanced', {
+          target_date: date
+        });
+        
+        if (fallbackError) throw fallbackError;
+        setAvailableSlots(fallbackData || []);
+      } else {
+        setAvailableSlots(data || []);
+      }
     } catch (error) {
       console.error('Failed to load available slots:', error);
       setAvailableSlots([]);
@@ -101,14 +112,41 @@ const StreamlinedAppointmentBooking = () => {
   };
 
   const formatTime = (timeString: string) => {
-    return new Date(`2000-01-01T${timeString}`).toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false
-    });
+    try {
+      // Handle different time formats
+      if (!timeString) return '';
+      
+      // If it's already in HH:MM format, return as is
+      if (/^\d{2}:\d{2}$/.test(timeString)) {
+        return timeString;
+      }
+      
+      // If it's in HH:MM:SS format, extract HH:MM
+      if (/^\d{2}:\d{2}:\d{2}$/.test(timeString)) {
+        return timeString.substring(0, 5);
+      }
+      
+      // Try to parse as a time and format
+      const date = new Date(`2000-01-01T${timeString}`);
+      if (!isNaN(date.getTime())) {
+        return date.toLocaleTimeString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false
+        });
+      }
+      
+      // If all else fails, return the original string
+      return timeString;
+    } catch (error) {
+      console.error('Error formatting time:', error);
+      return timeString || '';
+    }
   };
 
-  const isTimeSlotDisabled = (date: string, time: string) => {
+  const isTimeSlotDisabled = (date: string, time: string, available: boolean) => {
+    if (!available) return true;
+    
     const slotDateTime = new Date(`${date}T${time}`);
     const now = new Date();
     const minAdvanceTime = new Date(now.getTime() + 2 * 60 * 60 * 1000); // 2 hours minimum advance booking
@@ -300,24 +338,28 @@ const StreamlinedAppointmentBooking = () => {
               ) : availableSlots.length > 0 ? (
                 <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 mt-2">
                   {availableSlots.map((slot) => {
-                    const isDisabled = isTimeSlotDisabled(selectedDate, slot.time);
-                    const isSelected = selectedTime === slot.time;
+                    const isDisabled = isTimeSlotDisabled(selectedDate, slot.slot_time, slot.available);
+                    const isSelected = selectedTime === slot.slot_time;
+                    const isUnavailable = !slot.available;
                     
                     return (
                       <button
                         key={slot.id}
                         type="button"
-                        onClick={() => !isDisabled && handleTimeSelection(slot.time)}
-                        disabled={isDisabled}
+                        onClick={() => !isDisabled && !isUnavailable && handleTimeSelection(slot.slot_time)}
+                        disabled={isDisabled || isUnavailable}
                         className={`p-3 border rounded-md text-sm font-medium transition-all duration-200 ${
-                          isDisabled
+                          isUnavailable
+                            ? 'border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed'
+                            : isDisabled
                             ? 'border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed'
                             : isSelected
                             ? 'border-blue-500 bg-blue-500 text-white shadow-md transform scale-105'
                             : 'border-gray-300 bg-white text-gray-700 hover:border-blue-300 hover:bg-blue-50 cursor-pointer'
                         }`}
+                        title={isUnavailable ? 'This time slot is not available' : isDisabled ? 'This time slot is too soon' : 'Click to select this time'}
                       >
-                        {formatTime(slot.time)}
+                        {formatTime(slot.slot_time)}
                       </button>
                     );
                   })}
