@@ -394,7 +394,7 @@ const StreamlinedAppointmentBooking = () => {
 
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
           <p className="text-blue-800 text-sm">
-            <strong>{t('contact.form.validation.note')}:</strong> {t('appointment.form.note')}
+            <strong>{t('appointment.form.validation.note')}:</strong> {t('appointment.form.note')}
           </p>
         </div>
 
