@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build outputs
+dist/
+build/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Temporary folders
+tmp/
+temp/
+
+# Database migrations (while working on blogs)
+supabase/migrations/
+
+# Blog-related files we're actively working on
+src/data/blogPosts.ts
+src/pages/BlogPostPage.tsx
+src/components/blog/
+src/pages/BlogPage.tsx
+
+# Other files we might modify during blog work
+src/utils/dateFormatter.ts
+src/i18n/locales/*/translation.json
