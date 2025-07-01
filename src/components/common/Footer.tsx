@@ -81,6 +81,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/gallery" className="text-gray-300 hover:text-white transition-colors">
+                  Gallery
+                </Link>
+              </li>
+              <li>
                 <Link to="/blog" className="text-gray-300 hover:text-white transition-colors">
                   {t('nav.blog')}
                 </Link>

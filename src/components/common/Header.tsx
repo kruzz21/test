@@ -56,6 +56,11 @@ const Header = () => {
           }>
             {t('nav.symptoms')}
           </NavLink>
+          <NavLink to="/gallery" className={({isActive}) =>
+            `nav-link ${isActive ? 'active' : ''}`
+          }>
+            Gallery
+          </NavLink>
           <NavLink to="/blog" className={({isActive}) =>
             `nav-link ${isActive ? 'active' : ''}`
           }>
@@ -112,6 +117,11 @@ const Header = () => {
               `nav-link ${isActive ? 'active' : ''}`
             } onClick={() => setIsMenuOpen(false)}>
               {t('nav.symptoms')}
+            </NavLink>
+            <NavLink to="/gallery" className={({isActive}) =>
+              `nav-link ${isActive ? 'active' : ''}`
+            } onClick={() => setIsMenuOpen(false)}>
+              Gallery
             </NavLink>
             <NavLink to="/blog" className={({isActive}) =>
               `nav-link ${isActive ? 'active' : ''}`

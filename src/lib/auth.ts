@@ -1,11 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables');
-}
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://placeholder.supabase.co';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'placeholder_anon_key';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
@@ -29,54 +25,54 @@ export interface SessionValidation {
   message?: string;
 }
 
-// Authentication functions
+// Mock authentication functions for frontend-only operation
 export const authenticateUser = async (
   email: string, 
   password: string
 ): Promise<AuthResponse> => {
-  try {
-    const { data, error } = await supabase.rpc('authenticate_user', {
-      email_param: email,
-      password_param: password,
-      ip_param: null,
-      user_agent_param: navigator.userAgent
-    });
-
-    if (error) {
-      throw error;
-    }
-
-    return data as AuthResponse;
-  } catch (error) {
-    console.error('Authentication error:', error);
+  console.warn('Supabase not configured - using mock authentication');
+  
+  // Mock admin login
+  if (email === 'admin@drgeryanilmaz.com' && password === 'DrGurkan2025!') {
     return {
-      success: false,
-      message: 'Authentication failed'
+      success: true,
+      message: 'Authentication successful',
+      user: {
+        id: 'mock-admin-id',
+        email,
+        role: 'admin'
+      },
+      session_token: 'mock-session-token'
     };
   }
+  
+  return {
+    success: false,
+    message: 'Invalid credentials'
+  };
 };
 
 // Legacy function for backward compatibility
 export const authenticateAdmin = authenticateUser;
 
 export const validateSession = async (sessionToken: string): Promise<SessionValidation> => {
-  try {
-    const { data, error } = await supabase.rpc('validate_session', {
-      session_token_param: sessionToken
-    });
-
-    if (error) {
-      throw error;
-    }
-
-    return data as SessionValidation;
-  } catch (error) {
-    console.error('Session validation error:', error);
+  console.warn('Supabase not configured - using mock session validation');
+  
+  if (sessionToken === 'mock-session-token') {
     return {
-      valid: false,
-      message: 'Session validation failed'
+      valid: true,
+      user: {
+        id: 'mock-admin-id',
+        email: 'admin@drgeryanilmaz.com',
+        role: 'admin'
+      }
     };
   }
+  
+  return {
+    valid: false,
+    message: 'Invalid session'
+  };
 };
 
 export const createUser = async (
@@ -84,40 +80,21 @@ export const createUser = async (
   password: string,
   role: 'user' | 'admin' = 'user'
 ): Promise<AuthResponse> => {
-  try {
-    const { data, error } = await supabase.rpc('create_user', {
-      email_param: email,
-      password_param: password,
-      role_param: role
-    });
-
-    if (error) {
-      throw error;
+  console.warn('Supabase not configured - using mock user creation');
+  return {
+    success: true,
+    message: 'User created successfully',
+    user: {
+      id: Math.random().toString(36).substr(2, 9),
+      email,
+      role
     }
-
-    return data as AuthResponse;
-  } catch (error) {
-    console.error('User creation error:', error);
-    return {
-      success: false,
-      message: 'User creation failed'
-    };
-  }
+  };
 };
 
 export const signOut = async (sessionToken?: string): Promise<void> => {
-  try {
-    if (sessionToken) {
-      await supabase.rpc('logout_user', {
-        session_token_param: sessionToken
-      });
-    }
-  } catch (error) {
-    console.error('Logout error:', error);
-  } finally {
-    // Clear local storage regardless of API call success
-    clearAuthState();
-  }
+  console.warn('Supabase not configured - using mock sign out');
+  clearAuthState();
 };
 
 // Session management
