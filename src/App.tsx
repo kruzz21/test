@@ -18,6 +18,7 @@ import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import TestimonialsPage from './pages/TestimonialsPage';
 import ContactPage from './pages/ContactPage';
+import GalleryPage from './pages/GalleryPage';
 import CheckAppointmentsPage from './pages/CheckAppointmentsPage';
 import AdminLoginPage from './pages/AdminLoginPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
@@ -86,6 +87,7 @@ function App() {
           <Route path="blog/:slug" element={<BlogPostPage />} />
           <Route path="testimonials" element={<TestimonialsPage />} />
           <Route path="contact" element={<ContactPage />} />
+          <Route path="gallery" element={<GalleryPage />} />
           <Route path="appointments" element={<CheckAppointmentsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
