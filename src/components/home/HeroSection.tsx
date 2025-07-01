@@ -1,124 +1,108 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Calendar, Eye, MapPin } from 'lucide-react';
 
 const HeroSection = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 pt-20">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
-          {/* Left Content - Hero Text */}
+    <section className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 pt-20">
+      {/* Two-column grid layout matching reference design */}
+      <div className="container mx-auto px-4 h-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[calc(100vh-5rem)]">
+          
+          {/* Left Column - Content */}
           <motion.div 
-            className="space-y-8"
-            initial={{ opacity: 0, x: -50 }}
+            className="space-y-6 lg:space-y-8 text-center lg:text-left order-2 lg:order-1"
+            initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
           >
-            {/* Main Title */}
-            <div className="space-y-4">
+            {/* Main heading with emphasis on doctor's name */}
+            <div className="space-y-2">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Dr. Gürkan
-                <br />
-                <span className="text-blue-600">Eryanılmaz</span>
+                Dr. Gürkan<br />
+                <span className="text-primary-600">Eryanılmaz</span>
               </h1>
-              <div className="space-y-2">
-                <h2 className="text-xl md:text-2xl text-blue-600 font-semibold">
+              
+              {/* Subtitle with professional credentials */}
+              <div className="space-y-1">
+                <p className="text-xl md:text-2xl text-primary-600 font-semibold">
                   Orthopedic & Traumatology Specialist
-                </h2>
-                <div className="flex items-center text-gray-600 space-x-2">
-                  <MapPin size={16} />
-                  <span className="text-sm">Medera Hospital - Baku</span>
+                </p>
+                <div className="flex items-center justify-center lg:justify-start space-x-2 text-gray-600">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                  </svg>
+                  <span className="text-sm md:text-base">Medera Hospital - Baku</span>
                 </div>
               </div>
             </div>
 
-            {/* Description */}
-            <p className="text-lg text-gray-700 leading-relaxed max-w-lg">
+            {/* Professional description */}
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-xl mx-auto lg:mx-0">
               Expert orthopedic care with over 25 years of experience. Specializing in 
               joint replacements, arthroscopic surgery, and comprehensive trauma care.
             </p>
 
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            {/* Action buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link 
                 to="/contact" 
-                className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                className="inline-flex items-center justify-center px-8 py-4 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
               >
-                <Calendar className="w-5 h-5 mr-2" />
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
                 Book Appointment
               </Link>
+              
               <Link 
-                to="/testimonials" 
-                className="inline-flex items-center justify-center px-8 py-4 border-2 border-blue-600 text-blue-600 font-semibold rounded-xl hover:bg-blue-50 transition-all duration-300"
+                to="/services" 
+                className="inline-flex items-center justify-center px-8 py-4 border-2 border-primary-600 text-primary-600 font-semibold rounded-lg hover:bg-primary-50 transition-all duration-300"
               >
-                <Eye className="w-5 h-5 mr-2" />
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
                 View Treatments
               </Link>
             </div>
-
-            {/* Hospital Info */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-blue-100">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                  <MapPin className="w-6 h-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Practice Location</h3>
-                  <p className="text-gray-600 text-sm">
-                    Currently serving patients in Baku with regional clinics in Balakən and Lankaran
-                  </p>
-                </div>
-              </div>
-            </div>
           </motion.div>
 
-          {/* Right Content - Doctor Image */}
+          {/* Right Column - Doctor Image */}
           <motion.div 
-            className="relative"
-            initial={{ opacity: 0, x: 50 }}
+            className="relative order-1 lg:order-2"
+            initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="relative">
-              {/* Main Image */}
-              <div className="relative z-10">
-                <img 
-                  src="/img/aboutsection.webp" 
-                  alt="Op. Dr. Gürkan Eryanılmaz" 
-                  className="w-full h-auto rounded-3xl shadow-2xl object-cover"
-                />
+              {/* Main doctor image */}
+              <img 
+                src="/img/aboutsection.webp" 
+                alt="Op. Dr. Gürkan Eryanılmaz" 
+                className="w-full h-auto max-w-lg mx-auto rounded-2xl shadow-2xl"
+              />
+              
+              {/* Professional credentials overlay */}
+              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-primary-600 mb-1">25+</div>
+                  <div className="text-sm text-gray-600 font-medium">Years Experience</div>
+                </div>
               </div>
               
-              {/* Background Decorative Elements */}
-              <div className="absolute -top-6 -right-6 w-72 h-72 bg-blue-100 rounded-3xl -z-10"></div>
-              <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-blue-50 rounded-3xl -z-10"></div>
-              
-              {/* Professional Gallery Badge */}
-              <div className="absolute top-6 right-6 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
+              {/* Additional credential badge */}
+              <div className="absolute -top-4 -right-4 bg-primary-600 text-white p-4 rounded-xl shadow-lg">
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-blue-100 rounded-xl mx-auto mb-2 flex items-center justify-center">
-                    <span className="text-blue-600 font-bold text-lg">📋</span>
-                  </div>
-                  <h4 className="font-semibold text-gray-900 text-sm">Professional Gallery</h4>
-                  <p className="text-gray-600 text-xs">View Surgery Photos</p>
+                  <div className="text-xl font-bold mb-1">20K+</div>
+                  <div className="text-xs font-medium">Operations</div>
                 </div>
               </div>
             </div>
           </motion.div>
         </div>
-      </div>
-
-      {/* Bottom Wave Decoration */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1200 120" fill="none" className="w-full h-auto">
-          <path 
-            d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z" 
-            fill="white"
-          />
-        </svg>
       </div>
     </section>
   );
