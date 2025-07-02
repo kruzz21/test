@@ -1,6 +1,7 @@
-src/i18n/locales/az/translation.json
-src/i18n/locales/en/translation.json
-src/i18n/locales/tr/translation.json
-src/components/home/IntroSection.tsx
-src/components/home/StatsSection.tsx
-src/components/home/ServicesSection.tsx
+supabase/
+src/lib/supabase.ts
+src/lib/enhanced-supabase.ts
+src/lib/auth.ts
+package-lock.json
+.gitignore
+public/
