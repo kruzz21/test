@@ -1,38 +1,6 @@
-# Database migrations
-supabase/
-
-# Admin components and authentication
-src/components/admin/
-src/lib/auth.ts
-src/lib/enhanced-supabase.ts
-src/lib/supabase.ts
-src/pages/AdminLoginPage.tsx
-src/pages/AdminDashboardPage.tsx
-
-# Non-essential pages for main website styling
-src/pages/CheckAppointmentsPage.tsx
-src/pages/BlogPage.tsx
-src/pages/BlogPostPage.tsx
-src/pages/TestimonialsPage.tsx
-src/pages/GalleryPage.tsx
-src/pages/NotFoundPage.tsx
-
-# Symptom detail pages (keeping main symptoms page)
-src/pages/symptoms/
-
-# Configuration files
-vercel.json
-tsconfig.*.json
-vite.config.ts
-postcss.config.js
-eslint.config.js
-
-# Package files
-package-lock.json
-.gitignore
-
-# Data files (keeping for content)
-# src/data/ - keeping these for content
-
-# Utility files
-src/utils/
+src/i18n/locales/az/translation.json
+src/i18n/locales/en/translation.json
+src/i18n/locales/tr/translation.json
+src/components/home/IntroSection.tsx
+src/components/home/StatsSection.tsx
+src/components/home/ServicesSection.tsx
