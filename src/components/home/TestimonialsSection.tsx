@@ -42,7 +42,7 @@ const TestimonialsSection = () => {
                   key={testimonial.id}
                   className="w-full flex-shrink-0 px-4"
                 >
-                  <div className="bg-gray-50 p-8 rounded-lg shadow-sm">
+                  <div className="card">
                     <div className="flex items-center mb-6">
                       <img 
                         src={testimonial.avatar} 

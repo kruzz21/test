@@ -7,15 +7,16 @@ import { formatDate } from '../../utils/dateFormatter';
 interface BlogCardProps {
   post: BlogPost;
   featured?: boolean;
+  loading?: 'eager' | 'lazy';
 }
 
-const BlogCard = ({ post, featured = false }: BlogCardProps) => {
+const BlogCard = ({ post, featured = false, loading = 'lazy' }: BlogCardProps) => {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language as 'az' | 'en' | 'tr';
   
   return (
     <article 
-      className={`bg-white rounded-lg shadow-sm overflow-hidden group ${
+      className={`card group hover:shadow-xl transition-shadow duration-300 ${
         featured ? 'md:col-span-2' : ''
       }`}
       data-aos="fade-up"
@@ -25,7 +26,8 @@ const BlogCard = ({ post, featured = false }: BlogCardProps) => {
           <img 
             src={post.image} 
             alt={post.title[currentLang]} 
-            className="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105"
+            className="w-full h-60 object-cover transition-transform duration-300 group-hover:scale-105 rounded-lg"
+            loading={loading}
           />
         </Link>
         

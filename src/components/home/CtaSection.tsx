@@ -16,7 +16,7 @@ const CtaSection = () => {
         <div data-aos="fade-up" data-aos-delay="200">
           <Link 
             to="/contact" 
-            className="btn bg-white text-primary-700 hover:bg-gray-100 transition-colors px-8 py-4"
+            className="btn btn-primary bg-white text-primary-700 hover:bg-gray-100 transition-colors px-8 py-4"
           >
             {t('home.cta.button')}
           </Link>

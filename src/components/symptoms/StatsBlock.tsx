@@ -22,7 +22,7 @@ const StatsBlock = () => {
         {stats.map((stat, index) => (
           <div 
             key={index} 
-            className="text-center bg-white rounded-lg p-4 shadow-sm"
+            className="card text-center"
             data-aos="fade-up"
             data-aos-delay={index * 100}
           >

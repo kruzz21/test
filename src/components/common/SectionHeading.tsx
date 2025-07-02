@@ -18,7 +18,7 @@ const SectionHeading = ({ title, subtitle, centered = false, light = false }: Se
           {subtitle}
         </p>
       )}
-      <div className={`h-1 w-20 bg-primary-500 mt-4 ${centered ? 'mx-auto' : ''}`}></div>
+      <div className={`h-1 w-20 bg-primary-600 mt-4 ${centered ? 'mx-auto' : ''}`}></div>
     </div>
   );
 };
